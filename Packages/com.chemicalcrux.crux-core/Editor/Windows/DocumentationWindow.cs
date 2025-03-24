@@ -10,7 +10,7 @@ namespace ChemicalCrux.CruxCore.Editor.Windows
 {
     public class DocumentationWindow : EditorWindow
     {
-        private DocContents currentContents;
+        private DocManual currentManual;
         private DocPage currentPage;
 
         private Label titleElement;
@@ -21,7 +21,7 @@ namespace ChemicalCrux.CruxCore.Editor.Windows
         private Button currentButton;
         private Dictionary<DocPage, Button> buttonMap = new();
 
-        [MenuItem(CoreConsts.MenuRoot + "Documentation", priority = CoreConsts.BasePriority)]
+        [MenuItem(CoreConsts.MenuRootPath + "Documentation", priority = CoreConsts.MenuRootPriority)]
         public static void OpenRoot()
         {
             var window = GetWindow();
@@ -29,10 +29,10 @@ namespace ChemicalCrux.CruxCore.Editor.Windows
             window.Show();
         }
         
-        public static void OpenDocumentation(DocContents contents)
+        public static void OpenDocumentation(DocManual manual)
         {
             var window = CreateWindow<DocumentationWindow>();
-            window.ShowDocumentation(contents);
+            window.ShowDocumentation(manual);
             window.Show();
         }
 
@@ -74,7 +74,7 @@ namespace ChemicalCrux.CruxCore.Editor.Windows
             buttonMap.Clear();
             pageElement.Clear();
 
-            currentContents = null;
+            currentManual = null;
             currentPage = null;
 
             currentButton = null;
@@ -96,7 +96,7 @@ namespace ChemicalCrux.CruxCore.Editor.Windows
             foreach (var guid in AssetDatabase.FindAssets("t:DocContents"))
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
-                var docSet = AssetDatabase.LoadAssetAtPath<DocContents>(path);
+                var docSet = AssetDatabase.LoadAssetAtPath<DocManual>(path);
                 var button = docButton.Instantiate();
                 pageElement.Add(button);
 
@@ -111,18 +111,18 @@ namespace ChemicalCrux.CruxCore.Editor.Windows
             }
         }
 
-        private void ShowDocumentation(DocContents contents)
+        private void ShowDocumentation(DocManual manual)
         {
             Clear();
 
-            titleElement.text = contents.title;
+            titleElement.text = manual.title;
 
             pageList.style.display = DisplayStyle.Flex;
             backButton.style.display = DisplayStyle.Flex;
 
-            currentContents = contents;
+            currentManual = manual;
             
-            foreach (var category in contents.categories)
+            foreach (var category in manual.categories)
             {
                 var label = new Label(category.label);
                 label.AddToClassList("doc-category");
@@ -142,8 +142,8 @@ namespace ChemicalCrux.CruxCore.Editor.Windows
                 }
             }
 
-            currentButton = buttonMap[contents.categories[0].pages[0]];
-            ShowPage(contents.categories[0].pages[0]);
+            currentButton = buttonMap[manual.categories[0].pages[0]];
+            ShowPage(manual.categories[0].pages[0]);
         }
 
         private void ShowPage(DocPage page)

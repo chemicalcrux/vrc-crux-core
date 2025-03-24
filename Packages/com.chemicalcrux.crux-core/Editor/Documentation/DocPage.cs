@@ -1,10 +1,13 @@
+using ChemicalCrux.CruxCore.Runtime;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace ChemicalCrux.CruxCore.Editor.Documentation
 {
-    [CreateAssetMenu]
+#if CRUX_DEV
+    [CreateAssetMenu(menuName = CoreConsts.AssetDocPath + "Page", order = CoreConsts.AssetInternalOrder)]
+#endif
     public class DocPage : ScriptableObject
     {
         public string title;

@@ -1,11 +1,22 @@
+using JetBrains.Annotations;
+
 namespace ChemicalCrux.CruxCore.Runtime
 {
+    [PublicAPI]
     public static class CoreConsts
     {
-        public const string MenuRoot = "Tools/chemicalcrux/";
+        public const string MenuRootPath = "Tools/chemicalcrux/";
 
-        public const int BasePriority = 1000;
-        public const int DocPriority = BasePriority;
-        public const int SubmenuPriority = BasePriority + 100;
+        public const int MenuRootPriority = 1000;
+        public const int MenuDocPriority = MenuRootPriority;
+        public const int MenuPackagePriority = MenuRootPriority + 100;
+
+        public const string AssetRootPath = "chemicalcrux/";
+        public const string AssetDocPath = AssetRootPath + "Documentation/";
+
+        public const int AssetRootOrder = 0;
+        public const int AssetInternalOrder = AssetRootOrder + 0;
+        public const int AssetDocOrder = AssetInternalOrder + 0;
+        public const int AssetPackageOrder = AssetRootOrder + 100;
     }
 }

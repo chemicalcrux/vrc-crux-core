@@ -1,9 +1,12 @@
 using System.Collections.Generic;
+using ChemicalCrux.CruxCore.Runtime;
 using UnityEngine;
 
 namespace ChemicalCrux.CruxCore.Editor.Documentation
 {
-    [CreateAssetMenu]
+#if CRUX_DEV
+    [CreateAssetMenu(menuName = CoreConsts.AssetDocPath + "Category", order = CoreConsts.AssetInternalOrder)]
+#endif
     public class DocCategory : ScriptableObject
     {
         public string label;
