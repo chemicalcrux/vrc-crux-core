@@ -93,7 +93,7 @@ namespace ChemicalCrux.CruxCore.Editor.Windows
                 AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
                     "Packages/com.chemicalcrux.crux-core/UI/Templates/DocSet Entry.uxml");
             
-            foreach (var guid in AssetDatabase.FindAssets("t:DocContents"))
+            foreach (var guid in AssetDatabase.FindAssets("t:" + nameof(DocManual)))
             {
                 var path = AssetDatabase.GUIDToAssetPath(guid);
                 var docSet = AssetDatabase.LoadAssetAtPath<DocManual>(path);
