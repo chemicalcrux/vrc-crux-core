@@ -1,0 +1,18 @@
+{
+    "name": "CruxCoreEditor",
+    "rootNamespace": "ChemicalCrux.CruxCore.Editor",
+    "references": [
+        "GUID:1cdc6dedefbda46a6b25f4afc8d269f1"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

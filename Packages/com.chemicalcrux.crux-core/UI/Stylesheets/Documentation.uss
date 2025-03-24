@@ -1,0 +1,47 @@
+.doc-text {
+    white-space: normal;
+    -unity-text-align: upper-left;
+}
+
+.doc-foldout > Toggle {
+    background-color: rgb(91, 91, 91);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    font-size: 150%;
+}
+
+.doc-foldout > #unity-content {
+    margin-top: 8px;
+    margin-right: 16px;
+    margin-bottom: 8px;
+    margin-left: 16px;
+}
+
+.doc-category {
+    font-size: 125%;
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+    margin-top: 8px;
+    margin-bottom: 8px;
+}
+
+PingButton {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.doc-button {
+    margin-top: 16px;
+    margin-bottom: 16px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.selected-topic {
+    -unity-font-style: bold;
+    background-color: rgba(255, 255, 255, 0.25);
+}

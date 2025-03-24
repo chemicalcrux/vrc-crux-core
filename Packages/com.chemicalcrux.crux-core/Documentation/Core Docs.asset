@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288f4a43a3569418b9de2fcb41f2e047, type: 3}
+  m_Name: Core Docs
+  m_EditorClassIdentifier: 
+  title: Crux Core
+  description: Documentation and other support for my other packages.
+  icon: {fileID: 0}
+  packageName: com.chemicalcrux.crux-core
+  categories:
+  - {fileID: 11400000, guid: d80f022a957104328ad7cd10813a58c7, type: 2}
