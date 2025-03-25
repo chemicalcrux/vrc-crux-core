@@ -18,7 +18,7 @@ namespace ChemicalCrux.CruxCore.Editor
         {
             result = default;
 
-            var parts = serialized.Split("/");
+            var parts = serialized.Split(",");
 
             if (parts.Length != 2 || !GUID.TryParse(parts[0], out var _) || !long.TryParse(parts[1], out var fileID))
             {
