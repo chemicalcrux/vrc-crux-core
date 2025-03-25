@@ -1,0 +1,13 @@
+{
+  "name": "crux-ui-test",
+  "displayName": "Crux UI Test",
+  "version": "0.1.0",
+  "unity": "2022.3",
+  "description": "A test for the Crux UI package",
+  "vrchatVersion": "2025.1.2",
+  "author": {
+    "name": "chemicalcrux",
+    "email": "chemicalcrux@gmail.com",
+    "url": "https://github.com/chemicalcrux/"
+  }
+}

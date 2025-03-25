@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 288f4a43a3569418b9de2fcb41f2e047, type: 3}
+  m_Name: Contents
+  m_EditorClassIdentifier: 
+  title: UI Test
+  description: idk this is just here as a test
+  icon: {fileID: 2800000, guid: e8aa120f1b4731e43a2dd31eb70bbbe2, type: 3}
+  categories:
+  - {fileID: 11400000, guid: fb2a7552697e54a9f93b51a51a8838c3, type: 2}

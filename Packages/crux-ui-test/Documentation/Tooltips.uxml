@@ -1,0 +1,11 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Tooltip Button" src="project://database/Packages/com.chemicalcrux.crux-core/UI/Templates/Tooltip%20Button.uxml?fileID=9197481963319205126&amp;guid=ca981a01b65394a20a864fb3e5da55e7&amp;type=3#Tooltip Button" />
+    <ui:Label tabindex="-1" text="Here is a tooltip." parse-escape-sequences="true" display-tooltip-when-elided="true" class="doc-text" />
+    <ui:Instance template="Tooltip Button" name="Tooltip Button">
+        <AttributeOverrides element-name="TooltipButton" tooltip-ref="84f4b25d9a92744a1bec12e2fa3c4253,9197481963319205126" />
+    </ui:Instance>
+    <ui:Label tabindex="-1" text="Here is another one." parse-escape-sequences="true" display-tooltip-when-elided="true" class="doc-text" />
+    <ui:Instance template="Tooltip Button" name="Tooltip Button">
+        <AttributeOverrides element-name="TooltipButton" tooltip-ref="8a72288a46f054f73bdb29eef0e2f825,9197481963319205126" />
+    </ui:Instance>
+</ui:UXML>

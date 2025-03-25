@@ -1,0 +1,6 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
+    <ChemicalCrux.CruxCore.Editor.Controls.TooltipPropertyField binding-path="foo" label="Foo" tooltip-ref="84f4b25d9a92744a1bec12e2fa3c4253,9197481963319205126" />
+    <ChemicalCrux.CruxCore.Editor.Controls.TooltipPropertyField binding-path="bar" label="Bar" tooltip-ref="84f4b25d9a92744a1bec12e2fa3c4253,9197481963319205126" />
+    <ChemicalCrux.CruxCore.Editor.Controls.TooltipPropertyField binding-path="baz" label="Baz" tooltip-ref="84f4b25d9a92744a1bec12e2fa3c4253,9197481963319205126" />
+    <ChemicalCrux.CruxCore.Editor.Controls.TooltipPropertyField binding-path="qux" label="Qux" tooltip-ref="8a72288a46f054f73bdb29eef0e2f825,9197481963319205126" />
+</ui:UXML>

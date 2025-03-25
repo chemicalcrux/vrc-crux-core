@@ -32,7 +32,7 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
                 "Packages/com.chemicalcrux.crux-core/UI/Templates/Tooltip Button.uxml");
             var tree = uxml.Instantiate();
             var button = tree.Q<TooltipButton>();
-            button.TooltipRef = field.TooltipDocument;
+            button.TooltipRef = field.TooltipRef;
 
             sibling.parent.hierarchy.Insert(sibling.parent.IndexOf(sibling), button);
 
@@ -42,17 +42,17 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
 
         public new class UxmlTraits : PropertyField.UxmlTraits
         {
-            private readonly UxmlStringAttributeDescription tooltipDocument = new() { name = "tooltip-document", defaultValue = ""};
+            private readonly UxmlStringAttributeDescription tooltipRef = new() { name = "tooltip-ref", defaultValue = ""};
 
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
             {
                 base.Init(ve, bag, cc);
                 var ate = ve as TooltipPropertyField;
 
-                ate!.TooltipDocument = tooltipDocument.GetValueFromBag(bag, cc);
+                ate!.TooltipRef = tooltipRef.GetValueFromBag(bag, cc);
             }
         }
 
-        private string TooltipDocument { get; set; }
+        private string TooltipRef { get; set; }
     }
 }
