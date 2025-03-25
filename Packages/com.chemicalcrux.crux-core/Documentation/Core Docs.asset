@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   title: Crux Core
   description: Documentation and other support for my other packages.
-  icon: {fileID: 0}
-  packageName: com.chemicalcrux.crux-core
+  icon: {fileID: 2800000, guid: af1bbab91a1344abb8d5ab7ae8aff5b8, type: 3}
   categories:
   - {fileID: 11400000, guid: d80f022a957104328ad7cd10813a58c7, type: 2}

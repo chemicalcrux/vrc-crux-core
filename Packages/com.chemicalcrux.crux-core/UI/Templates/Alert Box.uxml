@@ -2,7 +2,7 @@
     <Style src="project://database/Packages/com.chemicalcrux.crux-core/UI/Stylesheets/Alerts.uss?fileID=7433441132597879392&amp;guid=0a992201f5f3d40c19b0a39ed1609aea&amp;type=3#Alerts" />
     <ui:VisualElement name="AlertBox" class="info-box" style="padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; flex-grow: 0;">
         <ui:VisualElement name="TopRow" style="flex-grow: 0; flex-direction: row; align-items: center;">
-            <ui:VisualElement name="Icon" class="info-box-icon" style="width: 32px; height: 32px; max-width: 32px; min-width: 32px; min-height: 32px; max-height: 32px;" />
+            <ui:VisualElement name="Icon" class="info-box-icon" style="width: 32px; height: 32px; max-width: 32px; min-width: 32px; min-height: 32px; max-height: 32px; background-image: url(&quot;project://database/Packages/com.chemicalcrux.crux-core/Icons/Alert%20Boxes/Info.png?fileID=2800000&amp;guid=13ff06c5966b9437da3cc883990b2819&amp;type=3#Info&quot;);" />
             <ui:Label tabindex="-1" text="Title" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="-unity-font-style: bold; font-size: 24px;" />
         </ui:VisualElement>
         <ui:VisualElement name="MainArea" style="flex-grow: 1;" />
