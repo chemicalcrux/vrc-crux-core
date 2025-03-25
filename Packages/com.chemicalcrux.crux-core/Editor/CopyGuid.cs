@@ -1,10 +1,11 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Editor
+namespace ChemicalCrux.CruxCore.Editor
 {
-    public static class CopyGUID
+    internal static class CopyGuid
     {
+#if CRUX_DEV
         [MenuItem("Assets/Copy GUID")]
         static void Copy()
         {
@@ -20,5 +21,6 @@ namespace Editor
         {
             return AssetDatabase.Contains(Selection.activeObject);
         }
+#endif
     }
 }

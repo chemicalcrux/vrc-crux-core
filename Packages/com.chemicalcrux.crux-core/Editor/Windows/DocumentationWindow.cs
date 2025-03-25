@@ -46,7 +46,7 @@ namespace ChemicalCrux.CruxCore.Editor.Windows
 
             var texture =
                 AssetDatabase.LoadAssetAtPath<Texture2D>(
-                    "Packages/com.chemicalcrux.crux-ui/Icons/Documentation Window.png");
+                    "Packages/com.chemicalcrux.crux-core/Icons/Window Icons/Documentation Window.png");
 
             window.titleContent = new GUIContent("Documentation", texture);
 

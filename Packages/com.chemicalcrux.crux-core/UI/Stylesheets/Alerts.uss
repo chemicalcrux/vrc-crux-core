@@ -1,0 +1,57 @@
+:root {
+    --crux-info-color-solid: rgb(0, 0, 0);
+    --crux-info-color-faint: rgba(0, 0, 0, 0.25);
+}
+
+.danger {
+    --crux-info-color-solid: rgb(255, 0, 0);
+    --crux-info-color-faint: rgba(255, 0, 0, 0.25);
+}
+
+.warning {
+    --crux-info-color-solid: rgb(255, 255, 0);
+    --crux-info-color-faint: rgba(255, 255, 0, 0.25);
+}
+
+.info {
+    --crux-info-color-solid: rgb(0, 255, 255);
+    --crux-info-color-faint: rgba(0, 255, 255, 0.25);
+}
+
+.info-box {
+    flex-grow: 1;
+    border-top-width: 4px;
+    border-right-width: 4px;
+    border-bottom-width: 4px;
+    border-left-width: 4px;
+    border-radius: 8px;
+    border-left-color: var(--crux-info-color-solid);
+    border-right-color: var(--crux-info-color-faint);
+    border-top-color: var(--crux-info-color-faint);
+    border-bottom-color: var(--crux-info-color-faint);
+    background-color: var(--crux-info-color-faint);
+    margin: 8px;
+}
+
+.info-box-icon {
+    flex-grow: 1;
+    background-image: url("project://database/Packages/com.chemicalcrux.crux-core/Icons/Documentation%20Window.png?fileID=2800000&guid=b3c2fa9805f0f4e1d82b9978f11106d4&type=3#Documentation Window");
+    width: 48px;
+    height: 48px;
+    max-width: 48px;
+    max-height: 48px;
+    min-height: 48px;
+    min-width: 48px;
+}
+
+.danger .info-box-icon {
+    background-image: url("project://database/Packages/com.chemicalcrux.crux-core/Icons/Alert%20Boxes/Danger.png?fileID=2800000&guid=3aa86e7419a1c40b1b184436ad0e1c25&type=3#Danger");
+}
+
+.warning .info-box-icon {
+    background-image: url("project://database/Packages/com.chemicalcrux.crux-core/Icons/Alert%20Boxes/Warning.png?fileID=2800000&guid=6b9401e4436cd4f04a48a8056aed3901&type=3#Warning");
+}
+
+.info .info-box-icon {
+    background-image: url("project://database/Packages/com.chemicalcrux.crux-core/Icons/Alert%20Boxes/Info.png?fileID=2800000&guid=13ff06c5966b9437da3cc883990b2819&type=3#Info");
+}
