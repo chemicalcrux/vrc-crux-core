@@ -11,8 +11,9 @@ namespace ChemicalCrux.CruxCore.Editor
         {
             if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Selection.activeObject, out var guid, out long fileID))
             {
-                EditorGUIUtility.systemCopyBuffer = guid + "," + fileID;
-                Debug.Log(guid + " " + fileID);
+                string reference = guid + "," + fileID;
+                EditorGUIUtility.systemCopyBuffer = reference;
+                Debug.Log(reference);
             }
         }
 
