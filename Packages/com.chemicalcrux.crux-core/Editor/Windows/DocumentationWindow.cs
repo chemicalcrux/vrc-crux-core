@@ -31,14 +31,21 @@ namespace ChemicalCrux.CruxCore.Editor.Windows
         
         public static void OpenDocumentation(DocManual manual)
         {
-            var window = CreateWindow<DocumentationWindow>();
+            var window = GetWindow();
             window.ShowDocumentation(manual);
+            window.Show();
+        }
+
+        public static void OpenPage(DocPage page)
+        {
+            var window = GetWindow();
+            window.ShowPage(page);
             window.Show();
         }
 
         private static DocumentationWindow GetWindow()
         {
-            var window = CreateWindow<DocumentationWindow>();
+            var window = GetWindow<DocumentationWindow>();
             
             // forces the window to show up at least this large
             window.minSize = new Vector2(500, 800);

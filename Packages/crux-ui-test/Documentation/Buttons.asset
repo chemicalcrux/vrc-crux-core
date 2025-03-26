@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0bb9465de333d4efaa48d728e6885270, type: 3}
-  m_Name: Test Page 3
+  m_Name: Buttons
   m_EditorClassIdentifier: 
-  title: Test Page 3
+  title: Buttons
   document: {fileID: 9197481963319205126, guid: 7b532aa83efd845439c08b03bb121d70,
     type: 3}

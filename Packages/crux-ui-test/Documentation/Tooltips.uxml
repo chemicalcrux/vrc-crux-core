@@ -8,4 +8,18 @@
     <ui:Instance template="Tooltip Button" name="Tooltip Button">
         <AttributeOverrides element-name="TooltipButton" tooltip-ref="8a72288a46f054f73bdb29eef0e2f825,9197481963319205126" />
     </ui:Instance>
+    <ui:Label tabindex="-1" text="This tooltip has no reference." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="doc-text" />
+    <ui:Instance template="Tooltip Button" name="Tooltip Button" />
+    <ui:Label tabindex="-1" text="This tooltip&apos;s GUID is wrong." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="doc-text" />
+    <ui:Instance template="Tooltip Button" name="Tooltip Button">
+        <AttributeOverrides element-name="TooltipButton" tooltip-ref="7a72288a46f054f73bdb29eef0e2f825,9197481963319205126" />
+    </ui:Instance>
+    <ui:Label tabindex="-1" text="This tooltip&apos;s FileID is wrong." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="doc-text" />
+    <ui:Instance template="Tooltip Button" name="Tooltip Button">
+        <AttributeOverrides element-name="TooltipButton" tooltip-ref="8a72288a46f054f73bdb29eef0e2f825,9197481963319205127" />
+    </ui:Instance>
+    <ui:Label tabindex="-1" text="This tooltip points at the wrong kind of asset." parse-escape-sequences="true" display-tooltip-when-elided="true" name="Label" class="doc-text" />
+    <ui:Instance template="Tooltip Button" name="Tooltip Button">
+        <AttributeOverrides element-name="TooltipButton" tooltip-ref="78417efcabfc5415e82aff13ff73a8d2,11400000" />
+    </ui:Instance>
 </ui:UXML>

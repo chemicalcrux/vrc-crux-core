@@ -27,44 +27,8 @@ namespace ChemicalCrux.CruxCore.Editor
 
         public static bool TryGetAssetRef(AssetReference assetReference, out VisualTreeAsset result)
         {
-            return TryGetGuid(assetReference.guid, assetReference.fileID, out result);
-        }
-
-        public static bool TryGetGuid(string guid, long fileid, out VisualTreeAsset result)
-        {
-            var path = AssetDatabase.GUIDToAssetPath(guid);
-
-            if (string.IsNullOrEmpty(path))
-            {
-                Debug.LogWarning($"Could not find a path for GUID {guid}. Please report this as a bug!");
-                result = GetFallbackAsset();
-                return false;
-            }
+            if (assetReference.TryLoad(out result)) return true;
             
-            foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(path))
-            {
-                if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(asset, out var assetGuid, out long assetFileid))
-                {
-                    if (guid == assetGuid && fileid == assetFileid)
-                    {
-                        if (asset is VisualTreeAsset visualTreeAsset)
-                        {
-                            result = visualTreeAsset;
-                            return true;
-                        }
-                        else
-                        {
-                            Debug.LogWarning(
-                                $"Found an asset with GUID {guid} and FileID {fileid}, but it's not a VisualTreeAsset! It's a {asset}. Please report this as a bug!");
-
-                            result = GetFallbackAsset();
-                            return false;
-                        }
-                    }
-                }
-            }
-
-            Debug.LogWarning($"Found a path for GUID {guid}, but couldn't find FileID {fileid}");
             result = GetFallbackAsset();
             return false;
         }

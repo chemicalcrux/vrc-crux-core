@@ -1,0 +1,14 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Header With Bar" src="project://database/Packages/com.chemicalcrux.crux-core/UI/Templates/Header%20With%20Bar.uxml?fileID=9197481963319205126&amp;guid=2122c049625324fc098ba3d4198ecdde&amp;type=3#Header With Bar" />
+    <ui:Instance template="Header With Bar" name="Header With Bar">
+        <AttributeOverrides element-name="Header" text="Ping Buttons" />
+    </ui:Instance>
+    <ChemicalCrux.CruxCore.Editor.Controls.PingButton text="This button will ping an asset via GUID+FileID" asset-ref="0fcdb8e795ac9446c95c7f6a33476dcc,11400000" />
+    <ChemicalCrux.CruxCore.Editor.Controls.PingButton text="This button will ping an asset via its path" asset-path="Packages/crux-ui-test/Example Asset.asset" />
+    <ChemicalCrux.CruxCore.Editor.Controls.PingButton text="This button will ping an asset via a query" asset-query="t:ExampleAsset" />
+    <ui:Instance template="Header With Bar" name="Header With Bar">
+        <AttributeOverrides element-name="Header" text="Doc Buttons" />
+    </ui:Instance>
+    <ChemicalCrux.CruxCore.Editor.Controls.DocButton text="This button will open another doc page" doc-page-ref="78417efcabfc5415e82aff13ff73a8d2,11400000" />
+    <ChemicalCrux.CruxCore.Editor.Controls.DocButton text="This button will open the core manual" doc-manual-ref="237fb495d65834b049da64d12c70ebed,11400000" />
+</ui:UXML>

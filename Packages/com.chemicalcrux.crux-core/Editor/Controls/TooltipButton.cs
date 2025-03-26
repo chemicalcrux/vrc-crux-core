@@ -17,13 +17,11 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
                     if (!AssetReference.TryParse(button.TooltipRef, out var assetRef))
                     {
                         Debug.LogWarning("A tooltip button has an invalid tooltip reference. See the above warning.");
-                        return;
                     }
 
                     if (!ElementFinder.TryGetAssetRef(assetRef, out var uxml))
                     {
                         Debug.LogWarning("A tooltip button has an invalid tooltip reference. See the above warning.");
-                        return;
                     }
                     
                     UnityEditor.PopupWindow.Show(button.worldBound, new TooltipWindow(uxml));

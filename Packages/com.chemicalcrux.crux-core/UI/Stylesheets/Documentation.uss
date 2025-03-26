@@ -27,14 +27,14 @@
     margin-bottom: 8px;
 }
 
-PingButton {
+PingButton.unity-button {
     margin-top: 16px;
     margin-bottom: 16px;
     margin-right: auto;
     margin-left: auto;
 }
 
-.doc-button {
+DocButton.unity-button {
     margin-top: 16px;
     margin-bottom: 16px;
     margin-right: auto;
