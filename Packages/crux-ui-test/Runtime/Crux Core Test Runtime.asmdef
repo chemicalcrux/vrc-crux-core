@@ -1,7 +1,9 @@
 {
     "name": "CruxCoreTestRuntime",
     "rootNamespace": "ChemicalCrux.CruxCoreTest.Runtime",
-    "references": [],
+    "references": [
+        "GUID:1cdc6dedefbda46a6b25f4afc8d269f1"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
