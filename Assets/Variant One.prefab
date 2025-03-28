@@ -112,8 +112,8 @@ MonoBehaviour:
         asm: CruxCoreTestRuntime}
       data:
         foo:
-          active: 0
-          value: 0
+          active: 1
+          value: 10
         badName:
-          active: 0
-          value: 
+          active: 1
+          value: Variant One

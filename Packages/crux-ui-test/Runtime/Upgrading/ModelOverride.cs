@@ -1,10 +1,11 @@
 using System;
 using ChemicalCrux.CruxCore.Runtime;
+using UnityEngine;
 
 namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
 {
     [Serializable]
-    [UpgradableLatestVersion(version: 2)]
+    [UpgradableLatestVersion(version: 3)]
     public abstract class ModelOverrideBase : UpgradableOverride<ModelBase>
     {
         
@@ -19,12 +20,22 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
         
         public override UpgradableOverride<ModelBase> Upgrade()
         {
-            return this;
+            Debug.Log("Oh hey it's: " + foo.active);
+            return new ModelOverrideV2
+            {
+                foo = new OverrideItem<float>
+                {
+                    active = foo.active,
+                    value = foo.value
+                },
+                properName = badName,
+                widgets = new OverrideItem<int>()
+            };
         }
 
-        public override bool TryOverride(ModelBase original, out ModelBase result)
+        protected override bool TryPerformOverride(ModelBase original, out ModelBase result)
         {
-            if (original is not ModelV1 model)
+            if (!original.TryUpgradeTo(out ModelV1 upgraded))
             {
                 result = original;
                 return false;
@@ -32,8 +43,8 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
 
             result = new ModelV1()
             {
-                foo = foo.Merge(model.foo),
-                badName = badName.Merge(model.badName)
+                foo = foo.Merge(upgraded.foo),
+                badName = badName.Merge(upgraded.badName)
             };
             
             return true;
@@ -50,10 +61,17 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
         
         public override UpgradableOverride<ModelBase> Upgrade()
         {
-            return this;
+            return new ModelOverrideV3
+            {
+                foo = foo,
+                bar = foo,
+                properName = properName,
+                doStuff = new OverrideItem<bool>(),
+                widgets = widgets
+            };
         }
 
-        public override bool TryOverride(ModelBase original, out ModelBase result)
+        protected override bool TryPerformOverride(ModelBase original, out ModelBase result)
         {
             if (!original.TryUpgradeTo(out ModelV2 model))
             {
@@ -67,6 +85,42 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
                 properName = properName.Merge(model.properName),
                 widgets = widgets.Merge(model.widgets)
             };
+            return true;
+        }
+    }
+
+    [Serializable]
+    [UpgradableVersion(version = 3)]
+    public class ModelOverrideV3 : ModelOverrideBase
+    {
+        public OverrideItem<float> foo;
+        public OverrideItem<float> bar;
+        public OverrideItem<string> properName;
+        public OverrideItem<bool> doStuff;
+        public OverrideItem<int> widgets;
+        
+        public override UpgradableOverride<ModelBase> Upgrade()
+        {
+            return this;
+        }
+
+        protected override bool TryPerformOverride(ModelBase original, out ModelBase result)
+        {
+            if (!original.TryUpgradeTo(out ModelV3 model))
+            {
+                result = original;
+                return false;
+            }
+
+            result = new ModelV3
+            {
+                foo = foo.Merge(model.foo),
+                bar = bar.Merge(model.bar),
+                properName = properName.Merge(model.properName),
+                doStuff = doStuff.Merge(model.doStuff),
+                widgets = widgets.Merge(model.widgets)
+            };
+            
             return true;
         }
     }

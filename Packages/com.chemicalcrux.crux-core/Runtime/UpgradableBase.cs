@@ -48,6 +48,8 @@ namespace ChemicalCrux.CruxCore.Runtime
             int current = GetVersion();
             int limit = GetLatestVersion();
 
+            Debug.Log(current + " " + limit);
+
             if (current > limit)
             {
                 result = this;
