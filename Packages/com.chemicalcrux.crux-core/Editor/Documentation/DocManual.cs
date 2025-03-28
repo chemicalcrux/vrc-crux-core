@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace ChemicalCrux.CruxCore.Editor.Documentation
 {
+    /// <summary>
+    /// The root of a documentation set.
+    /// </summary>
 #if CRUX_DEV
     [CreateAssetMenu(menuName = CoreConsts.AssetDocPath + "Manual", order = CoreConsts.AssetInternalOrder)]
 #endif

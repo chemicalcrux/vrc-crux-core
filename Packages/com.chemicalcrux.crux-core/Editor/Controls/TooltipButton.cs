@@ -4,6 +4,9 @@ using UnityEngine.UIElements;
 
 namespace ChemicalCrux.CruxCore.Editor.Controls
 {
+    /// <summary>
+    /// Displays a tooltip window when clicked.
+    /// </summary>
     public class TooltipButton : Button
     {
         public new class UxmlFactory : UxmlFactory<TooltipButton, UxmlTraits>

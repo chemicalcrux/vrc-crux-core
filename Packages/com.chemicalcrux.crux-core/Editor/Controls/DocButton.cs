@@ -5,6 +5,14 @@ using UnityEngine.UIElements;
 
 namespace ChemicalCrux.CruxCore.Editor.Controls
 {
+    /// <summary>
+    /// Opens a <see cref="DocumentationWindow"/> when clicked. This can either
+    /// open an entire manual (if only the Manual is provided) or a specific page
+    /// (if both the Manual and a Page are provided).
+    ///
+    /// It is possible to only provide a Page, but this won't change the currently-open
+    /// Manual.
+    /// </summary>
     public class DocButton : Button
     {
         public new class UxmlFactory : UxmlFactory<DocButton, UxmlTraits>

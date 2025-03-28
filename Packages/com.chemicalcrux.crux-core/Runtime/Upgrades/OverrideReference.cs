@@ -1,8 +1,12 @@
 using System;
-using ChemicalCrux.CruxCore.Runtime.Interfaces;
 
-namespace ChemicalCrux.CruxCore.Runtime
+namespace ChemicalCrux.CruxCore.Runtime.Upgrades
 {
+    /// <summary>
+    /// Points to a Component or ScriptableObject that can perform an override.
+    /// </summary>
+    /// <typeparam name="TReferenced">The kind of object to reference</typeparam>
+    /// <typeparam name="TUpgradable">The kind of object that can be upgraded</typeparam>
     [Serializable]
     public class OverrideReference<TReferenced,TUpgradable> where TReferenced : UnityEngine.Object, IOverrideProvider<TUpgradable> where TUpgradable : Upgradable<TUpgradable>
     {

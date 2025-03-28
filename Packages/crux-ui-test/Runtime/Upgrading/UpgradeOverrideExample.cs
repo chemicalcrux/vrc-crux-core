@@ -1,5 +1,5 @@
 using ChemicalCrux.CruxCore.Runtime;
-using ChemicalCrux.CruxCore.Runtime.Interfaces;
+using ChemicalCrux.CruxCore.Runtime.Upgrades;
 using UnityEngine;
 
 namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading

@@ -1,4 +1,5 @@
 using ChemicalCrux.CruxCore.Runtime;
+using ChemicalCrux.CruxCore.Runtime.Upgrades;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;

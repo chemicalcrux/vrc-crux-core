@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace ChemicalCrux.CruxCore.Editor.Documentation
 {
+    /// <summary>
+    /// A collection of <see cref="DocPage"/> assets.
+    /// </summary>
 #if CRUX_DEV
     [CreateAssetMenu(menuName = CoreConsts.AssetDocPath + "Category", order = CoreConsts.AssetInternalOrder)]
 #endif

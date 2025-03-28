@@ -1,17 +1,17 @@
 using ChemicalCrux.CruxCore.Runtime;
+using ChemicalCrux.CruxCore.Runtime.Upgrades;
 using JetBrains.Annotations;
 
 namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
 {
     [UpgradableLatestVersion(version: 3)]
-    [OverridableWith(typeof(ModelOverrideBase))]
     public abstract class ModelBase : Upgradable<ModelBase>
     {
         
     }
 
     [PublicAPI]
-    [UpgradableVersion(version = 1)]
+    [UpgradableVersion(version: 1)]
     public class ModelV1 : ModelBase
     {
         public int foo;
@@ -29,7 +29,7 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
     }
 
     [PublicAPI]
-    [UpgradableVersion(version = 2)]
+    [UpgradableVersion(version: 2)]
     public class ModelV2 : ModelBase
     {
         public float foo;
@@ -50,7 +50,7 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
     }
 
     [PublicAPI]
-    [UpgradableVersion(version = 3)]
+    [UpgradableVersion(version: 3)]
     public class ModelV3 : ModelBase
     {
         public float foo;

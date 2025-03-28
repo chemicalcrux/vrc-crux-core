@@ -1,12 +1,17 @@
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
 namespace ChemicalCrux.CruxCore.Editor
 {
+    /// <summary>
+    /// Represents a specific Unity asset.
+    /// </summary>
+    [PublicAPI]
     public class AssetReference
     {
-        public readonly string guid;
-        public readonly long fileID;
+        private readonly string guid;
+        private readonly long fileID;
 
         public AssetReference(string guid, long fileID)
         {
@@ -27,9 +32,9 @@ namespace ChemicalCrux.CruxCore.Editor
             
             foreach (var asset in AssetDatabase.LoadAllAssetsAtPath(path))
             {
-                if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(asset, out var assetGuid, out long assetFileid))
+                if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(asset, out var assetGuid, out long assetFileID))
                 {
-                    if (guid == assetGuid && fileID == assetFileid)
+                    if (guid == assetGuid && fileID == assetFileID)
                     {
                         if (asset is T specificAsset)
                         {

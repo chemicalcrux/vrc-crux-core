@@ -2,6 +2,10 @@ using JetBrains.Annotations;
 
 namespace ChemicalCrux.CruxCore.Runtime
 {
+    /// <summary>
+    /// Contains useful constant values. Mostly used for attributes like
+    /// <see cref="UnityEditor.MenuItem"/>. 
+    /// </summary>
     [PublicAPI]
     public static class CoreConsts
     {

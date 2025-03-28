@@ -5,6 +5,10 @@ using UnityEngine.UIElements;
 
 namespace ChemicalCrux.CruxCore.Editor.Controls
 {
+    /// <summary>
+    /// Allows for a <see cref="PropertyField"/> to include some extra buttons, such as
+    /// <see cref="DocButton"/> and <see cref="TooltipButton"/>.
+    /// </summary>
     public class AnnotatedPropertyField : PropertyField
     {
         public new class UxmlFactory : UxmlFactory<AnnotatedPropertyField, UxmlTraits>

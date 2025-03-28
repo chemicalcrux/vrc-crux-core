@@ -1,7 +1,12 @@
 using UnityEngine;
 
-namespace ChemicalCrux.CruxCore.Runtime
+namespace ChemicalCrux.CruxCore.Runtime.Upgrades
 {
+    /// <summary>
+    /// A specific kind of Upgradable that can override another Upgradable. Overrides should produce
+    /// a new object, possibly with different values than the original.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public abstract class UpgradableOverride<T> : Upgradable<UpgradableOverride<T>> where T : Upgradable<T>
     {
         public bool TryOverride(T original, out T result)

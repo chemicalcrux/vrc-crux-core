@@ -4,6 +4,9 @@ using UnityEngine.UIElements;
 
 namespace ChemicalCrux.CruxCore.Editor.Controls
 {
+    /// <summary>
+    /// Pings an object when clicked.
+    /// </summary>
     public class PingButton : Button
     {
         public new class UxmlFactory : UxmlFactory<PingButton, UxmlTraits>

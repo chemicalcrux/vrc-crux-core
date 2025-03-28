@@ -1,4 +1,4 @@
-using ChemicalCrux.CruxCore.Runtime;
+using ChemicalCrux.CruxCore.Runtime.Upgrades;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -54,7 +54,7 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
                 if (hasPropertyDrawer)
                 {
                     var attr = propertyDrawerAttributes[0] as UpgradablePropertyDrawerAttribute;
-                    var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(attr!.path);
+                    var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(attr!.Path);
                     uxml.CloneTree(area);
                 }
                 else
@@ -108,7 +108,7 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
             {
                 var attr = versionAttributes[0] as UpgradableVersionAttribute;
 
-                slug += "v" + attr!.version;
+                slug += "v" + attr!.Version;
             }
 
             slug += " - " + fieldInfo.FieldType.Name + " - ";

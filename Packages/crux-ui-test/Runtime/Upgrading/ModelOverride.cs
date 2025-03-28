@@ -1,6 +1,5 @@
 using System;
-using ChemicalCrux.CruxCore.Runtime;
-using UnityEngine;
+using ChemicalCrux.CruxCore.Runtime.Upgrades;
 
 namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
 {
@@ -12,7 +11,7 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
     }
 
     [Serializable]
-    [UpgradableVersion(version = 1)]
+    [UpgradableVersion(version: 1)]
     public class ModelOverrideV1 : ModelOverrideBase
     {
         public OverrideItem<int> foo;
@@ -51,7 +50,7 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
     }
 
     [Serializable]
-    [UpgradableVersion(version = 2)]
+    [UpgradableVersion(version: 2)]
     public class ModelOverrideV2 : ModelOverrideBase
     {
         public OverrideItem<float> foo;
@@ -89,7 +88,7 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
     }
 
     [Serializable]
-    [UpgradableVersion(version = 3)]
+    [UpgradableVersion(version: 3)]
     public class ModelOverrideV3 : ModelOverrideBase
     {
         public OverrideItem<float> foo;

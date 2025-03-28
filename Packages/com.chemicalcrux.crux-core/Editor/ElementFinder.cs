@@ -6,7 +6,8 @@ using UnityEngine.UIElements;
 namespace ChemicalCrux.CruxCore.Editor
 {
     /// <summary>
-    /// Fetches VisualTreeAssets based on either GUID+FileID or asset path.
+    /// Fetches VisualTreeAssets based on either GUID+FileID or asset path. It
+    /// provides an "error" document if it cannot find the asset.
     /// </summary>
     [PublicAPI]
     public static class ElementFinder
