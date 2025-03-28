@@ -13,34 +13,8 @@ namespace ChemicalCrux.CruxCore.Runtime
         /// <returns></returns>
         public static int GetLatestVersion(Type type)
         {
-            // This walks up until we hit Upgradeable<>
-            Type root = typeof(Upgradeable<>);
-
-            while (type != root && type != null)
-            {
-                type = type.BaseType;
-
-                if (type == null)
-                    break;
-
-                if (type.IsGenericType)
-                {
-                    Type constructedFrom = type.GetGenericTypeDefinition();
-
-                    if (constructedFrom == root)
-                        break;
-                    else
-                        type = constructedFrom;
-                }
-            }
-
-            if (type == null)
-                return -1;
-
-            Type model = type.GetGenericArguments()[0];
-
-            var attributes = model.GetCustomAttributes(typeof(UpgradeableLatestVersionAttribute), false);
-
+            var attributes = type.GetCustomAttributes(typeof(UpgradeableLatestVersionAttribute), true);
+            
             if (attributes.Length == 0)
                 return -1;
 

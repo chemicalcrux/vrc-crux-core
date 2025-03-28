@@ -4,6 +4,7 @@ using JetBrains.Annotations;
 namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
 {
     [UpgradeableLatestVersion(version: 3)]
+    [OverridableWith(typeof(ModelOverrideBase))]
     public abstract class ModelBase : Upgradeable<ModelBase>
     {
         

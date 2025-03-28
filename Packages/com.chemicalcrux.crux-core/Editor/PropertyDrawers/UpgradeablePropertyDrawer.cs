@@ -1,5 +1,3 @@
-using System.ComponentModel;
-using System.Linq;
 using ChemicalCrux.CruxCore.Runtime;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -13,42 +11,92 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var upgradeable = property.managedReferenceValue as UpgradeableBase;
-            
-            if (upgradeable == null)
-            {
-                return new Label("The managed reference value is null or isn't an UpgradeableBase! This isn't allowed.");
-            }
-            
-            var type = upgradeable.GetType();
-            
             var element =
                 AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
                     "Packages/com.chemicalcrux.crux-core/UI/Property Drawers/Upgradeable.uxml");
 
             var root = element.Instantiate();
+            var label = root.Q<Label>("Label");
             var area = root.Q("PropertyArea");
+            var message = root.Q<Label>("Message");
             var upgradeButton = root.Q<Button>("Upgrade");
+
+            label.text = property.displayName;
+
+            var upgradable = property.managedReferenceValue as UpgradeableBase;
+
+            if (upgradable == null)
+            {
+                message.text = "The managed reference value is null or isn't an UpgradeableBase! This isn't allowed.";
+                message.style.display = DisplayStyle.Flex;
+                return root;
+            }
+
+            var type = upgradable.GetType();
+
+            upgradeButton.style.display = DisplayStyle.None;
 
             var versionAttributes = type.GetCustomAttributes(typeof(UpgradeableVersionAttribute), true);
             var propertyDrawerAttributes = type.GetCustomAttributes(typeof(UpgradeablePropertyDrawerAttribute), true);
 
             bool hasPropertyDrawer = propertyDrawerAttributes.Length > 0;
-            
-            if (hasPropertyDrawer)
+
+            var targetObj = property.serializedObject.targetObject;
+
+            if (PrefabUtility.IsPartOfPrefabInstance(targetObj))
             {
-                var attr = propertyDrawerAttributes[0] as UpgradeablePropertyDrawerAttribute;
-                var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(attr!.path);
-                uxml.CloneTree(area);
+                message.text =
+                    "You aren't allowed to modify a prefab's upgradeable data. Please use an override component instead.";
+                message.style.display = DisplayStyle.Flex;
             }
             else
             {
-                var iterateOver = property.Copy();
-                
-                while (iterateOver.NextVisible(true))
+                if (hasPropertyDrawer)
                 {
-                    area.Add(new PropertyField(iterateOver));
-                    area.Bind(iterateOver.serializedObject);
+                    var attr = propertyDrawerAttributes[0] as UpgradeablePropertyDrawerAttribute;
+                    var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(attr!.path);
+                    uxml.CloneTree(area);
+                }
+                else
+                {
+                    var iterateOver = property.Copy();
+                    var end = iterateOver.GetEndProperty(true);
+
+                    iterateOver.Next(true);
+
+                    while (!SerializedProperty.EqualContents(iterateOver, end))
+                    {
+                        var skipTo = iterateOver.GetEndProperty(false);
+                        area.Add(new PropertyField(iterateOver));
+                        area.Bind(iterateOver.serializedObject);
+
+                        while (iterateOver.NextVisible(true) && !SerializedProperty.EqualContents(iterateOver, skipTo))
+                        {
+                        }
+                    }
+                }
+                int latest = UpgradeableBase.GetLatestVersion(type);
+
+                if (latest != upgradable.GetVersion())
+                {
+                    upgradeButton.style.display = DisplayStyle.Flex;
+
+                    upgradeButton.clicked += () =>
+                    {
+                        if (!upgradable.TryUpgradeToVersion(latest, out var upgraded))
+                        {
+                            Debug.LogWarning("Something went wrong when trying to upgrade...");
+                            return;
+                        }
+
+                        property.managedReferenceValue = upgraded;
+
+                        property.serializedObject.ApplyModifiedProperties();
+
+                        var oldParent = root.parent;
+                        oldParent.Remove(root);
+                        oldParent.Add(CreatePropertyGUI(property));
+                    };
                 }
             }
 
@@ -68,34 +116,6 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
                 slug += "P";
 
             version.text = slug;
-
-            int latest = UpgradeableBase.GetLatestVersion(type);
-
-            if (latest != upgradeable.GetVersion())
-            {
-                upgradeButton.style.display = DisplayStyle.Flex;
-
-                upgradeButton.clicked += () =>
-                {
-                    if (!upgradeable.TryUpgradeToVersion(latest, out var upgraded))
-                    {
-                        Debug.LogWarning("Something went wrong when trying to upgrade...");
-                        return;
-                    }
-
-                    property.managedReferenceValue = upgraded;
-
-                    property.serializedObject.ApplyModifiedProperties();
-
-                    var oldParent = root.parent;
-                    oldParent.Remove(root);
-                    oldParent.Add(CreatePropertyGUI(property));
-                };
-            }
-            else
-            {
-                upgradeButton.style.display = DisplayStyle.None;
-            }
             return root;
         }
     }

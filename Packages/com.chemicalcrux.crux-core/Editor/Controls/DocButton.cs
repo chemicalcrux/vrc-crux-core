@@ -67,7 +67,7 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
             // Unity 2022.3 does not support asset references here, so the backup plan is to just store the
             // GUID and FileID of the asset in a string.
             
-            private readonly UxmlStringAttributeDescription docManaulRef = new()
+            private readonly UxmlStringAttributeDescription docManualRef = new()
                 { name = "doc-manual-ref", defaultValue = "" };
             
             private readonly UxmlStringAttributeDescription docPageRef = new()
@@ -78,7 +78,7 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
                 base.Init(ve, bag, cc);
                 var ate = ve as DocButton;
 
-                ate!.DocManualRef = docManaulRef.GetValueFromBag(bag, cc);
+                ate!.DocManualRef = docManualRef.GetValueFromBag(bag, cc);
                 ate!.DocPageRef = docPageRef.GetValueFromBag(bag, cc);
             }
         }
