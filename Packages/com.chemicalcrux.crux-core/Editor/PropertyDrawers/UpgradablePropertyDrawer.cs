@@ -6,14 +6,14 @@ using UnityEngine.UIElements;
 
 namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
 {
-    [CustomPropertyDrawer(typeof(UpgradeableBase))]
-    public class UpgradeablePropertyDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(UpgradableBase))]
+    public class UpgradablePropertyDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var element =
                 AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
-                    "Packages/com.chemicalcrux.crux-core/UI/Property Drawers/Upgradeable.uxml");
+                    "Packages/com.chemicalcrux.crux-core/UI/Property Drawers/Upgradable.uxml");
 
             var root = element.Instantiate();
             var label = root.Q<Label>("Label");
@@ -23,11 +23,11 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
 
             label.text = property.displayName;
 
-            var upgradable = property.managedReferenceValue as UpgradeableBase;
+            var upgradable = property.managedReferenceValue as UpgradableBase;
 
             if (upgradable == null)
             {
-                message.text = "The managed reference value is null or isn't an UpgradeableBase! This isn't allowed.";
+                message.text = "The managed reference value is null or isn't an UpgradableBase! This isn't allowed.";
                 message.style.display = DisplayStyle.Flex;
                 return root;
             }
@@ -36,8 +36,8 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
 
             upgradeButton.style.display = DisplayStyle.None;
 
-            var versionAttributes = type.GetCustomAttributes(typeof(UpgradeableVersionAttribute), true);
-            var propertyDrawerAttributes = type.GetCustomAttributes(typeof(UpgradeablePropertyDrawerAttribute), true);
+            var versionAttributes = type.GetCustomAttributes(typeof(UpgradableVersionAttribute), true);
+            var propertyDrawerAttributes = type.GetCustomAttributes(typeof(UpgradablePropertyDrawerAttribute), true);
 
             bool hasPropertyDrawer = propertyDrawerAttributes.Length > 0;
 
@@ -46,14 +46,14 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
             if (PrefabUtility.IsPartOfPrefabInstance(targetObj))
             {
                 message.text =
-                    "You aren't allowed to modify a prefab's upgradeable data. Please use an override component instead.";
+                    "You aren't allowed to modify a prefab's upgradable data. Please use an override component instead.";
                 message.style.display = DisplayStyle.Flex;
             }
             else
             {
                 if (hasPropertyDrawer)
                 {
-                    var attr = propertyDrawerAttributes[0] as UpgradeablePropertyDrawerAttribute;
+                    var attr = propertyDrawerAttributes[0] as UpgradablePropertyDrawerAttribute;
                     var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(attr!.path);
                     uxml.CloneTree(area);
                 }
@@ -75,7 +75,7 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
                         }
                     }
                 }
-                int latest = UpgradeableBase.GetLatestVersion(type);
+                int latest = UpgradableBase.GetLatestVersion(type);
 
                 if (latest != upgradable.GetVersion())
                 {
@@ -103,10 +103,10 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
             string slug = "";
             var version = root.Q<Label>("VersionNumber");
 
-            UpgradeableBase.GetLatestVersion(fieldInfo.FieldType);
+            UpgradableBase.GetLatestVersion(fieldInfo.FieldType);
             if (versionAttributes.Length > 0)
             {
-                var attr = versionAttributes[0] as UpgradeableVersionAttribute;
+                var attr = versionAttributes[0] as UpgradableVersionAttribute;
 
                 slug += "v" + attr!.version;
             }

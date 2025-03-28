@@ -2,7 +2,7 @@ using System;
 
 namespace ChemicalCrux.CruxCore.Runtime
 {
-    public abstract class Upgradeable<T> : UpgradeableBase where T : Upgradeable<T>
+    public abstract class Upgradable<T> : UpgradableBase where T : Upgradable<T>
     {
         public bool TryUpgradeTo<U>(out U upgraded) where U : T
         {
@@ -26,7 +26,7 @@ namespace ChemicalCrux.CruxCore.Runtime
 
         public abstract T Upgrade();
 
-        public override UpgradeableBase UpgradeWithoutType()
+        public override UpgradableBase UpgradeWithoutType()
         {
             return Upgrade();
         }

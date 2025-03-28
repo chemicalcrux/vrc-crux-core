@@ -3,11 +3,11 @@ using System;
 namespace ChemicalCrux.CruxCore.Runtime
 {
     [AttributeUsage(AttributeTargets.Class, Inherited = true, AllowMultiple = false)]
-    public class UpgradeableLatestVersionAttribute : Attribute
+    public class UpgradableLatestVersionAttribute : Attribute
     {
         public int version;
 
-        public UpgradeableLatestVersionAttribute(int version)
+        public UpgradableLatestVersionAttribute(int version)
         {
             this.version = version;
         }

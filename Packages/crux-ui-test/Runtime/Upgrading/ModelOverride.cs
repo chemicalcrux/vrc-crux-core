@@ -4,20 +4,20 @@ using ChemicalCrux.CruxCore.Runtime;
 namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
 {
     [Serializable]
-    [UpgradeableLatestVersion(version: 2)]
-    public abstract class ModelOverrideBase : UpgradeableOverride<ModelBase>
+    [UpgradableLatestVersion(version: 2)]
+    public abstract class ModelOverrideBase : UpgradableOverride<ModelBase>
     {
         
     }
 
     [Serializable]
-    [UpgradeableVersion(version = 1)]
+    [UpgradableVersion(version = 1)]
     public class ModelOverrideV1 : ModelOverrideBase
     {
         public OverrideItem<int> foo;
         public OverrideItem<string> badName;
         
-        public override UpgradeableOverride<ModelBase> Upgrade()
+        public override UpgradableOverride<ModelBase> Upgrade()
         {
             return this;
         }
@@ -41,14 +41,14 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
     }
 
     [Serializable]
-    [UpgradeableVersion(version = 2)]
+    [UpgradableVersion(version = 2)]
     public class ModelOverrideV2 : ModelOverrideBase
     {
         public OverrideItem<float> foo;
         public OverrideItem<string> properName;
         public OverrideItem<int> widgets;
         
-        public override UpgradeableOverride<ModelBase> Upgrade()
+        public override UpgradableOverride<ModelBase> Upgrade()
         {
             return this;
         }

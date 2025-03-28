@@ -3,29 +3,29 @@ using UnityEngine;
 
 namespace ChemicalCrux.CruxCore.Runtime
 {
-    public abstract class UpgradeableBase
+    public abstract class UpgradableBase
     {
         /// <summary>
-        /// Given an Upgradeable&lt;T&gt; or any subclass thereof, this method
+        /// Given an Upgradable&lt;T&gt; or any subclass thereof, this method
         /// returns the highest version number that exists.
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
         public static int GetLatestVersion(Type type)
         {
-            var attributes = type.GetCustomAttributes(typeof(UpgradeableLatestVersionAttribute), true);
+            var attributes = type.GetCustomAttributes(typeof(UpgradableLatestVersionAttribute), true);
             
             if (attributes.Length == 0)
                 return -1;
 
-            var attr = attributes[0] as UpgradeableLatestVersionAttribute;
+            var attr = attributes[0] as UpgradableLatestVersionAttribute;
             
             return attr.version;
         }
         
         public static int GetVersion(Type type)
         {
-            foreach (UpgradeableVersionAttribute attribute in type.GetCustomAttributes(typeof(UpgradeableVersionAttribute), true))
+            foreach (UpgradableVersionAttribute attribute in type.GetCustomAttributes(typeof(UpgradableVersionAttribute), true))
             {
                 return attribute.version;
             }
@@ -43,7 +43,7 @@ namespace ChemicalCrux.CruxCore.Runtime
             return GetLatestVersion(GetType());
         }
 
-        public bool TryUpgradeToVersion(int target, out UpgradeableBase result)
+        public bool TryUpgradeToVersion(int target, out UpgradableBase result)
         {
             int current = GetVersion();
             int limit = GetLatestVersion();
@@ -63,6 +63,6 @@ namespace ChemicalCrux.CruxCore.Runtime
             return true;
         }
         
-        public abstract UpgradeableBase UpgradeWithoutType();
+        public abstract UpgradableBase UpgradeWithoutType();
     }
 }

@@ -2,11 +2,11 @@ using System;
 
 namespace ChemicalCrux.CruxCore.Runtime
 {
-    public class UpgradeablePropertyDrawerAttribute : Attribute
+    public class UpgradablePropertyDrawerAttribute : Attribute
     {
         public string path;
 
-        public UpgradeablePropertyDrawerAttribute(string path)
+        public UpgradablePropertyDrawerAttribute(string path)
         {
             this.path = path;
         }
