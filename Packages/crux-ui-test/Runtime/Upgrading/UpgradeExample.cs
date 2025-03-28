@@ -7,7 +7,7 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
     public class UpgradeExample : MonoBehaviour
     {
         [SerializeReference] public ModelBase model;
-        public OverrideReference<UpgradeOverrideExample> overrideComponent;
+        public OverrideReference<UpgradeOverrideExample, ModelBase> overrideComponent;
 
         void Reset()
         {
@@ -16,16 +16,11 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
 
         private bool TryGetModel(out ModelV3 result)
         {
-            ModelBase overridden = model;
-            
-            if (overrideComponent.reference)
+            if (!overrideComponent.TryOverride(model, out ModelBase overridden))
             {
-                if (!overrideComponent.reference.TryOverride(model, out overridden))
-                {
-                    Debug.LogWarning("Failed to override.");
-                    result = default;
-                    return false;
-                }
+                Debug.LogWarning("Failed to override.");
+                result = default;
+                return false;
             }
             
             if (!overridden.TryUpgradeTo(out ModelV3 upgraded))

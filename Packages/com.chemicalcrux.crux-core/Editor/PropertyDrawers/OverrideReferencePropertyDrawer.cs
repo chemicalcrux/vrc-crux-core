@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 
 namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
 {
-    [CustomPropertyDrawer(typeof(OverrideReference<>))]
+    [CustomPropertyDrawer(typeof(OverrideReference<,>))]
     public class OverrideReferencePropertyDrawer : PropertyDrawer
     {
         enum Case
@@ -21,17 +21,12 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
         {
             var targetObj = property.serializedObject.targetObject;
 
-            Debug.Log("Target: " + targetObj);
-
             Case result;
             
             if (PrefabUtility.IsPartOfPrefabInstance(targetObj))
             {
                 var original = PrefabUtility.GetCorrespondingObjectFromOriginalSource(targetObj);
                 var nearest = PrefabUtility.GetCorrespondingObjectFromSource(targetObj);
-
-                Debug.Log($"Nearest: {nearest}\nOriginal: {original}");
-                Debug.Log(nearest == original);
 
                 if (nearest == original)
                 {

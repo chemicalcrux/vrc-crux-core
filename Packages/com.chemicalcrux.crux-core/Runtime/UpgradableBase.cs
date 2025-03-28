@@ -48,9 +48,13 @@ namespace ChemicalCrux.CruxCore.Runtime
             int current = GetVersion();
             int limit = GetLatestVersion();
 
-            Debug.Log(current + " " + limit);
-
             if (current > limit)
+            {
+                result = this;
+                return false;
+            }
+
+            if (target > limit)
             {
                 result = this;
                 return false;
@@ -58,7 +62,7 @@ namespace ChemicalCrux.CruxCore.Runtime
 
             var upgraded = this;
 
-            while (upgraded.GetVersion() < limit)
+            while (upgraded.GetVersion() < target)
                 upgraded = upgraded.UpgradeWithoutType();
 
             result = upgraded;

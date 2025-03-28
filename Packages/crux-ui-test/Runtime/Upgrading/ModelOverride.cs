@@ -20,7 +20,6 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
         
         public override UpgradableOverride<ModelBase> Upgrade()
         {
-            Debug.Log("Oh hey it's: " + foo.active);
             return new ModelOverrideV2
             {
                 foo = new OverrideItem<float>

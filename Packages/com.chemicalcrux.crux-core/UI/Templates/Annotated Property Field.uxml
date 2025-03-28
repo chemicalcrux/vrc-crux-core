@@ -2,5 +2,5 @@
     <ChemicalCrux.CruxCore.Editor.Controls.AnnotatedPropertyField>
         <ui:Label tabindex="-1" text="Huh" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Huh" />
         <ui:Label tabindex="-1" text="Welp" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Welp" />
-    </ChemicalCrux.CruxCore.Editor.Controls.TooltipPropertyField>
+    </ChemicalCrux.CruxCore.Editor.Controls.AnnotatedPropertyField>
 </ui:UXML>
