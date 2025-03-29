@@ -46,7 +46,8 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
             int latest = UpgradableBase.GetLatestVersion(type);
             int version = upgradable.GetVersion();
 
-            if (PrefabUtility.IsPartOfPrefabInstance(targetObj))
+            bool prefabInstance = PrefabUtility.IsPartOfPrefabInstance(targetObj);
+            if (prefabInstance)
             {
                 message.text =
                     "You aren't allowed to modify a prefab's upgradable data. Please use an override component instead.";
@@ -78,6 +79,7 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
 
                         while (iterateOver.NextVisible(true) && !SerializedProperty.EqualContents(iterateOver, skipTo))
                         {
+                            
                         }
                     }
                 }
@@ -130,16 +132,22 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
             
             if (!hasPropertyDrawer)
             {
-                tags += "P";
-                slugExplainerParts.Add($"No custom property drawer was provided for this data.");
+                tags += "D";
+                slugExplainerParts.Add($"<b>D:</b> No custom property drawer was provided for this data.");
             }
 
             if (latest != version)
             {
                 tags += "V";
-                slugExplainerParts.Add($"The current version is {version}, which can be upgraded to version {latest}.");
+                slugExplainerParts.Add($"<b>V:</b> The current version is {version}, which can be upgraded to version {latest}.");
             }
 
+            if (prefabInstance)
+            {
+                tags += "P";
+                slugExplainerParts.Add("<b>P:</b> This is part of a prefab instance, so it may not be modified.");
+            }
+            
             slugParts.Add(tags);
 
             slugElement.text = string.Join(" - ", slugParts);
