@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace ChemicalCrux.CruxCore.Runtime
 {
-    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
+    [AttributeUsage(AttributeTargets.Field)]
     public class DocRefAttribute : PropertyAttribute
     {
         public DocRefAttribute(string manualRef = "", string pageRef = "")
@@ -17,8 +17,8 @@ namespace ChemicalCrux.CruxCore.Runtime
         public string PageRef { get; }
     }
 
-    [AttributeUsage(AttributeTargets.Field, Inherited = true, AllowMultiple = false)]
-    public class TooltipRefAttribute : Attribute
+    [AttributeUsage(AttributeTargets.Field)]
+    public class TooltipRefAttribute : PropertyAttribute
     {
         public TooltipRefAttribute(string assetRef)
         {

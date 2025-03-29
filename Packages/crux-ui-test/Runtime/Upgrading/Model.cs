@@ -35,9 +35,6 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
     [UpgradableVersion(version: 2)]
     public class ModelV2 : ModelBase
     {
-        [DocRef(manualRef: "237fb495d65834b049da64d12c70ebed,11400000",
-            pageRef: "a1a15fc308d084456a5a8c5a29613cef,11400000")]
-        [TooltipRef(assetRef: "84f4b25d9a92744a1bec12e2fa3c4253,9197481963319205126")]
         public float foo;
         public string properName;
         public int widgets;
@@ -63,8 +60,14 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
             pageRef: "a1a15fc308d084456a5a8c5a29613cef,11400000")]
         [TooltipRef(assetRef: "84f4b25d9a92744a1bec12e2fa3c4253,9197481963319205126")]
         public float foo;
+        [DocRef(manualRef: "237fb495d65834b049da64d12c70ebed,11400000",
+            pageRef: "a1a15fc308d084456a5a8c5a29613cef,11400000")]
         public float bar;
+        [TooltipRef(assetRef: "84f4b25d9a92744a1bec12e2fa3c4253,9197481963319205126")]
         public string properName;
+        [TooltipRef(assetRef: "84f4b25d9a92744a1bec12e2fa3c4253,9197481963319205126")]
+        [DocRef(manualRef: "237fb495d65834b049da64d12c70ebed,11400000",
+            pageRef: "a1a15fc308d084456a5a8c5a29613cef,11400000")]
         public bool doStuff;
         public int widgets;
 
