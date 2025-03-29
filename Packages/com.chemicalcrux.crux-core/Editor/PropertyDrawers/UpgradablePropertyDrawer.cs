@@ -1,8 +1,8 @@
-using ChemicalCrux.CruxCore.Editor.Controls;
 using ChemicalCrux.CruxCore.Runtime.Upgrades;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.Pool;
 using UnityEngine.UIElements;
 
 namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
@@ -37,12 +37,14 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
 
             upgradeButton.style.display = DisplayStyle.None;
 
-            var versionAttributes = type.GetCustomAttributes(typeof(UpgradableVersionAttribute), true);
             var propertyDrawerAttributes = type.GetCustomAttributes(typeof(UpgradablePropertyDrawerAttribute), true);
 
             bool hasPropertyDrawer = propertyDrawerAttributes.Length > 0;
 
             var targetObj = property.serializedObject.targetObject;
+                
+            int latest = UpgradableBase.GetLatestVersion(type);
+            int version = upgradable.GetVersion();
 
             if (PrefabUtility.IsPartOfPrefabInstance(targetObj))
             {
@@ -79,9 +81,8 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
                         }
                     }
                 }
-                int latest = UpgradableBase.GetLatestVersion(type);
 
-                if (latest != upgradable.GetVersion())
+                if (latest != version)
                 {
                     upgradeButton.style.display = DisplayStyle.Flex;
 
@@ -104,22 +105,46 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
                 }
             }
 
-            string slug = "";
-            var version = root.Q<Label>("VersionNumber");
+            using var handle = ListPool<string>.Get(out var slugParts);
+            using var handle2 = ListPool<string>.Get(out var slugExplainerParts);
+            
+            var slugElement = root.Q<Label>("VersionNumber");
 
             UpgradableBase.GetLatestVersion(fieldInfo.FieldType);
-            if (versionAttributes.Length > 0)
-            {
-                var attr = versionAttributes[0] as UpgradableVersionAttribute;
 
-                slug += "v" + attr!.Version;
+            if (version >= 0)
+            {
+                slugParts.Add($"v{version}");
+                slugExplainerParts.Add($"Version: {version}");
+            }
+            else
+            {
+                slugParts.Add("vX");
+                slugExplainerParts.Add("No version number found! <b>This should never happen!</b>");
             }
 
-            slug += " - " + fieldInfo.FieldType.Name + " - ";
-            if (!hasPropertyDrawer)
-                slug += "P";
+            slugParts.Add(fieldInfo.FieldType.Name);
+            slugExplainerParts.Add($"The base type is {fieldInfo.FieldType.Name}.");
 
-            version.text = slug;
+            string tags = "";
+            
+            if (!hasPropertyDrawer)
+            {
+                tags += "P";
+                slugExplainerParts.Add($"No custom property drawer was provided for this data.");
+            }
+
+            if (latest != version)
+            {
+                tags += "V";
+                slugExplainerParts.Add($"The current version is {version}, which can be upgraded to version {latest}.");
+            }
+
+            slugParts.Add(tags);
+
+            slugElement.text = string.Join(" - ", slugParts);
+            slugElement.tooltip = string.Join("\n\n", slugExplainerParts);
+
             return root;
         }
     }

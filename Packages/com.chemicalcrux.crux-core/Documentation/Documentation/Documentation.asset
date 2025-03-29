@@ -10,11 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7d9076000584f0baf4b9c1d909210f4, type: 3}
-  m_Name: Core Docs - About
+  m_Name: Documentation
   m_EditorClassIdentifier: 
-  label: About
-  pages:
-  - {fileID: 11400000, guid: a1a15fc308d084456a5a8c5a29613cef, type: 2}
-  - {fileID: 11400000, guid: 5b650baf6c2f94738aef3df6107905f9, type: 2}
-  - {fileID: 11400000, guid: d39106d665fe34982806eccdcb778ecd, type: 2}
-  - {fileID: 11400000, guid: fc3f101931c0f48f78033942fdec008d, type: 2}
+  label: 
+  pages: []
