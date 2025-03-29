@@ -1,0 +1,5 @@
+.header-1 {
+    font-size: 200%;
+    -unity-font-style: bold;
+    margin-left: 8px;
+}

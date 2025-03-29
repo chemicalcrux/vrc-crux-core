@@ -11,12 +11,40 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
     /// </summary>
     public class AnnotatedPropertyField : PropertyField
     {
+        private int buttons = 0;
+        private float expected;
+
+
+        public AnnotatedPropertyField()
+        {
+        }
+
+        public AnnotatedPropertyField(SerializedProperty property) : base(property)
+        {
+            RegisterCallback<GeometryChangedEvent, AnnotatedPropertyField>(InsertButton, this);
+        }
+
+        public void SetTooltipRef(string assetRef)
+        {
+            this.TooltipRef = assetRef;
+        }
+
+        public void SetDocManualRef(string assetRef)
+        {
+            this.DocManualRef = assetRef;
+        }
+
+        public void SetDocPageRef(string assetRef)
+        {
+            this.DocPageRef = assetRef;
+        }
+
         public new class UxmlFactory : UxmlFactory<AnnotatedPropertyField, UxmlTraits>
         {
             public override VisualElement Create(IUxmlAttributes bag, CreationContext cc)
             {
                 var field = base.Create(bag, cc) as AnnotatedPropertyField;
-                
+
                 field!.RegisterCallback<GeometryChangedEvent, AnnotatedPropertyField>(InsertButton, field);
 
                 return field;
@@ -40,6 +68,8 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
                 InsertDocButton(field, sibling);
 
             field.UnregisterCallback<GeometryChangedEvent, AnnotatedPropertyField>(InsertButton);
+
+            sibling.style.marginRight = sibling.style.marginRight.value.value - field.buttons * 15;
         }
 
         private static void InsertTooltipButton(AnnotatedPropertyField field, VisualElement sibling)
@@ -51,6 +81,7 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
             button.TooltipRef = field.TooltipRef;
 
             sibling.parent.hierarchy.Insert(sibling.parent.IndexOf(sibling), button);
+            ++field.buttons;
         }
 
         private static void InsertDocButton(AnnotatedPropertyField field, VisualElement sibling)
@@ -64,14 +95,19 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
             button.DocPageRef = field.DocPageRef;
 
             sibling.parent.hierarchy.Insert(sibling.parent.IndexOf(sibling), button);
+            ++field.buttons;
         }
 
         public new class UxmlTraits : PropertyField.UxmlTraits
         {
-            private readonly UxmlStringAttributeDescription tooltipRef = new() { name = "tooltip-ref", defaultValue = ""};
+            private readonly UxmlStringAttributeDescription tooltipRef = new()
+                { name = "tooltip-ref", defaultValue = "" };
 
-            private readonly UxmlStringAttributeDescription docManualRef = new() { name = "doc-manual-ref", defaultValue = ""};
-            private readonly UxmlStringAttributeDescription docPageRef = new() { name = "doc-page-ref", defaultValue = ""};
+            private readonly UxmlStringAttributeDescription docManualRef = new()
+                { name = "doc-manual-ref", defaultValue = "" };
+
+            private readonly UxmlStringAttributeDescription docPageRef = new()
+                { name = "doc-page-ref", defaultValue = "" };
 
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
             {

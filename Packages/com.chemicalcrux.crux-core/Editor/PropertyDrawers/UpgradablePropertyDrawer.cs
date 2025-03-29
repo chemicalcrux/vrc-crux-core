@@ -1,3 +1,4 @@
+using ChemicalCrux.CruxCore.Editor.Controls;
 using ChemicalCrux.CruxCore.Runtime.Upgrades;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -67,7 +68,10 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
                     while (!SerializedProperty.EqualContents(iterateOver, end))
                     {
                         var skipTo = iterateOver.GetEndProperty(false);
-                        area.Add(new PropertyField(iterateOver));
+
+                        var field = new PropertyField(iterateOver);
+                        
+                        area.Add(field);
                         area.Bind(iterateOver.serializedObject);
 
                         while (iterateOver.NextVisible(true) && !SerializedProperty.EqualContents(iterateOver, skipTo))

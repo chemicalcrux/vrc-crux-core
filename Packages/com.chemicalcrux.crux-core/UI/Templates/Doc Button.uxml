@@ -1,3 +1,3 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <ChemicalCrux.CruxCore.Editor.Controls.DocButton name="DocButton" text="M" style="position: relative; width: 16px; height: 16px; max-width: 16px; min-width: 16px; max-height: 16px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
+    <ChemicalCrux.CruxCore.Editor.Controls.DocButton name="DocButton" text="M" tooltip="Open Manual" style="position: relative; width: 16px; height: 16px; max-width: 16px; min-width: 16px; max-height: 16px; padding-top: 0; padding-right: 0; padding-bottom: 0; padding-left: 0; margin-top: 0; margin-right: 0; margin-bottom: 0; margin-left: 0;" />
 </ui:UXML>
