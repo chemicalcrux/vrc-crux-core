@@ -10,6 +10,7 @@
             </ui:VisualElement>
             <ui:Button text="Upgrade" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Upgrade" />
         </ui:VisualElement>
+        <ui:VisualElement name="Annotations" style="flex-grow: 1; position: absolute; right: 8px; top: 8px; flex-direction: row-reverse;" />
         <ui:VisualElement style="flex-direction: row; justify-content: flex-end; align-items: center;">
             <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="VersionNumber" style="-unity-text-align: upper-right; font-size: 8px; -unity-font-style: bold-and-italic;" />
             <ui:Instance template="Doc Button" name="Doc Button">

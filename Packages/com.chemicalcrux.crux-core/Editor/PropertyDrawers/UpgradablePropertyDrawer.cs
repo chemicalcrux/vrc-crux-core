@@ -1,3 +1,5 @@
+using ChemicalCrux.CruxCore.Editor.Controls;
+using ChemicalCrux.CruxCore.Runtime;
 using ChemicalCrux.CruxCore.Runtime.Upgrades;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -40,11 +42,41 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
 
             var root = element.Instantiate();
             var label = root.Q<Label>("Label");
+            var annotations = root.Q("Annotations");
             var area = root.Q("PropertyArea");
             var message = root.Q<Label>("Message");
             var upgradeButton = root.Q<Button>("Upgrade");
 
             label.text = property.displayName;
+
+            var rootTooltipAttributes = property.managedReferenceValue.GetType()
+                .GetCustomAttributes(typeof(TooltipRefAttribute), true);
+
+            if (rootTooltipAttributes.Length > 0)
+            {
+                var attr = rootTooltipAttributes[0] as TooltipRefAttribute;
+
+                var button = CoreVisualElements.TooltipButtonRef.Load().Instantiate();
+                var tooltipButton = button.Q<TooltipButton>();
+                tooltipButton.TooltipRef = attr!.AssetRef;
+
+                annotations.Add(button);
+            }
+
+            var rootDocAttributes = property.managedReferenceValue.GetType()
+                .GetCustomAttributes(typeof(DocRefAttribute), true);
+
+            if (rootDocAttributes.Length > 0)
+            {
+                var attr = rootDocAttributes[0] as DocRefAttribute;
+
+                var button = CoreVisualElements.DocButtonRef.Load().Instantiate();
+                var docButton = button.Q<DocButton>();
+                docButton.DocManualRef = attr!.ManualRef;
+                docButton.DocPageRef = attr!.PageRef;
+
+                annotations.Add(button);
+            }
 
             var upgradable = property.managedReferenceValue as UpgradableBase;
 

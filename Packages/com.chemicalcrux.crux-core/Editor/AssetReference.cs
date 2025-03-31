@@ -1,3 +1,4 @@
+using System;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
@@ -18,7 +19,7 @@ namespace ChemicalCrux.CruxCore.Editor
             this.guid = guid;
             this.fileID = fileID;
         }
-
+        
         public bool TryLoad<T>(out T result)
         {
             var path = AssetDatabase.GUIDToAssetPath(guid);
@@ -70,6 +71,30 @@ namespace ChemicalCrux.CruxCore.Editor
 
             result = new AssetReference(parts[0], fileID);
             return true;
+        }
+    }
+
+    /// <summary>
+    /// A more specific AssetReference that checks if the reference is valid when constructed.
+    /// Saves a bit of typing for known-good assets.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    public class SafeAssetReference<T> : AssetReference where T : UnityEngine.Object
+    {
+        public SafeAssetReference(string guid, long fileID) : base(guid, fileID)
+        {
+            if (!TryLoad(out T _))
+            {
+                throw new Exception("Invalid asset reference!");
+            }
+        }
+        
+        public T Load()
+        {
+            // this definitely works, unless somebody has gone and deleted the asset.
+            // i would simply not do that.
+            TryLoad(out T loaded);
+            return loaded;
         }
     }
 }

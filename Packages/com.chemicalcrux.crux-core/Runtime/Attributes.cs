@@ -1,10 +1,12 @@
 using System;
-using UnityEditor.VersionControl;
 using UnityEngine;
 
 namespace ChemicalCrux.CruxCore.Runtime
 {
-    [AttributeUsage(AttributeTargets.Field)]
+    /// <summary>
+    /// Requests a link to a manual (or a page in a manual).
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Class | AttributeTargets.Struct)]
     public class DocRefAttribute : PropertyAttribute
     {
         public DocRefAttribute(string manualRef = "", string pageRef = "")
@@ -17,7 +19,10 @@ namespace ChemicalCrux.CruxCore.Runtime
         public string PageRef { get; }
     }
 
-    [AttributeUsage(AttributeTargets.Field)]
+    /// <summary>
+    /// Requests that a tooltip be provided.
+    /// </summary>
+    [AttributeUsage(AttributeTargets.Field | AttributeTargets.Class | AttributeTargets.Struct)]
     public class TooltipRefAttribute : PropertyAttribute
     {
         public TooltipRefAttribute(string assetRef)

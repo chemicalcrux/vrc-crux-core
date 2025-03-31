@@ -11,6 +11,9 @@ namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
 
     [PublicAPI]
     [UpgradableVersion(version: 1)]
+    [TooltipRef(assetRef: "8a72288a46f054f73bdb29eef0e2f825,9197481963319205126")]
+    [DocRef(manualRef: "237fb495d65834b049da64d12c70ebed,11400000",
+        pageRef: "a1a15fc308d084456a5a8c5a29613cef,11400000")]
     public class ModelV1 : ModelBase
     {
         [DocRef(manualRef: "237fb495d65834b049da64d12c70ebed,11400000",
