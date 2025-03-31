@@ -10,6 +10,28 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
     [CustomPropertyDrawer(typeof(UpgradableBase))]
     public class UpgradablePropertyDrawer : PropertyDrawer
     {
+        public static void CreatePropertyFields(SerializedProperty property, VisualElement target)
+        {
+            var iterateOver = property.Copy();
+            var end = iterateOver.GetEndProperty(true);
+
+            iterateOver.Next(true);
+
+            while (!SerializedProperty.EqualContents(iterateOver, end))
+            {
+                var skipTo = iterateOver.GetEndProperty(false);
+
+                var field = new PropertyField(iterateOver);
+
+                target.Add(field);
+                target.Bind(iterateOver.serializedObject);
+
+                while (iterateOver.NextVisible(true) &&
+                       !SerializedProperty.EqualContents(iterateOver, skipTo))
+                {
+                }
+            }
+        }
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             var element =
@@ -40,9 +62,10 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
             var propertyDrawerAttributes = type.GetCustomAttributes(typeof(UpgradablePropertyDrawerAttribute), true);
 
             bool hasPropertyDrawer = propertyDrawerAttributes.Length > 0;
+            bool hasPropertyDrawerOverride = false;
 
             var targetObj = property.serializedObject.targetObject;
-                
+
             int latest = UpgradableBase.GetLatestVersion(type);
             int version = upgradable.GetVersion();
 
@@ -63,24 +86,13 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
                 }
                 else
                 {
-                    var iterateOver = property.Copy();
-                    var end = iterateOver.GetEndProperty(true);
-
-                    iterateOver.Next(true);
-
-                    while (!SerializedProperty.EqualContents(iterateOver, end))
+                    if (CreateMainInterface(property.Copy(), area))
                     {
-                        var skipTo = iterateOver.GetEndProperty(false);
-
-                        var field = new PropertyField(iterateOver);
-                        
-                        area.Add(field);
-                        area.Bind(iterateOver.serializedObject);
-
-                        while (iterateOver.NextVisible(true) && !SerializedProperty.EqualContents(iterateOver, skipTo))
-                        {
-                            
-                        }
+                        hasPropertyDrawerOverride = true;
+                    }
+                    else
+                    {
+                        CreatePropertyFields(property, area);
                     }
                 }
 
@@ -109,7 +121,7 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
 
             using var handle = ListPool<string>.Get(out var slugParts);
             using var handle2 = ListPool<string>.Get(out var slugExplainerParts);
-            
+
             var slugElement = root.Q<Label>("VersionNumber");
 
             UpgradableBase.GetLatestVersion(fieldInfo.FieldType);
@@ -129,17 +141,24 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
             slugExplainerParts.Add($"The base type is {fieldInfo.FieldType.Name}.");
 
             string tags = "";
-            
-            if (!hasPropertyDrawer)
+
+            if (hasPropertyDrawer)
             {
                 tags += "D";
-                slugExplainerParts.Add($"<b>D:</b> No custom property drawer was provided for this data.");
+                slugExplainerParts.Add($"<b>D:</b> A simple custom property drawer was provided for this data.");
+            }
+
+            if (hasPropertyDrawerOverride)
+            {
+                tags += "O";
+                slugExplainerParts.Add($"<b>O:</b> An advanced custom property drawer was provided for this data.");
             }
 
             if (latest != version)
             {
                 tags += "V";
-                slugExplainerParts.Add($"<b>V:</b> The current version is {version}, which can be upgraded to version {latest}.");
+                slugExplainerParts.Add(
+                    $"<b>V:</b> The current version is {version}, which can be upgraded to version {latest}.");
             }
 
             if (prefabInstance)
@@ -147,13 +166,23 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
                 tags += "P";
                 slugExplainerParts.Add("<b>P:</b> This is part of a prefab instance, so it may not be modified.");
             }
-            
+
             slugParts.Add(tags);
 
             slugElement.text = string.Join(" - ", slugParts);
             slugElement.tooltip = string.Join("\n\n", slugExplainerParts);
 
             return root;
+        }
+
+        /// <summary>
+        /// Override this method to control how the property itself gets rendered.
+        /// </summary>
+        /// <param name="property"></param>
+        /// <returns>Whether an interface was drawn. If false, the default will be drawn.</returns>
+        protected virtual bool CreateMainInterface(SerializedProperty property, VisualElement area)
+        {
+            return false;
         }
     }
 }
