@@ -265,17 +265,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model:
-    rid: 7569698468873371650
+    rid: 2962847427864821760
   overrideComponent:
     reference: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 7569698468873371650
-      type: {class: ModelV1, ns: ChemicalCrux.CruxCoreTest.Runtime.Upgrading, asm: CruxCoreTestRuntime}
+    - rid: 2962847427864821760
+      type: {class: ModelV3, ns: ChemicalCrux.CruxCoreTest.Runtime.Upgrading, asm: CruxCoreTestRuntime}
       data:
         foo: 0
-        badName: 
+        bar: 0
+        properName: 
+        doStuff: 1
+        widgets: 100
 --- !u!4 &699398263
 Transform:
   m_ObjectHideFlags: 0
