@@ -146,7 +146,10 @@ namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
 
                         var oldParent = root.parent;
                         oldParent.Remove(root);
-                        oldParent.Add(CreatePropertyGUI(property));
+
+                        var replacement = new PropertyField(property);
+                        oldParent.Add(replacement);
+                        replacement.Bind(property.serializedObject);
                     };
                 }
             }

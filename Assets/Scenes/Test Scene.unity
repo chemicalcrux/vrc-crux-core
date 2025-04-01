@@ -265,13 +265,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   model:
-    rid: 2962847427864821760
+    rid: 2962847427864821780
   overrideComponent:
     reference: {fileID: 0}
   references:
     version: 2
     RefIds:
-    - rid: 2962847427864821760
+    - rid: 2962847427864821780
       type: {class: ModelV3, ns: ChemicalCrux.CruxCoreTest.Runtime.Upgrading, asm: CruxCoreTestRuntime}
       data:
         foo: 0

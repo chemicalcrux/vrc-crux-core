@@ -12,11 +12,8 @@ namespace ChemicalCrux.CruxCoreTest.Editor.PropertyDrawers
         {
             var managed = property.managedReferenceValue;
 
-            if (managed is ModelV1)
-            {
-                 area.Add(new Label("This is a test of 'advanced' property drawers. You can run code!\n\nAnyway, here's the normal interface:"));
-                 CreatePropertyFields(property, area);
-            }
+            area.Add(new Label("This is a test of 'advanced' property drawers. You can run code!\n\nThis should only appear for ModelV1.\n\nAnyway, here's the normal interface:"));
+            CreatePropertyFields(property, area);
 
             return true;
         }
