@@ -7,7 +7,7 @@ namespace ChemicalCrux.CruxCoreTest.Runtime
     public class ExampleAsset : ScriptableObject
     {
         public int foo;
-        public string bar;
+        public bool bar;
         public List<float> baz;
         public Object qux;
     }

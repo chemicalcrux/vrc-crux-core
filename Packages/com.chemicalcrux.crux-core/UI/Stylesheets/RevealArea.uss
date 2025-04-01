@@ -1,0 +1,17 @@
+RevealArea.revealed {
+    display: flex;
+}
+
+RevealArea.unrevealed {
+    display: none;
+}
+
+RevealArea {
+    margin-left: 16px;
+    margin-bottom: 16px;
+}
+
+RevealArea > .unity-base-field__input
+{
+    display: none;
+}

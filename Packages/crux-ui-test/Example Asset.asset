@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Example Asset
   m_EditorClassIdentifier: 
   foo: 0
-  bar: Huh
+  bar: 0
   baz:
   - 1
   - 2
