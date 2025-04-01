@@ -7,6 +7,7 @@ RevealArea.unrevealed {
 }
 
 RevealArea {
+    background-color: rgba(255, 255, 255, 0.05);
     padding: 4px;
     padding-left: 8px;
 }
