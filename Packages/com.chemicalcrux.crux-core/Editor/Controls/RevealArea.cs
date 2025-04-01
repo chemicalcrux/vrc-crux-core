@@ -1,34 +1,13 @@
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace ChemicalCrux.CruxCore.Editor.Controls
 {
-    public class RevealArea : BaseField<bool>
+    public class RevealArea : VisualElement
     {
-        public RevealArea() : base(null, null)
-        {
-            
-        }
-
-        public override void SetValueWithoutNotify(bool newValue)
-        {
-            base.SetValueWithoutNotify(newValue);
-
-            if (newValue)
-            {
-                AddToClassList("revealed");
-                RemoveFromClassList("unrevealed");
-            }
-            else
-            {
-                AddToClassList("unrevealed");
-                RemoveFromClassList("revealed");
-            }
-                
-        }
-
         public new class UxmlFactory : UxmlFactory<RevealArea, UxmlTraits>
         {
             public override VisualElement Create(IUxmlAttributes bag, CreationContext cc)
@@ -39,17 +18,46 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
                     AssetDatabase.LoadAssetAtPath<StyleSheet>(
                         "Packages/com.chemicalcrux.crux-core/UI/Stylesheets/RevealArea.uss"));
 
+                var propertyField = new PropertyField();
+                propertyField.bindingPath = field.Binding;
+                propertyField.style.display = DisplayStyle.None;
+
+                field.Add(propertyField);
+
+                propertyField.RegisterValueChangeCallback(evt =>
+                {
+                    bool newValue = evt.changedProperty.boolValue;
+
+                    if (newValue)
+                    {
+                        field.AddToClassList("revealed");
+                        field.RemoveFromClassList("unrevealed");
+                    }
+                    else
+                    {
+                        field.RemoveFromClassList("revealed");
+                        field.AddToClassList("unrevealed");
+                    }
+                });
+                
                 return field;
             }
         }
 
-        public new class UxmlTraits : BaseFieldTraits<bool, UxmlBoolAttributeDescription>
+        public new class UxmlTraits : VisualElement.UxmlTraits
         {
+            private readonly UxmlStringAttributeDescription binding = new()
+                { name = "binding", defaultValue = "" };
+
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
             {
                 base.Init(ve, bag, cc);
                 var ate = ve as RevealArea;
+                
+                ate!.Binding = binding.GetValueFromBag(bag, cc);
             }
         }
+        
+        public string Binding { get; private set; }
     }
 }
