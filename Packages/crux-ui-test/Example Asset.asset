@@ -21,4 +21,8 @@ MonoBehaviour:
   - 4
   qux: {fileID: 0}
   inner:
-    something: 0
+    something:
+      something:
+        something:
+          something:
+            something: 0

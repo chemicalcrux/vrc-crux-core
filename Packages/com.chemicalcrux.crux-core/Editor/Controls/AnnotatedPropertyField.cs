@@ -70,6 +70,7 @@ namespace ChemicalCrux.CruxCore.Editor.Controls
             field.UnregisterCallback<GeometryChangedEvent, AnnotatedPropertyField>(InsertButton);
 
             sibling.style.marginRight = sibling.style.marginRight.value.value - field.buttons * 15;
+            sibling.style.marginLeft = 2;
         }
 
         private static void InsertTooltipButton(AnnotatedPropertyField field, VisualElement sibling)

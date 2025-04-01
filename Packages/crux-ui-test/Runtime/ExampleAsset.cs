@@ -14,11 +14,35 @@ namespace ChemicalCrux.CruxCoreTest.Runtime
         public Object qux;
 
         [Serializable]
-        public class Inner
+        public class Inner1
+        {
+            public Inner2 something;
+        }
+
+        [Serializable]
+        public class Inner2
+        {
+            public Inner3 something;
+        }
+
+        [Serializable]
+        public class Inner3
+        {
+            public Inner4 something;
+        }
+
+        [Serializable]
+        public class Inner4
+        {
+            public Inner5 something;
+        }
+
+        [Serializable]
+        public class Inner5
         {
             public int something;
         }
         
-        public Inner inner;
+        public Inner1 inner;
     }
 }
