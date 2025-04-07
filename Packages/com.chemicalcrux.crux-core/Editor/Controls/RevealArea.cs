@@ -4,7 +4,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor.Controls
+namespace Crux.Core.Editor.Controls
 {
     public class RevealArea : VisualElement
     {

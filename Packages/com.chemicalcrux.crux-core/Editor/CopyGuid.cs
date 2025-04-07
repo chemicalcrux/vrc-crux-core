@@ -1,7 +1,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace ChemicalCrux.CruxCore.Editor
+namespace Crux.Core.Editor
 {
     internal static class CopyGuid
     {

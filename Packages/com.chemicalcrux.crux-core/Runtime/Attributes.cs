@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace ChemicalCrux.CruxCore.Runtime
+namespace Crux.Core.Runtime
 {
     /// <summary>
     /// Requests a link to a manual (or a page in a manual).

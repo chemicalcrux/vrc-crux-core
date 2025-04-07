@@ -1,4 +1,4 @@
-using ChemicalCrux.CruxCore.Runtime;
+using Crux.Core.Runtime;
 using UnityEditor;
 
 internal static class ExtraToolsItems

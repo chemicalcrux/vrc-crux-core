@@ -1,9 +1,9 @@
-using ChemicalCrux.CruxCore.Editor.Documentation;
-using ChemicalCrux.CruxCore.Editor.Windows;
+using Crux.Core.Editor.Documentation;
+using Crux.Core.Editor.Windows;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor.Controls
+namespace Crux.Core.Editor.Controls
 {
     /// <summary>
     /// Opens a <see cref="DocumentationWindow"/> when clicked. This can either

@@ -1,6 +1,6 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="True">
     <ui:VisualElement name="Box" style="flex-grow: 1; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; border-top-left-radius: 8px; border-top-right-radius: 8px; border-bottom-right-radius: 8px; border-bottom-left-radius: 8px; background-color: rgba(255, 255, 255, 0.1);">
         <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Message" style="white-space: normal;" />
-        <ChemicalCrux.CruxCore.Editor.Controls.AnnotatedPropertyField label="Override Reference" binding-path="reference" name="Reference" doc-page-ref="597c941f45ad043d89e2c6e4604661cf,11400000" doc-manual-ref="237fb495d65834b049da64d12c70ebed,11400000" />
+        <ChemicalCrux.Core.Editor.Controls.AnnotatedPropertyField label="Override Reference" binding-path="reference" name="Reference" doc-page-ref="597c941f45ad043d89e2c6e4604661cf,11400000" doc-manual-ref="237fb495d65834b049da64d12c70ebed,11400000" />
     </ui:VisualElement>
 </ui:UXML>

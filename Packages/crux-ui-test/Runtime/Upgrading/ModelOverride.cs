@@ -1,5 +1,5 @@
 using System;
-using ChemicalCrux.CruxCore.Runtime.Upgrades;
+using Crux.Core.Runtime.Upgrades;
 
 namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading
 {

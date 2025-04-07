@@ -1,5 +1,5 @@
-using ChemicalCrux.CruxCore.Runtime;
-using ChemicalCrux.CruxCore.Runtime.Upgrades;
+using Crux.Core.Runtime;
+using Crux.Core.Runtime.Upgrades;
 using JetBrains.Annotations;
 
 namespace ChemicalCrux.CruxCoreTest.Runtime.Upgrading

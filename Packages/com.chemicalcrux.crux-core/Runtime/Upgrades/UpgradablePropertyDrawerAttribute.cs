@@ -1,6 +1,6 @@
 using System;
 
-namespace ChemicalCrux.CruxCore.Runtime.Upgrades
+namespace Crux.Core.Runtime.Upgrades
 {
     /// <summary>
     /// Tells the Upgradable property drawer where to find the UXML document.

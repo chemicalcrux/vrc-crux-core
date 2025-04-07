@@ -1,8 +1,8 @@
-using ChemicalCrux.CruxCore.Editor.Windows;
+using Crux.Core.Editor.Windows;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor.Controls
+namespace Crux.Core.Editor.Controls
 {
     /// <summary>
     /// Displays a tooltip window when clicked.

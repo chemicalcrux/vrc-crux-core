@@ -1,6 +1,6 @@
 {
-    "name": "CruxCoreRuntime",
-    "rootNamespace": "ChemicalCrux.CruxCore.Runtime",
+    "name": "Crux.Core.Runtime",
+    "rootNamespace": "Crux.Core.Runtime",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

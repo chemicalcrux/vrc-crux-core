@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ChemicalCrux.CruxCore.Runtime.Upgrades
+namespace Crux.Core.Runtime.Upgrades
 {
     /// <summary>
     /// A specific kind of Upgradable that can override another Upgradable. Overrides should produce

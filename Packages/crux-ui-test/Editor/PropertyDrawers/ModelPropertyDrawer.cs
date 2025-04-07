@@ -1,4 +1,4 @@
-using ChemicalCrux.CruxCore.Editor.PropertyDrawers;
+using Crux.Core.Editor.PropertyDrawers;
 using ChemicalCrux.CruxCoreTest.Runtime.Upgrading;
 using UnityEditor;
 using UnityEngine.UIElements;

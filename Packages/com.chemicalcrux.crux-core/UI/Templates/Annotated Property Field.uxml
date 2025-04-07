@@ -1,5 +1,5 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ChemicalCrux.CruxCore.Editor.Controls.AnnotatedPropertyField>
+    <ChemicalCrux.Core.Editor.Controls.AnnotatedPropertyField>
         <ui:Label tabindex="-1" text="Huh" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Huh" />
         <ui:Label tabindex="-1" text="Welp" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Welp" />
     </ChemicalCrux.CruxCore.Editor.Controls.AnnotatedPropertyField>

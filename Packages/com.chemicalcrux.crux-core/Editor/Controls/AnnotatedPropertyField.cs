@@ -3,7 +3,7 @@ using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor.Controls
+namespace Crux.Core.Editor.Controls
 {
     /// <summary>
     /// Allows for a <see cref="PropertyField"/> to include some extra buttons, such as

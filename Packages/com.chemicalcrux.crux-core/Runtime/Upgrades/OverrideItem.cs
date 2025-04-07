@@ -1,6 +1,6 @@
 using System;
 
-namespace ChemicalCrux.CruxCore.Runtime.Upgrades
+namespace Crux.Core.Runtime.Upgrades
 {
     /// <summary>
     /// This works like Unity's volume profiles – if the active field is set, then the value

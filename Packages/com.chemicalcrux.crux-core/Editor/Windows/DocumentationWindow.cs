@@ -1,12 +1,12 @@
 using System.Collections.Generic;
-using ChemicalCrux.CruxCore.Editor.Documentation;
-using ChemicalCrux.CruxCore.Runtime;
+using Crux.Core.Editor.Documentation;
+using Crux.Core.Runtime;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.UIElements.Experimental;
 
-namespace ChemicalCrux.CruxCore.Editor.Windows
+namespace Crux.Core.Editor.Windows
 {
     public class DocumentationWindow : EditorWindow
     {

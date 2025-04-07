@@ -3,7 +3,7 @@ using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 
-namespace ChemicalCrux.CruxCore.Editor
+namespace Crux.Core.Editor
 {
     /// <summary>
     /// Represents a specific Unity asset.

@@ -1,10 +1,10 @@
-using ChemicalCrux.CruxCore.Editor.Controls;
-using ChemicalCrux.CruxCore.Runtime;
+using Crux.Core.Editor.Controls;
+using Crux.Core.Runtime;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
+namespace Crux.Core.Editor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(DocRefAttribute))]
     internal class DocRefPropertyDrawer : PropertyDrawer

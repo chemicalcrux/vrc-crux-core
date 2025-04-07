@@ -1,13 +1,13 @@
-using ChemicalCrux.CruxCore.Editor.Controls;
-using ChemicalCrux.CruxCore.Runtime;
-using ChemicalCrux.CruxCore.Runtime.Upgrades;
+using Crux.Core.Editor.Controls;
+using Crux.Core.Runtime;
+using Crux.Core.Runtime.Upgrades;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.Pool;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
+namespace Crux.Core.Editor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(UpgradableBase))]
     public class UpgradablePropertyDrawer : PropertyDrawer

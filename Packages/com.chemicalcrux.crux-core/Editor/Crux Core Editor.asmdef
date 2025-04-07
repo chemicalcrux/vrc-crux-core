@@ -1,6 +1,6 @@
 {
-    "name": "CruxCoreEditor",
-    "rootNamespace": "ChemicalCrux.CruxCore.Editor",
+    "name": "Crux.Core.Editor",
+    "rootNamespace": "Crux.Core.Editor",
     "references": [
         "GUID:1cdc6dedefbda46a6b25f4afc8d269f1"
     ],

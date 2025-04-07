@@ -1,7 +1,7 @@
 using System;
 using JetBrains.Annotations;
 
-namespace ChemicalCrux.CruxCore.Runtime.Upgrades
+namespace Crux.Core.Runtime.Upgrades
 {
     /// <summary>
     /// This base type is used where we don't care about exactly what is being upgraded. It does not require

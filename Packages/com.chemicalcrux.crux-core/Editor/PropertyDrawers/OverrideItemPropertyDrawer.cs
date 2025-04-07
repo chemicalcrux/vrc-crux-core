@@ -1,10 +1,10 @@
-using ChemicalCrux.CruxCore.Runtime;
-using ChemicalCrux.CruxCore.Runtime.Upgrades;
+using Crux.Core.Runtime;
+using Crux.Core.Runtime.Upgrades;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor.PropertyDrawers
+namespace Crux.Core.Editor.PropertyDrawers
 {
     [CustomPropertyDrawer(typeof(OverrideItem<>))]
     public class OverrideItemPropertyDrawer : PropertyDrawer

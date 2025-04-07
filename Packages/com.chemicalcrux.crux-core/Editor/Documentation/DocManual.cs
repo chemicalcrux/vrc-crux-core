@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using ChemicalCrux.CruxCore.Runtime;
+using Crux.Core.Runtime;
 using UnityEngine;
 
-namespace ChemicalCrux.CruxCore.Editor.Documentation
+namespace Crux.Core.Editor.Documentation
 {
     /// <summary>
     /// The root of a documentation set.

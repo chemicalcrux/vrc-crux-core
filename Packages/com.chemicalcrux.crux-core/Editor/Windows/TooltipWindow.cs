@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor.Windows
+namespace Crux.Core.Editor.Windows
 {
     public class TooltipWindow : PopupWindowContent
     {

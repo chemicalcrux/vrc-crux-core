@@ -1,6 +1,6 @@
 using JetBrains.Annotations;
 
-namespace ChemicalCrux.CruxCore.Runtime
+namespace Crux.Core.Runtime
 {
     /// <summary>
     /// Contains useful constant values. Mostly used for attributes like

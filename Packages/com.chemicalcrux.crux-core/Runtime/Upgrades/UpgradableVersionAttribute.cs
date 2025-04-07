@@ -1,6 +1,6 @@
 using System;
 
-namespace ChemicalCrux.CruxCore.Runtime.Upgrades
+namespace Crux.Core.Runtime.Upgrades
 {
     /// <summary>
     /// Indicates which version a specific Upgradable type is.

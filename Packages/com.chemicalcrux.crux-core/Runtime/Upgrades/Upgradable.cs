@@ -1,4 +1,4 @@
-namespace ChemicalCrux.CruxCore.Runtime.Upgrades
+namespace Crux.Core.Runtime.Upgrades
 {
     /// <summary>
     /// An Upgradable type can upgrade itself from version X to version X+1.

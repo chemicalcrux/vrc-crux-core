@@ -1,6 +1,6 @@
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor
+namespace Crux.Core.Editor
 {
     public static class CoreVisualElements
     {

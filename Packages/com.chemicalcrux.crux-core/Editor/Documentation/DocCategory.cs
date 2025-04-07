@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using ChemicalCrux.CruxCore.Runtime;
+using Crux.Core.Runtime;
 using UnityEngine;
 
-namespace ChemicalCrux.CruxCore.Editor.Documentation
+namespace Crux.Core.Editor.Documentation
 {
     /// <summary>
     /// A collection of <see cref="DocPage"/> assets.

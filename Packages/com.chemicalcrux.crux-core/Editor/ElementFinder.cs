@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor
+namespace Crux.Core.Editor
 {
     /// <summary>
     /// Fetches VisualTreeAssets based on either GUID+FileID or asset path. It

@@ -1,6 +1,6 @@
 using System;
 
-namespace ChemicalCrux.CruxCore.Runtime.Upgrades
+namespace Crux.Core.Runtime.Upgrades
 {
     /// <summary>
     /// Mandatory attribute. Indicates which version number is the most recent one.

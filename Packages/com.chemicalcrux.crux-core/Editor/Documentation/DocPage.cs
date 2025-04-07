@@ -1,8 +1,8 @@
-using ChemicalCrux.CruxCore.Runtime;
+using Crux.Core.Runtime;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor.Documentation
+namespace Crux.Core.Editor.Documentation
 {
     /// <summary>
     /// A single page of documentation, which corresponds to a single UXML document.

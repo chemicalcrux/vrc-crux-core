@@ -1,4 +1,4 @@
-namespace ChemicalCrux.CruxCore.Runtime.Upgrades
+namespace Crux.Core.Runtime.Upgrades
 {
     /// <summary>
     /// Describes a type that can override values for a specific

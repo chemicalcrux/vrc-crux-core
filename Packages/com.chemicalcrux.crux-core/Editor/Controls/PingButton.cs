@@ -2,7 +2,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
 
-namespace ChemicalCrux.CruxCore.Editor.Controls
+namespace Crux.Core.Editor.Controls
 {
     /// <summary>
     /// Pings an object when clicked.

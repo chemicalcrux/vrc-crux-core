@@ -1,6 +1,6 @@
 using System;
 
-namespace ChemicalCrux.CruxCore.Runtime.Upgrades
+namespace Crux.Core.Runtime.Upgrades
 {
     /// <summary>
     /// Points to a Component or ScriptableObject that can perform an override.
