@@ -1,7 +1,7 @@
 {
   "dependencies": {
-    "com.chemicalcrux.crux-core": {
-      "version": "file:com.chemicalcrux.crux-core",
+    "best.crux.core": {
+      "version": "file:best.crux.core",
       "depth": 0,
       "source": "embedded",
       "dependencies": {}

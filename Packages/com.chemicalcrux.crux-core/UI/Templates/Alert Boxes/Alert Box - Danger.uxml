@@ -1,6 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
-    <ui:Template name="Alert Box" src="project://database/Packages/com.chemicalcrux.crux-core/UI/Templates/Alert%20Box.uxml?fileID=9197481963319205126&amp;guid=40482fe0595e34825b4a66b8aec05400&amp;type=3#Alert Box" />
-    <ui:Instance content-container="true" template="Alert Box" name="Alert Box" class="danger">
-        <AttributeOverrides element-name="Title" text="Danger" />
-    </ui:Instance>
-</ui:UXML>

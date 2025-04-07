@@ -1,6 +1,0 @@
-<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
-    <Style src="project://database/Packages/com.chemicalcrux.crux-core/UI/Stylesheets/Tooltips.uss?fileID=7433441132597879392&amp;guid=234309fa2d27e49bab370f17e03cc597&amp;type=3#Tooltips" />
-    <ui:VisualElement name="TooltipRoot" style="flex-grow: 1; flex-direction: column;">
-        <ui:VisualElement name="TooltipContent" class="tooltipDocument" style="position: relative; left: auto; top: auto; background-color: rgb(63, 63, 63); border-top-left-radius: 2px; border-top-right-radius: 2px; border-bottom-right-radius: 2px; border-bottom-left-radius: 2px; border-top-width: 4px; margin-top: 4px; margin-right: 4px; margin-bottom: 4px; margin-left: 4px; border-right-width: 4px; border-bottom-width: 4px; border-left-color: rgba(0, 0, 0, 0.49); border-right-color: rgba(0, 0, 0, 0.49); border-top-color: rgba(0, 0, 0, 0.49); border-bottom-color: rgba(0, 0, 0, 0.49); border-left-width: 4px; padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 4px; flex-grow: 1;" />
-    </ui:VisualElement>
-</ui:UXML>
