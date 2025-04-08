@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Crux.Core.Runtime;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
@@ -10,7 +11,7 @@ namespace ChemicalCrux.CruxCoreTest.Runtime
     {
         public int foo;
         public bool bar;
-        public List<float> baz;
+        public DecoratedList<float> baz;
         public Object qux;
 
         [Serializable]
