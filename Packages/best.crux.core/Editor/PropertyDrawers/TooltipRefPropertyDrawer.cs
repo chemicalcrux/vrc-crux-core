@@ -3,6 +3,7 @@ using Crux.Core.Runtime;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine.UIElements;
+using TooltipRefAttribute = Crux.Core.Runtime.Attributes.TooltipRefAttribute;
 
 namespace Crux.Core.Editor.PropertyDrawers
 {

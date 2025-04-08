@@ -1,4 +1,5 @@
 using Crux.Core.Runtime;
+using Crux.Core.Runtime.Attributes;
 using Crux.Core.Runtime.Upgrades;
 using JetBrains.Annotations;
 
