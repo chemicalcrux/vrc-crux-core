@@ -12,7 +12,8 @@ namespace Crux.Core.Editor.PropertyDrawers
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var field = new AnnotatedPropertyField(property.FindPropertyRelative("list"));
+            var inner = property.FindPropertyRelative("list");
+            var field = new AnnotatedPropertyField(inner);
 
             if (fieldInfo.TryGetAttribute(out DocRefInertAttribute docRefAttribute))
             {
@@ -24,6 +25,8 @@ namespace Crux.Core.Editor.PropertyDrawers
             {
                 field.SetTooltipRef(tooltipRefAttribute.AssetRef);
             }
+
+            field.label = property.displayName;
 
             return field;
         }
