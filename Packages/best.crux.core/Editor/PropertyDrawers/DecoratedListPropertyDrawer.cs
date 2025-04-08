@@ -14,13 +14,13 @@ namespace Crux.Core.Editor.PropertyDrawers
         {
             var field = new AnnotatedPropertyField(property.FindPropertyRelative("list"));
 
-            if (fieldInfo.TryGetAttribute(out DocRefAttribute docRefAttribute))
+            if (fieldInfo.TryGetAttribute(out DocRefInertAttribute docRefAttribute))
             {
                 field.SetDocManualRef(docRefAttribute.ManualRef);
                 field.SetDocPageRef(docRefAttribute.PageRef);
             }
 
-            if (fieldInfo.TryGetAttribute(out TooltipRefAttribute tooltipRefAttribute))
+            if (fieldInfo.TryGetAttribute(out TooltipRefInertAttribute tooltipRefAttribute))
             {
                 field.SetTooltipRef(tooltipRefAttribute.AssetRef);
             }

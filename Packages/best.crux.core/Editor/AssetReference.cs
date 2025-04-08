@@ -62,9 +62,23 @@ namespace Crux.Core.Editor
         {
             var parts = serialized.Split(",");
 
-            if (parts.Length != 2 || !GUID.TryParse(parts[0], out var _) || !long.TryParse(parts[1], out var fileID))
+            if (parts.Length != 2)
             {
-                Debug.LogWarning("An asset reference was invalid. Please report this as a bug!\nReference: " + serialized);
+                Debug.LogWarning("An asset reference had an invalid number of parts. Please report this as a bug!\nReference: " + serialized);
+                result = new("", 0);
+                return false;
+            }
+
+            if (!GUID.TryParse(parts[0], out var _))
+            {
+                Debug.LogWarning("An asset reference had an invalid GUID. Please report this as a bug!\nReference: " + serialized);
+                result = new("", 0);
+                return false;
+            }
+
+            if (!long.TryParse(parts[1], out var fileID))
+            {
+                Debug.LogWarning("An asset reference had an invalid FileID. Please report this as a bug!\nReference: " + serialized);
                 result = new("", 0);
                 return false;
             }
