@@ -1,10 +1,10 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Packages/best.crux.core/UI/Stylesheets/Alerts.uss?fileID=7433441132597879392&amp;guid=0a992201f5f3d40c19b0a39ed1609aea&amp;type=3#Alerts" />
-    <ui:VisualElement name="AlertBox" class="alert-box" style="padding-top: 8px; padding-right: 8px; padding-bottom: 8px; padding-left: 8px; flex-grow: 0;">
-        <ui:VisualElement name="TopRow" style="flex-grow: 0; flex-direction: row; align-items: center; margin-bottom: 8px;">
-            <ui:VisualElement name="Icon" class="alert-icon" style="width: 28px; height: 28px; max-width: 28px; min-width: 28px; min-height: 28px; max-height: 32px;" />
-            <ui:Label tabindex="-1" text="Title" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" style="-unity-font-style: bold; font-size: 24px; margin-left: 8px;" />
+    <ui:VisualElement name="AlertBox" class="alert-box" style="flex-grow: 0;">
+        <ui:VisualElement name="TopRow" class="alert-box__top-row" style="flex-grow: 0; flex-direction: row; align-items: center;">
+            <ui:VisualElement name="Icon" class="alert-box__icon" />
+            <ui:Label tabindex="-1" text="Title" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Title" class="alert-box__title" style="margin-left: 8px;" />
         </ui:VisualElement>
-        <ui:VisualElement name="MainArea" content-container="true" style="flex-grow: 1;" />
+        <ui:VisualElement name="MainArea" content-container="true" class="alert-box__main-area" style="flex-grow: 1;" />
     </ui:VisualElement>
 </ui:UXML>

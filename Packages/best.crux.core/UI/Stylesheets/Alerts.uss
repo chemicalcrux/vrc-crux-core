@@ -20,12 +20,12 @@
 
 .alert-box {
     flex-grow: 1;
-    border-top-width: 4px;
-    border-right-width: 4px;
-    border-bottom-width: 4px;
-    border-left-width: 4px;
-    border-radius: 8px;
-    border-left-color: var(--crux-alert-color-solid);
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-radius: 3px;
+    border-left-color: var(--crux-alert-color-faint);
     border-right-color: var(--crux-alert-color-faint);
     border-top-color: var(--crux-alert-color-faint);
     border-bottom-color: var(--crux-alert-color-faint);
@@ -33,25 +33,39 @@
     margin: 8px;
 }
 
-.alert-icon {
-    flex-grow: 1;
-    background-image: none;
-    width: 48px;
-    height: 48px;
-    max-width: 48px;
-    max-height: 48px;
-    min-height: 48px;
-    min-width: 48px;
+.alert-box__top-row {
+    background-color: var(--crux-alert-color-faint);
+    margin-bottom: 8px;
+    padding: 6px;
 }
 
-.danger .alert-icon {
+.alert-box__icon {
+    background-image: url("project://database/Packages/best.crux.core/Icons/Alert%20Boxes/Info.png?fileID=2800000&guid=13ff06c5966b9437da3cc883990b2819&type=3#Info");
+    width: 32px;
+    height: 32px;
+}
+
+.danger .alert-box__icon {
     background-image: url("project://database/Packages/best.crux.core/Icons/Alert%20Boxes/Danger.png?fileID=2800000&guid=3aa86e7419a1c40b1b184436ad0e1c25&type=3#Danger");
 }
 
-.warning .alert-icon {
+.warning .alert-box__icon {
     background-image: url("project://database/Packages/best.crux.core/Icons/Alert%20Boxes/Warning.png?fileID=2800000&guid=6b9401e4436cd4f04a48a8056aed3901&type=3#Warning");
 }
 
-.info .alert-icon {
+.info .alert-box__icon {
     background-image: url("project://database/Packages/best.crux.core/Icons/Alert%20Boxes/Info.png?fileID=2800000&guid=13ff06c5966b9437da3cc883990b2819&type=3#Info");
+}
+
+.alert-box__title {
+    font-size: 150%;
+    margin: 0;
+    padding: 0;
+    -unity-font-style: bold;
+}
+
+.alert-box__main-area {
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-bottom: 6px;
 }
