@@ -1,0 +1,18 @@
+EnumRevealArea.revealed {
+    display: flex;
+}
+
+EnumRevealArea.unrevealed {
+    display: none;
+}
+
+EnumRevealArea {
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+    padding-left: 8px;
+}
+
+EnumRevealArea > .unity-base-field__input
+{
+    display: none;
+}

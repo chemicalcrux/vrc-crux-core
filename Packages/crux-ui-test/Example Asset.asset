@@ -13,13 +13,12 @@ MonoBehaviour:
   m_Name: Example Asset
   m_EditorClassIdentifier: 
   foo: 0
-  bar: 1
+  bar: 0
   baz:
-  - 1
-  - 2
-  - 3
-  - 4
+    list: []
   qux: {fileID: 0}
+  coolEnum: 2
+  flagsEnum: 0
   inner:
     something:
       something:

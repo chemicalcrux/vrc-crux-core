@@ -17,6 +17,26 @@ namespace ChemicalCrux.CruxCoreTest.Runtime
         public DecoratedList<float> baz;
         public Object qux;
 
+        public enum CoolEnum
+        {
+            Foo = 0,
+            Bar = 1,
+            Baz = 2,
+            Buz = 3
+        }
+
+        [Flags]
+        public enum FlagsEnum
+        {
+            Alpha = 1,
+            Bravo = 2,
+            Charlie = 4,
+            Delta = 64
+        }
+
+        public CoolEnum coolEnum;
+        public FlagsEnum flagsEnum;
+        
         [Serializable]
         public class Inner1
         {
