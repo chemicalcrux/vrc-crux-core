@@ -128,12 +128,8 @@ namespace Crux.Core.Editor.Controls
                         
                         var serializedProperty = (SerializedProperty)fieldInfo.GetValue(propertyField);
 
-                        Debug.Log(serializedProperty);
-
                         if (serializedProperty != null)
                             UpdateDelegate(serializedProperty.intValue);
-
-                        Debug.Log(serializedProperty);
                     });
                 }
                 return field;

@@ -17,8 +17,8 @@ MonoBehaviour:
   baz:
     list: []
   qux: {fileID: 0}
-  coolEnum: 2
-  flagsEnum: 0
+  coolEnum: 1
+  flagsEnum: 7
   inner:
     something:
       something:

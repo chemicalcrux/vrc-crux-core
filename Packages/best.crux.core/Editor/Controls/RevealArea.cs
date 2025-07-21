@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Reflection;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -24,10 +25,8 @@ namespace Crux.Core.Editor.Controls
 
                 field.Add(propertyField);
 
-                propertyField.RegisterValueChangeCallback(evt =>
+                void UpdateSelf(bool newValue)
                 {
-                    bool newValue = evt.changedProperty.boolValue;
-
                     if (newValue)
                     {
                         field.AddToClassList("revealed");
@@ -38,6 +37,30 @@ namespace Crux.Core.Editor.Controls
                         field.RemoveFromClassList("revealed");
                         field.AddToClassList("unrevealed");
                     }
+                }
+
+                propertyField.RegisterValueChangeCallback(evt =>
+                {
+                    bool newValue = evt.changedProperty.boolValue;
+
+                    UpdateSelf(newValue);
+                });
+
+                field.schedule.Execute(() =>
+                {
+                    FieldInfo fieldInfo = propertyField.GetType().GetField("m_SerializedProperty",
+                        BindingFlags.NonPublic | BindingFlags.Instance);
+
+                    if (fieldInfo == null)
+                    {
+                        Debug.LogWarning("This shouldn't happen...");
+                        return;
+                    }
+                        
+                    var serializedProperty = (SerializedProperty)fieldInfo.GetValue(propertyField);
+
+                    if (serializedProperty != null)
+                        UpdateSelf(serializedProperty.boolValue);
                 });
                 
                 return field;
