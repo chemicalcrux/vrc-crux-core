@@ -115,8 +115,14 @@ namespace Crux.Core.Editor.PropertyDrawers
                 if (hasPropertyDrawer)
                 {
                     var attr = propertyDrawerAttributes[0] as UpgradablePropertyDrawerAttribute;
-                    var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(attr!.Path);
-                    uxml.CloneTree(area);
+
+                    if (AssetReference.TryParse(attr!.AssetRef, out var assetRef))
+                    {
+                        if (ElementFinder.TryGetAssetRef(assetRef, out var uxml))
+                        {
+                            uxml.CloneTree(area);
+                        }
+                    }
                 }
                 else
                 {

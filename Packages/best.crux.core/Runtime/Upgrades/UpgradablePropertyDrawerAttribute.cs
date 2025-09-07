@@ -7,11 +7,11 @@ namespace Crux.Core.Runtime.Upgrades
     /// </summary>
     public class UpgradablePropertyDrawerAttribute : Attribute
     {
-        public UpgradablePropertyDrawerAttribute(string path)
+        public UpgradablePropertyDrawerAttribute(string assetRef)
         {
-            Path = path;
+            AssetRef = assetRef;
         }
 
-        public string Path { get; }
+        public string AssetRef { get; }
     }
 }
