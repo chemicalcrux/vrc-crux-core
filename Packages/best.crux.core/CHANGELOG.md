@@ -7,6 +7,19 @@ A changelog wasn't kept until version 0.7.0, so the changelog is currently being
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- **BREAKING:** Move all demo assets into package samples.
+  - This included renaming some assemblies
+  - This is a breaking change because someone *could*, theoretically, be relying on these assets
+- Moved the CopyGuid class into a new Developer assembly
+  - This assembly is only compiled when CRUX_DEV is defined
+
+### Fixed
+
+- The manifest's changelog URL was incorrect
 ## [0.7.1] - 2025-09-15
 
 ### Added
