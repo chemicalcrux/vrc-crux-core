@@ -19,7 +19,7 @@ namespace Crux.Core.Developer
         [MenuItem("Assets/Copy GUID", true)]
         static bool CopyValidation()
         {
-            return AssetDatabase.Contains(Selection.activeObject);
+            return Selection.activeObject && AssetDatabase.Contains(Selection.activeObject);
         }
     }
 }
