@@ -1,11 +1,10 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace Crux.Core.Editor
+namespace Crux.Core.Developer
 {
     internal static class CopyGuid
     {
-#if CRUX_DEV
         [MenuItem("Assets/Copy GUID")]
         static void Copy()
         {
@@ -22,6 +21,5 @@ namespace Crux.Core.Editor
         {
             return AssetDatabase.Contains(Selection.activeObject);
         }
-#endif
     }
 }

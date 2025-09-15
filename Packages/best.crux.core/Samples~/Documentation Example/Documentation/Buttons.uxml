@@ -1,0 +1,19 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Header With Bar" src="project://database/Packages/best.crux.core/UI/Templates/Header%20With%20Bar.uxml?fileID=9197481963319205126&amp;guid=2122c049625324fc098ba3d4198ecdde&amp;type=3#Header With Bar" />
+    <ui:Template name="Alert Box" src="project://database/Packages/best.crux.core/UI/Templates/Alert%20Box.uxml?fileID=9197481963319205126&amp;guid=40482fe0595e34825b4a66b8aec05400&amp;type=3#Alert Box" />
+    <ui:Instance template="Header With Bar" name="Header With Bar">
+        <AttributeOverrides element-name="Header" text="Ping Buttons" />
+    </ui:Instance>
+    <Crux.Core.Editor.Controls.PingButton text="This button will ping an asset via GUID+FileID" asset-ref="8b6554c6b9cb0461ab63588e5cc43a84,4900000" />
+    <Crux.Core.Editor.Controls.PingButton text="This button will ping an asset via its path" asset-path="Packages/best.crux.core/package.json" />
+    <Crux.Core.Editor.Controls.PingButton text="This button will ping an asset via a query" asset-query="t:TextAsset example" />
+    <ui:Instance template="Alert Box" name="Alert Box">
+        <AttributeOverrides element-name="Title" text="Stick to GUID+FileID!" />
+        <ui:Label tabindex="-1" text="Notice how the &quot;path&quot; button doesn&apos;t ping an asset from this sample.&#10;&#10;The &quot;query&quot; button will &lt;i&gt;probably&lt;/i&gt; find the right asset, but it might find something else instead.&#10;&#10;The exact path to the imported sample depends on package version, so it&apos;s not possible to point to a specific asset by its file path!&#10;&#10;Always try to use GUID+FileID to reference assets." parse-escape-sequences="true" display-tooltip-when-elided="true" style="white-space: normal;" />
+    </ui:Instance>
+    <ui:Instance template="Header With Bar" name="Header With Bar">
+        <AttributeOverrides element-name="Header" text="Doc Buttons" />
+    </ui:Instance>
+    <Crux.Core.Editor.Controls.DocButton text="This button will open another doc page" doc-page-ref="f106680f4cd274875baae101507c0fa1,11400000" />
+    <Crux.Core.Editor.Controls.DocButton text="This button will open the core manual" doc-manual-ref="237fb495d65834b049da64d12c70ebed,11400000" />
+</ui:UXML>

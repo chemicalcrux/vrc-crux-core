@@ -1,0 +1,20 @@
+{
+    "name": "Crux.Core.Samples.InspectorGadgets.Editor",
+    "rootNamespace": "Crux.Core.Samples.InspectorGadgets.Editor",
+    "references": [
+        "GUID:1cdc6dedefbda46a6b25f4afc8d269f1",
+        "GUID:ac31e14ae19024acb994cc8c2bbc3769",
+        "GUID:53a4a2e9ba51847ce8f4c6b53b1f7639"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": false,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,16 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Info Box" src="project://database/Packages/best.crux.core/UI/Templates/Alert%20Box.uxml?fileID=9197481963319205126&amp;guid=40482fe0595e34825b4a66b8aec05400&amp;type=3#Alert Box" />
+    <ui:Template name="Alert Box - Warning" src="project://database/Packages/best.crux.core/UI/Templates/Alert%20Boxes/Alert%20Box%20-%20Warning.uxml?fileID=9197481963319205126&amp;guid=2283bca8f8e8841cc82512ebed1f7adb&amp;type=3#Alert Box - Warning" />
+    <ui:Template name="Alert Box - Danger" src="project://database/Packages/best.crux.core/UI/Templates/Alert%20Boxes/Alert%20Box%20-%20Danger.uxml?fileID=9197481963319205126&amp;guid=5602c2bf68a8849218e4d02f89ead797&amp;type=3#Alert Box - Danger" />
+    <ui:Label tabindex="-1" text="This is a test of the documentation system." parse-escape-sequences="true" display-tooltip-when-elided="true" enable-rich-text="true" class="doc-text" style="white-space: normal;" />
+    <ui:Instance template="Info Box" name="Info Box" class="info">
+        <AttributeOverrides element-name="Title" text="Info" />
+        <ui:Label tabindex="-1" text="You can embed VisualElements into these." parse-escape-sequences="true" display-tooltip-when-elided="true" />
+    </ui:Instance>
+    <ui:Instance template="Alert Box - Warning" name="Alert Box - Warning">
+        <ui:Label tabindex="-1" text="Here is some more content." parse-escape-sequences="true" display-tooltip-when-elided="true" />
+    </ui:Instance>
+    <ui:Instance template="Alert Box - Danger" name="Alert Box - Danger">
+        <ui:Label tabindex="-1" text="Oh my god it&apos;s a Danger Box." parse-escape-sequences="true" display-tooltip-when-elided="true" />
+    </ui:Instance>
+</ui:UXML>

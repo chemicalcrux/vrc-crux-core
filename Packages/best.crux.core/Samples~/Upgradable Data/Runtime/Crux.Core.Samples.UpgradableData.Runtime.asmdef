@@ -1,0 +1,16 @@
+{
+    "name": "Crux.Core.Samples.UpgradableData.Runtime",
+    "rootNamespace": "Crux.Core.Samples.UpgradableData.Runtime",
+    "references": [
+        "GUID:1cdc6dedefbda46a6b25f4afc8d269f1"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
