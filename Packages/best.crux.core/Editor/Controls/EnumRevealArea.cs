@@ -89,9 +89,6 @@ namespace Crux.Core.Editor.Controls
                         }
                         else
                         {
-                            foreach (var val in acceptedValues) Debug.Log(val);
-
-                            Debug.Log(newValue);
                             accept = acceptedValues.Contains(newValue);
                         }
 
