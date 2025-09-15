@@ -14,12 +14,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **BREAKING:** Move all demo assets into package samples.
   - This included renaming some assemblies
   - This is a breaking change because someone *could*, theoretically, be relying on these assets
-- Moved the CopyGuid class into a new Developer assembly
+- Move the CopyGuid class into a new Developer assembly
   - This assembly is only compiled when CRUX_DEV is defined
+- Remove all hardcoded asset paths
+  - These have been replaced by GUID+FileID pairs
 
 ### Fixed
 
 - The manifest's changelog URL was incorrect
+- CopyGuid would log an error if no object was selected
+
 ## [0.7.1] - 2025-09-15
 
 ### Added
