@@ -1,0 +1,71 @@
+using System;
+using Crux.Core.Runtime;
+using Crux.Core.Runtime.Attributes;
+using UnityEngine;
+using Object = UnityEngine.Object;
+
+namespace Crux.Core.Samples.InspectorGadgets.Runtime
+{
+    [CreateAssetMenu]
+    public class ExampleAsset : ScriptableObject
+    {
+        public int foo;
+        public bool bar;
+        [DocRefInert(manualRef: "237fb495d65834b049da64d12c70ebed,11400000")]
+        [TooltipRefInert(assetRef: "8a72288a46f054f73bdb29eef0e2f825,9197481963319205126")]
+        public DecoratedList<float> baz;
+        public Object qux;
+
+        public enum CoolEnum
+        {
+            Foo = 0,
+            Bar = 1,
+            Baz = 2,
+            Buz = 3
+        }
+
+        [Flags]
+        public enum FlagsEnum
+        {
+            Alpha = 1,
+            Bravo = 2,
+            Charlie = 4,
+            Delta = 64
+        }
+
+        public CoolEnum coolEnum;
+        public FlagsEnum flagsEnum;
+        
+        [Serializable]
+        public class Inner1
+        {
+            public Inner2 something;
+        }
+
+        [Serializable]
+        public class Inner2
+        {
+            public Inner3 something;
+        }
+
+        [Serializable]
+        public class Inner3
+        {
+            public Inner4 something;
+        }
+
+        [Serializable]
+        public class Inner4
+        {
+            public Inner5 something;
+        }
+
+        [Serializable]
+        public class Inner5
+        {
+            public int something;
+        }
+        
+        public Inner1 inner;
+    }
+}

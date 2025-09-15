@@ -38,9 +38,8 @@ namespace Crux.Core.Editor.PropertyDrawers
         }
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
-            var element =
-                AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
-                    "Packages/best.crux.core/UI/Property Drawers/Upgradable.uxml");
+            AssetReference.TryParse("cea4d3f34a23e43389d3662cd8163f15,9197481963319205126", out var propertyDrawerRef);
+            propertyDrawerRef.TryLoad(out VisualTreeAsset element);
 
             var root = element.Instantiate();
             var label = root.Q<Label>("Label");
@@ -50,6 +49,11 @@ namespace Crux.Core.Editor.PropertyDrawers
             var upgradeButton = root.Q<Button>("Upgrade");
 
             label.text = property.displayName;
+
+            if (property.managedReferenceValue == null)
+            {
+                return new Label("This upgradable data is invalid! You may need to reset the entire component.");
+            }
 
             var rootTooltipAttributes = property.managedReferenceValue.GetType()
                 .GetCustomAttributes(typeof(TooltipRefAttribute), true);

@@ -11,5 +11,32 @@
     "url": "https://github.com/chemicalcrux/"
   },
   "changelogUrl": "https://github.com/chemicalcrux/vrc-crux-core/blob/main/CHANGELOG.md",
-  "documentationUrl": "https://chemicalcrux.github.io/vrc-docs/docs/code/best.crux.core/"
+  "documentationUrl": "https://chemicalcrux.github.io/vrc-docs/docs/code/best.crux.core/",
+  "samples": [
+    {
+      "displayName": "Documentation Example",
+      "description": "An example set of documentation pages, including demonstrations of things like alert boxes and asset-pinging buttons.",
+      "path": "Samples~/Documentation Example"
+    },
+    {
+      "displayName": "Hidden Icons",
+      "description": "A demo of how scene-view icons can be automatically disabled with the [HideIcon] attribute",
+      "path": "Samples~/Hidden Icons"
+    },
+    {
+      "displayName": "Inspector Gadgets",
+      "description": "Shows various usages of tooltip and manual buttons, plus Reveal Areas",
+      "path": "Samples~/Inspector Gadgets"
+    },
+    {
+      "displayName": "Menu Paths",
+      "description": "A demo of various prefixes for things like the Create Asset Menu",
+      "path": "Samples~/Menu Paths"
+    },
+    {
+      "displayName": "Upgradable Data",
+      "description": "Examples of the upgradable data system, including overrides and custom property drawers",
+      "path": "Samples~/Upgradable Data"
+    }
+  ]
 }
