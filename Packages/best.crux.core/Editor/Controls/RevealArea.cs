@@ -15,9 +15,9 @@ namespace Crux.Core.Editor.Controls
             {
                 var field = base.Create(bag, cc) as RevealArea;
 
-                field!.styleSheets.Add(
-                    AssetDatabase.LoadAssetAtPath<StyleSheet>(
-                        "Packages/best.crux.core/UI/Stylesheets/RevealArea.uss"));
+                var sheet = AssetReference.ParseAndLoad<StyleSheet>(
+                    "023178233351247d18a7c9a032dab6c1,7433441132597879392");
+                field!.styleSheets.Add(sheet);
 
                 var propertyField = new PropertyField();
                 propertyField.bindingPath = field.Binding;
@@ -56,13 +56,13 @@ namespace Crux.Core.Editor.Controls
                         Debug.LogWarning("This shouldn't happen...");
                         return;
                     }
-                        
+
                     var serializedProperty = (SerializedProperty)fieldInfo.GetValue(propertyField);
 
                     if (serializedProperty != null)
                         UpdateSelf(serializedProperty.boolValue);
                 });
-                
+
                 return field;
             }
         }
@@ -76,11 +76,11 @@ namespace Crux.Core.Editor.Controls
             {
                 base.Init(ve, bag, cc);
                 var ate = ve as RevealArea;
-                
+
                 ate!.Binding = binding.GetValueFromBag(bag, cc);
             }
         }
-        
+
         public string Binding { get; private set; }
     }
 }

@@ -75,8 +75,9 @@ namespace Crux.Core.Editor.Controls
 
         private static void InsertTooltipButton(AnnotatedPropertyField field, VisualElement sibling)
         {
-            var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
-                "Packages/best.crux.core/UI/Templates/Tooltip Button.uxml");
+            var uxml = AssetReference.ParseAndLoad<VisualTreeAsset>(
+                "ca981a01b65394a20a864fb3e5da55e7,9197481963319205126");
+
             var tree = uxml.Instantiate();
             var button = tree.Q<TooltipButton>();
             button.TooltipRef = field.TooltipRef;
@@ -87,8 +88,9 @@ namespace Crux.Core.Editor.Controls
 
         private static void InsertDocButton(AnnotatedPropertyField field, VisualElement sibling)
         {
-            var uxml = AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(
-                "Packages/best.crux.core/UI/Templates/Doc Button.uxml");
+            var uxml = AssetReference.ParseAndLoad<VisualTreeAsset>(
+                "e9fa0c6f5738243aaa5e287bae4eee27,9197481963319205126");
+            
             var tree = uxml.Instantiate();
             var button = tree.Q<DocButton>();
 

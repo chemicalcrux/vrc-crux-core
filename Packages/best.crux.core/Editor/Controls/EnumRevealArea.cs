@@ -6,6 +6,7 @@ using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.UIElements;
+
 #pragma warning disable CS8524 // The switch expression does not handle some values of its input type (it is not exhaustive) involving an unnamed enum value.
 
 namespace Crux.Core.Editor.Controls
@@ -20,7 +21,7 @@ namespace Crux.Core.Editor.Controls
             None = 3,
             NotAll = 4
         }
-        
+
         public new class UxmlFactory : UxmlFactory<EnumRevealArea, UxmlTraits>
         {
             public override VisualElement Create(IUxmlAttributes bag, CreationContext cc)
@@ -28,8 +29,7 @@ namespace Crux.Core.Editor.Controls
                 var field = base.Create(bag, cc) as EnumRevealArea;
 
                 field!.styleSheets.Add(
-                    AssetDatabase.LoadAssetAtPath<StyleSheet>(
-                        "Packages/best.crux.core/UI/Stylesheets/EnumRevealArea.uss"));
+                    AssetReference.ParseAndLoad<StyleSheet>("000fc17682fdd4bc391434199e6b6d4d,7433441132597879392"));
 
                 var propertyField = new PropertyField
                 {
@@ -56,7 +56,7 @@ namespace Crux.Core.Editor.Controls
                     {
                         // ignored
                     }
-                    
+
                     acceptedValues ??= new List<int>();
 
                     void UpdateDelegate(int newValue)
@@ -125,13 +125,14 @@ namespace Crux.Core.Editor.Controls
                             Debug.LogWarning("This shouldn't happen...");
                             return;
                         }
-                        
+
                         var serializedProperty = (SerializedProperty)fieldInfo.GetValue(propertyField);
 
                         if (serializedProperty != null)
                             UpdateDelegate(serializedProperty.intValue);
                     });
                 }
+
                 return field;
             }
         }
@@ -154,14 +155,14 @@ namespace Crux.Core.Editor.Controls
             {
                 base.Init(ve, bag, cc);
                 var ate = ve as EnumRevealArea;
-                
+
                 ate!.Binding = binding.GetValueFromBag(bag, cc);
                 ate!.EnumType = enumType.GetValueFromBag(bag, cc);
                 ate!.EnumNames = enumNames.GetValueFromBag(bag, cc);
                 ate!.FlagsMode = flagsMode.GetValueFromBag(bag, cc);
             }
         }
-        
+
         public string Binding { get; private set; }
         public Type EnumType { get; private set; }
         public string EnumNames { get; private set; }

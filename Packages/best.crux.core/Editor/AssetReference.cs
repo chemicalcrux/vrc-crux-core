@@ -2,6 +2,7 @@ using System;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Crux.Core.Editor
 {
@@ -20,7 +21,7 @@ namespace Crux.Core.Editor
             this.fileID = fileID;
         }
         
-        public bool TryLoad<T>(out T result)
+        public bool TryLoad<T>(out T result) where T : Object
         {
             var path = AssetDatabase.GUIDToAssetPath(guid);
 
@@ -58,7 +59,7 @@ namespace Crux.Core.Editor
             return false;
         }
         
-        public static bool TryParse (string serialized, out AssetReference result)
+        public static bool TryParse(string serialized, out AssetReference result)
         {
             var parts = serialized.Split(",");
 
@@ -86,7 +87,37 @@ namespace Crux.Core.Editor
             result = new AssetReference(parts[0], fileID);
             return true;
         }
+        
+        public static bool TryParseAndLoad<T>(string serialized, out T result) where T : Object
+        {
+            if (!TryParse(serialized, out var assetRef))
+            {
+                result = default;
+                return false;
+            }
+
+            if (!assetRef.TryLoad(out result))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Doesn't bother checking if the asset actually exists. Makes sense for hardcoded
+        /// references in scripts.
+        /// </summary>
+        /// <param name="serialized"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static T ParseAndLoad<T>(string serialized) where T : Object
+        {
+            TryParseAndLoad(serialized, out T result);
+            return result;
+        }
     }
+    
 
     /// <summary>
     /// A more specific AssetReference that checks if the reference is valid when constructed.
