@@ -71,5 +71,10 @@ namespace Crux.Core.Runtime
         /// The base order for components added by other packages
         /// </summary>
         public const int ComponentPackageOrder = ComponentRootOrder + 1000;
+
+        /// <summary>
+        /// The base order for anything that goes in an asset's context menu
+        /// </summary>
+        public const int ContextAssetOrder = 100;
     }
 }

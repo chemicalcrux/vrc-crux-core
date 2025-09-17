@@ -1,3 +1,4 @@
+using Crux.Core.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -5,7 +6,7 @@ namespace Crux.Core.Developer
 {
     internal static class CopyGuid
     {
-        [MenuItem("Assets/Copy GUID")]
+        [MenuItem("Assets/Copy GUID", false, CoreConsts.ContextAssetOrder)]
         static void Copy()
         {
             if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Selection.activeObject, out var guid, out long fileID))
@@ -16,7 +17,7 @@ namespace Crux.Core.Developer
             }
         }
 
-        [MenuItem("Assets/Copy GUID", true)]
+        [MenuItem("Assets/Copy GUID", true, CoreConsts.ContextAssetOrder)]
         static bool CopyValidation()
         {
             return Selection.activeObject && AssetDatabase.Contains(Selection.activeObject);
