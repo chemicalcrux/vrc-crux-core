@@ -7,6 +7,15 @@ A changelog wasn't kept until version 0.7.0, so the changelog is currently being
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.8.1] - 2025-10-14
+
+### Added
+
+- A tool to reserialize all package assets
+  - This prevents random version-control churn when serialized data gets upgraded.
+  - It also tidies up unused data.
+- An "Origin" prefab, used for constraints that ignore the player's own transform
+
 ## [0.8.0] - 2025-09-15
 
 ### Changed
