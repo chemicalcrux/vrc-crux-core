@@ -16,6 +16,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - It also tidies up unused data.
 - An "Origin" prefab, used for constraints that ignore the player's own transform
 
+### Changed
+
+- Renamed the Assembly Definition assets
+  - This would be breaking for anyone referencing them by name, rather than by GUID
+  - ...but you wouldn't do that, would you? (; 
+
 ## [0.8.0] - 2025-09-15
 
 ### Changed
