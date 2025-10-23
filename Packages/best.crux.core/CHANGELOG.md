@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - BeginRevealArea and EndRevealArea attributes
   - These allow you to create RevealAreas without needing to create a custom property drawer
+- The BeginEnumRevealArea attribute
+- The DrawGadgets attribute, which lets these attributes work without needing a custom property drawer
+  - You can also derive from the GadgetPropertyDrawer and tell it to draw your class, if needed
 - CoreLog, for dev-mode-only logging
 - Extension methods for finding attributes on fields or properties referenced by a SerializedProperty
   - These are public, since other packages may need to do the same thing.
@@ -21,11 +24,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - DecoratedList<T> can now return List<T>.Enumerator from its GetEnumerator method
   - This is very nitpicky, but this prevents some unnecessary memory allocation
+- Moved CreatePropertyFields from UpgradablePropertyDrawer and into GadgetPropertyDrawer
+  - This is a breaking change, but nothing actually depends on this yet.
 
 ### Fixed
 
 - RevealArea now works correctly when constructed directly
   - Setup code used to only run in its UxmlFactory.
+- EnumRevealArea has been fixed in the same way
 
 ## [0.8.1] - 2025-10-14
 

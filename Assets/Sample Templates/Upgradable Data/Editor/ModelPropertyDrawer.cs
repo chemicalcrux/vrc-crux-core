@@ -13,7 +13,7 @@ namespace Crux.Core.Samples.UpgradableData.Editor
             var managed = property.managedReferenceValue;
 
             area.Add(new Label("This is a test of 'advanced' property drawers. You can run code!\n\nThis should only appear for ModelV1.\n\nAnyway, here's the normal interface:"));
-            CreatePropertyFields(property, area);
+            GadgetPropertyDrawer.CreatePropertyFields(property, area);
 
             return true;
         }

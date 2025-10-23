@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using Crux.Core.Runtime.Attributes;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -13,6 +14,29 @@ namespace Crux.Core.Editor.Controls
 {
     public class EnumRevealArea : VisualElement
     {
+        public EnumRevealArea()
+        {
+        }
+
+        public EnumRevealArea(string bindingPath, Type enumType, int enumValue, BeginEnumRevealAreaAttribute.EnumFlagKind mode)
+        {
+            Binding = bindingPath;
+            EnumType = enumType;
+            EnumNames = string.Join(",", Enum.GetNames(enumType)
+                .Where(enumName => ((int)Enum.Parse(enumType, enumName) & enumValue) != 0));
+            
+            FlagsMode = mode switch
+            {
+                BeginEnumRevealAreaAttribute.EnumFlagKind.Off => EnumRevealFlagsMode.Off,
+                BeginEnumRevealAreaAttribute.EnumFlagKind.Any => EnumRevealFlagsMode.Any,
+                BeginEnumRevealAreaAttribute.EnumFlagKind.All => EnumRevealFlagsMode.All,
+                BeginEnumRevealAreaAttribute.EnumFlagKind.None => EnumRevealFlagsMode.None,
+                BeginEnumRevealAreaAttribute.EnumFlagKind.NotAll => EnumRevealFlagsMode.NotAll,
+            };
+
+            Setup();
+        }
+
         internal enum EnumRevealFlagsMode
         {
             Off = 0,
@@ -28,109 +52,114 @@ namespace Crux.Core.Editor.Controls
             {
                 var field = base.Create(bag, cc) as EnumRevealArea;
 
-                field!.styleSheets.Add(
-                    AssetReference.ParseAndLoad<StyleSheet>("000fc17682fdd4bc391434199e6b6d4d,7433441132597879392"));
-
-                var propertyField = new PropertyField
-                {
-                    bindingPath = field.Binding,
-                    style =
-                    {
-                        display = DisplayStyle.None
-                    }
-                };
-
-                field.Add(propertyField);
-
-                if (field.EnumType != null)
-                {
-                    List<int> acceptedValues = null;
-
-                    try
-                    {
-                        acceptedValues = field.EnumNames.Split(",")
-                            .Select(name => (int)Enum.Parse(field.EnumType, name))
-                            .ToList();
-                    }
-                    catch
-                    {
-                        // ignored
-                    }
-
-                    acceptedValues ??= new List<int>();
-
-                    void UpdateDelegate(int newValue)
-                    {
-                        bool flag = field.FlagsMode != EnumRevealFlagsMode.Off;
-                        bool accept = field.FlagsMode switch
-                        {
-                            EnumRevealFlagsMode.Off => false,
-                            EnumRevealFlagsMode.Any => false,
-                            EnumRevealFlagsMode.All => true,
-                            EnumRevealFlagsMode.None => true,
-                            EnumRevealFlagsMode.NotAll => false
-                        };
-
-                        if (flag)
-                        {
-                            foreach (var val in acceptedValues)
-                            {
-                                bool match = (newValue & val) != 0;
-
-                                accept = field.FlagsMode switch
-                                {
-                                    EnumRevealFlagsMode.Off => accept,
-                                    EnumRevealFlagsMode.Any => accept || match,
-                                    EnumRevealFlagsMode.All => accept && match,
-                                    EnumRevealFlagsMode.None => accept && !match,
-                                    EnumRevealFlagsMode.NotAll => accept || !match
-                                };
-                            }
-                        }
-                        else
-                        {
-                            accept = acceptedValues.Contains(newValue);
-                        }
-
-                        if (accept)
-                        {
-                            field.AddToClassList("revealed");
-                            field.RemoveFromClassList("unrevealed");
-                        }
-                        else
-                        {
-                            field.RemoveFromClassList("revealed");
-                            field.AddToClassList("unrevealed");
-                        }
-                    }
-
-                    propertyField.RegisterValueChangeCallback(evt =>
-                    {
-                        // this gives the actual enum value!
-                        int newValue = evt.changedProperty.intValue;
-
-                        UpdateDelegate(newValue);
-                    });
-
-                    field.schedule.Execute(() =>
-                    {
-                        FieldInfo fieldInfo = propertyField.GetType().GetField("m_SerializedProperty",
-                            BindingFlags.NonPublic | BindingFlags.Instance);
-
-                        if (fieldInfo == null)
-                        {
-                            Debug.LogWarning("This shouldn't happen...");
-                            return;
-                        }
-
-                        var serializedProperty = (SerializedProperty)fieldInfo.GetValue(propertyField);
-
-                        if (serializedProperty != null)
-                            UpdateDelegate(serializedProperty.intValue);
-                    });
-                }
+                field!.Setup();
 
                 return field;
+            }
+        }
+
+        private void Setup()
+        {
+            styleSheets.Add(
+                AssetReference.ParseAndLoad<StyleSheet>("000fc17682fdd4bc391434199e6b6d4d,7433441132597879392"));
+
+            var propertyField = new PropertyField
+            {
+                bindingPath = Binding,
+                style =
+                {
+                    display = DisplayStyle.None
+                }
+            };
+
+            Add(propertyField);
+
+            if (EnumType != null)
+            {
+                List<int> acceptedValues = null;
+
+                try
+                {
+                    acceptedValues = EnumNames.Split(",")
+                        .Select(enumName => (int)Enum.Parse(EnumType, enumName))
+                        .ToList();
+                }
+                catch
+                {
+                    // ignored
+                }
+
+                acceptedValues ??= new List<int>();
+
+                void UpdateDelegate(int newValue)
+                {
+                    bool flag = FlagsMode != EnumRevealFlagsMode.Off;
+                    bool accept = FlagsMode switch
+                    {
+                        EnumRevealFlagsMode.Off => false,
+                        EnumRevealFlagsMode.Any => false,
+                        EnumRevealFlagsMode.All => true,
+                        EnumRevealFlagsMode.None => true,
+                        EnumRevealFlagsMode.NotAll => false
+                    };
+
+                    if (flag)
+                    {
+                        foreach (var val in acceptedValues)
+                        {
+                            bool match = (newValue & val) != 0;
+
+                            accept = FlagsMode switch
+                            {
+                                EnumRevealFlagsMode.Off => accept,
+                                EnumRevealFlagsMode.Any => accept || match,
+                                EnumRevealFlagsMode.All => accept && match,
+                                EnumRevealFlagsMode.None => accept && !match,
+                                EnumRevealFlagsMode.NotAll => accept || !match
+                            };
+                        }
+                    }
+                    else
+                    {
+                        accept = acceptedValues.Contains(newValue);
+                    }
+
+                    if (accept)
+                    {
+                        AddToClassList("revealed");
+                        RemoveFromClassList("unrevealed");
+                    }
+                    else
+                    {
+                        RemoveFromClassList("revealed");
+                        AddToClassList("unrevealed");
+                    }
+                }
+
+                propertyField.RegisterValueChangeCallback(evt =>
+                {
+                    // this gives the actual enum value!
+                    int newValue = evt.changedProperty.intValue;
+
+                    UpdateDelegate(newValue);
+                });
+
+                schedule.Execute(() =>
+                {
+                    FieldInfo fieldInfo = propertyField.GetType().GetField("m_SerializedProperty",
+                        BindingFlags.NonPublic | BindingFlags.Instance);
+
+                    if (fieldInfo == null)
+                    {
+                        Debug.LogWarning("This shouldn't happen...");
+                        return;
+                    }
+
+                    var serializedProperty = (SerializedProperty)fieldInfo.GetValue(propertyField);
+
+                    if (serializedProperty != null)
+                        UpdateDelegate(serializedProperty.intValue);
+                });
             }
         }
 

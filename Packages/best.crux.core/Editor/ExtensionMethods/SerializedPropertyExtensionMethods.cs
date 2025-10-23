@@ -47,6 +47,7 @@ namespace Crux.Core.Editor.ExtensionMethods
                 return false;
             }
 
+            object targetObject = serializedProperty.serializedObject.targetObject;
             var targetObjectType = serializedProperty.serializedObject.targetObject.GetType();
 
             List<string> segments = serializedProperty.propertyPath.Split('.').ToList();
@@ -58,7 +59,8 @@ namespace Crux.Core.Editor.ExtensionMethods
 
                 if (fieldInfo != null)
                 {
-                    targetObjectType = fieldInfo.GetValue(serializedProperty.serializedObject.targetObject).GetType();
+                    targetObject = fieldInfo.GetValue(targetObject);
+                    targetObjectType = targetObject.GetType();
                     continue;
                 }
 
@@ -66,8 +68,8 @@ namespace Crux.Core.Editor.ExtensionMethods
 
                 if (propertyInfo != null)
                 {
-                    targetObjectType = propertyInfo.GetValue(serializedProperty.serializedObject.targetObject)
-                        .GetType();
+                    targetObject = propertyInfo.GetValue(targetObject);
+                    targetObjectType = targetObject.GetType();
                     continue;
                 }
 

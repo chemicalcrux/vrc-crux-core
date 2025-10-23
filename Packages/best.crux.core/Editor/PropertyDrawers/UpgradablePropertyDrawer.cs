@@ -1,9 +1,5 @@
-using System.Collections.Generic;
-using System.Linq;
 using Crux.Core.Editor.Controls;
-using Crux.Core.Editor.ExtensionMethods;
 using Crux.Core.Runtime.Attributes;
-using Crux.Core.Runtime.Diagnostics;
 using Crux.Core.Runtime.Upgrades;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -17,48 +13,6 @@ namespace Crux.Core.Editor.PropertyDrawers
     [CustomPropertyDrawer(typeof(UpgradableBase))]
     public class UpgradablePropertyDrawer : PropertyDrawer
     {
-        public static void CreatePropertyFields(SerializedProperty property, VisualElement target)
-        {
-            var iterateOver = property.Copy();
-            var end = iterateOver.GetEndProperty(true);
-
-            iterateOver.Next(true);
-
-            Stack<VisualElement> targetStack = new();
-            targetStack.Push(target);
-            
-            while (!SerializedProperty.EqualContents(iterateOver, end))
-            {
-                var skipTo = iterateOver.GetEndProperty(false);
-
-                if (iterateOver.TryGetAttribute(out BeginRevealAreaAttribute beginRevealAreaAttribute))
-                {
-                    string sourcePath = string.Join(".", iterateOver.propertyPath.Split(".").SkipLast(1));
-                    sourcePath += "." + beginRevealAreaAttribute.Property;
-                    RevealArea area = new RevealArea(sourcePath);
-                    targetStack.Peek().Add(area);
-                    targetStack.Push(area);
-                }
-                
-                if (iterateOver.TryGetAttribute(out EndRevealAreaAttribute _))
-                {
-                    if (targetStack.Count > 1)
-                        targetStack.Pop();
-                    else
-                        CoreLog.LogError("Tried to close a RevealArea that did not exist.");
-                }
-
-                var field = new PropertyField(iterateOver);
-
-                targetStack.Peek().Add(field);
-                targetStack.Peek().Bind(iterateOver.serializedObject);
-
-                while (iterateOver.NextVisible(true) &&
-                       !SerializedProperty.EqualContents(iterateOver, skipTo))
-                {
-                }
-            }
-        }
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
         {
             AssetReference.TryParse("cea4d3f34a23e43389d3662cd8163f15,9197481963319205126", out var propertyDrawerRef);
@@ -159,7 +113,7 @@ namespace Crux.Core.Editor.PropertyDrawers
                     }
                     else
                     {
-                        CreatePropertyFields(property, area);
+                        GadgetPropertyDrawer.CreatePropertyFields(property, area);
                     }
                 }
 
