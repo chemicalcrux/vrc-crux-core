@@ -1,6 +1,9 @@
+using System.Collections.Generic;
+using System.Linq;
 using Crux.Core.Editor.Controls;
-using Crux.Core.Runtime;
+using Crux.Core.Editor.ExtensionMethods;
 using Crux.Core.Runtime.Attributes;
+using Crux.Core.Runtime.Diagnostics;
 using Crux.Core.Runtime.Upgrades;
 using UnityEditor;
 using UnityEditor.UIElements;
@@ -21,14 +24,34 @@ namespace Crux.Core.Editor.PropertyDrawers
 
             iterateOver.Next(true);
 
+            Stack<VisualElement> targetStack = new();
+            targetStack.Push(target);
+            
             while (!SerializedProperty.EqualContents(iterateOver, end))
             {
                 var skipTo = iterateOver.GetEndProperty(false);
 
+                if (iterateOver.TryGetAttribute(out BeginRevealAreaAttribute beginRevealAreaAttribute))
+                {
+                    string sourcePath = string.Join(".", iterateOver.propertyPath.Split(".").SkipLast(1));
+                    sourcePath += "." + beginRevealAreaAttribute.Property;
+                    RevealArea area = new RevealArea(sourcePath);
+                    targetStack.Peek().Add(area);
+                    targetStack.Push(area);
+                }
+                
+                if (iterateOver.TryGetAttribute(out EndRevealAreaAttribute _))
+                {
+                    if (targetStack.Count > 1)
+                        targetStack.Pop();
+                    else
+                        CoreLog.LogError("Tried to close a RevealArea that did not exist.");
+                }
+
                 var field = new PropertyField(iterateOver);
 
-                target.Add(field);
-                target.Bind(iterateOver.serializedObject);
+                targetStack.Peek().Add(field);
+                targetStack.Peek().Bind(iterateOver.serializedObject);
 
                 while (iterateOver.NextVisible(true) &&
                        !SerializedProperty.EqualContents(iterateOver, skipTo))
@@ -226,6 +249,7 @@ namespace Crux.Core.Editor.PropertyDrawers
         /// Override this method to control how the property itself gets rendered.
         /// </summary>
         /// <param name="property"></param>
+        /// <param name="area"></param>
         /// <returns>Whether an interface was drawn. If false, the default will be drawn.</returns>
         protected virtual bool CreateMainInterface(SerializedProperty property, VisualElement area)
         {

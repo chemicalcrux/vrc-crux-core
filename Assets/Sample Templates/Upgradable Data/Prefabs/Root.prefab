@@ -57,5 +57,6 @@ MonoBehaviour:
         foo: 53.2
         bar: 0
         properName: 
-        doStuff: 1
+        doStuff: 0
         widgets: 100
+        whatever: 0

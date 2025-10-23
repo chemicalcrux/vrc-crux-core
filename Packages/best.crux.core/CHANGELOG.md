@@ -9,10 +9,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
+### Added
+
+- BeginRevealArea and EndRevealArea attributes
+  - These allow you to create RevealAreas without needing to create a custom property drawer
+- CoreLog, for dev-mode-only logging
+- Extension methods for finding attributes on fields or properties referenced by a SerializedProperty
+  - These are public, since other packages may need to do the same thing.
+
 ### Changed
 
 - DecoratedList<T> can now return List<T>.Enumerator from its GetEnumerator method
   - This is very nitpicky, but this prevents some unnecessary memory allocation
+
+### Fixed
+
+- RevealArea now works correctly when constructed directly
+  - Setup code used to only run in its UxmlFactory.
 
 ## [0.8.1] - 2025-10-14
 

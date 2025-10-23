@@ -72,7 +72,10 @@ namespace Crux.Core.Samples.UpgradableData.Runtime
         [DocRef(manualRef: "237fb495d65834b049da64d12c70ebed,11400000",
             pageRef: "a1a15fc308d084456a5a8c5a29613cef,11400000")]
         public bool doStuff;
+        [BeginRevealArea(nameof(doStuff), true)]
         public int widgets;
+
+        [EndRevealArea] public float whatever;
 
         public override ModelBase Upgrade()
         {
