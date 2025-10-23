@@ -23,7 +23,12 @@ namespace Crux.Core.Runtime
             return decoratedList.list;
         }
         
-        public IEnumerator<T> GetEnumerator()
+        public List<T>.Enumerator GetEnumerator()
+        {
+            return list.GetEnumerator();
+        }
+        
+        IEnumerator<T> IEnumerable<T>.GetEnumerator()
         {
             return list.GetEnumerator();
         }
