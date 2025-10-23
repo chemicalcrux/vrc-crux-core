@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Crux.Core.Runtime.Attributes;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -12,6 +13,7 @@ using UnityEngine.UIElements;
 
 namespace Crux.Core.Editor.Controls
 {
+    [PublicAPI]
     public class EnumRevealArea : VisualElement
     {
         public EnumRevealArea()
@@ -37,7 +39,7 @@ namespace Crux.Core.Editor.Controls
             Setup();
         }
 
-        internal enum EnumRevealFlagsMode
+        public enum EnumRevealFlagsMode
         {
             Off = 0,
             Any = 1,
@@ -192,6 +194,6 @@ namespace Crux.Core.Editor.Controls
         public string Binding { get; private set; }
         public Type EnumType { get; private set; }
         public string EnumNames { get; private set; }
-        internal EnumRevealFlagsMode FlagsMode { get; private set; }
+        public EnumRevealFlagsMode FlagsMode { get; private set; }
     }
 }

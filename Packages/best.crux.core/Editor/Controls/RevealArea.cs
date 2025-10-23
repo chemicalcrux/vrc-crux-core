@@ -1,4 +1,5 @@
 using System.Reflection;
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEditor.UIElements;
 using UnityEngine;
@@ -6,6 +7,7 @@ using UnityEngine.UIElements;
 
 namespace Crux.Core.Editor.Controls
 {
+    [PublicAPI]
     public class RevealArea : VisualElement
     {
         /// <summary>
@@ -35,7 +37,7 @@ namespace Crux.Core.Editor.Controls
                 
                 var field = base.Create(bag, cc) as RevealArea;
 
-                field.Setup();
+                field!.Setup();
 
                 return field;
             }
@@ -48,9 +50,14 @@ namespace Crux.Core.Editor.Controls
             
                 styleSheets.Add(sheet);
 
-            var propertyField = new PropertyField();
-            propertyField.bindingPath = Binding;
-            propertyField.style.display = DisplayStyle.None;
+            var propertyField = new PropertyField
+            {
+                bindingPath = Binding,
+                style =
+                {
+                    display = DisplayStyle.None
+                }
+            };
 
             Add(propertyField);
 

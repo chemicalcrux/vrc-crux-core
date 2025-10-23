@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UIElements;
@@ -7,6 +8,7 @@ namespace Crux.Core.Editor.Controls
     /// <summary>
     /// Pings an object when clicked.
     /// </summary>
+    [PublicAPI]
     public class PingButton : Button
     {
         public new class UxmlFactory : UxmlFactory<PingButton, UxmlTraits>
@@ -52,10 +54,10 @@ namespace Crux.Core.Editor.Controls
                     {
                         Debug.LogWarning("A ping button couldn't find an asset to ping!");
                     }
-                    
+
                     EditorGUIUtility.PingObject(result);
                 };
-                
+
                 return button;
             }
         }
@@ -64,10 +66,10 @@ namespace Crux.Core.Editor.Controls
         {
             private readonly UxmlStringAttributeDescription assetRef = new()
                 { name = "asset-ref", defaultValue = "" };
-            
+
             private readonly UxmlStringAttributeDescription assetPath = new()
                 { name = "asset-path", defaultValue = "" };
-            
+
             private readonly UxmlStringAttributeDescription assetQuery = new()
                 { name = "asset-query", defaultValue = "" };
 

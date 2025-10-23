@@ -10,7 +10,7 @@ namespace Crux.Core.Editor.Controls
     /// </summary>
     public class AnnotatedPropertyField : PropertyField
     {
-        private int buttons = 0;
+        private int buttons;
         private float expected;
 
 
