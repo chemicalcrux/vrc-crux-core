@@ -1,6 +1,9 @@
+using System;
+using Crux.Core.Runtime;
 using Crux.Core.Runtime.Attributes;
 using Crux.Core.Runtime.Upgrades;
 using JetBrains.Annotations;
+using UnityEngine;
 
 namespace Crux.Core.Samples.UpgradableData.Runtime
 {
@@ -59,6 +62,20 @@ namespace Crux.Core.Samples.UpgradableData.Runtime
     [UpgradableVersion(version: 3)]
     public class ModelV3 : ModelBase
     {
+        [Serializable]
+        public class Thing
+        {
+            public bool enable;
+
+            [BeginRevealArea(nameof(enable), true)]
+            public int amount;
+        }
+        public enum MyMode
+        {
+            No,
+            Yes
+        }
+        
         [DocRef(manualRef: "237fb495d65834b049da64d12c70ebed,11400000",
             pageRef: "a1a15fc308d084456a5a8c5a29613cef,11400000")]
         [TooltipRef(assetRef: "84f4b25d9a92744a1bec12e2fa3c4253,9197481963319205126")]
@@ -72,7 +89,19 @@ namespace Crux.Core.Samples.UpgradableData.Runtime
         [DocRef(manualRef: "237fb495d65834b049da64d12c70ebed,11400000",
             pageRef: "a1a15fc308d084456a5a8c5a29613cef,11400000")]
         public bool doStuff;
+        [BeginRevealArea(nameof(doStuff), true)]
         public int widgets;
+
+        public MyMode theMode;
+
+        [BeginEnumRevealArea(nameof(theMode), typeof(MyMode),
+            BeginEnumRevealAreaAttribute.EnumFlagKind.Off, MyMode.Yes)]
+        public DecoratedList<int> numbers;
+        public string onlyIfYes;
+
+        public Thing thing;
+        [EndRevealArea]
+        [EndRevealArea] public float whatever;
 
         public override ModelBase Upgrade()
         {

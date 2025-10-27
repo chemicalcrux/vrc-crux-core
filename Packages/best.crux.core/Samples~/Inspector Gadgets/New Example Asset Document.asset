@@ -9,24 +9,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b5808aff48df48eeb4f3cd240ebf4ad, type: 3}
-  m_Name: Example Asset
+  m_Script: {fileID: 11500000, guid: 14e464eb2cae4ffcbbc7be1ce2705a1a, type: 3}
+  m_Name: New Example Asset Document
   m_EditorClassIdentifier: 
   foo: 0
-  bar: 1
+  bar: 0
   baz:
     list: []
   dummy: 0
   qux: {fileID: 0}
   coolEnum: 0
-  flagsEnum: 7
+  flagsEnum: 3
   alphaOrBravo: 
   inner:
-    huh: 1
+    huh: 0
     something:
       something:
         something:
           something:
-            something: 122
+            something: 0
     what: 0
   whoopsie: 0

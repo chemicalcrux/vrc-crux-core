@@ -5,8 +5,8 @@ using UnityEngine.UIElements;
 
 namespace Crux.Core.Samples.InspectorGadgets.Editor
 {
-    [CustomEditor(typeof(ExampleAsset))]
-    public class ExampleAssetEditor : UnityEditor.Editor
+    [CustomEditor(typeof(ExampleAssetDocument))]
+    public class ExampleAssetDocumentEditor : UnityEditor.Editor
     {
         public override VisualElement CreateInspectorGUI()
         {

@@ -59,3 +59,11 @@ MonoBehaviour:
         properName: 
         doStuff: 1
         widgets: 100
+        theMode: 1
+        numbers:
+          list: 000000000000000000000000
+        onlyIfYes: 
+        thing:
+          enable: 1
+          amount: 0
+        whatever: 0

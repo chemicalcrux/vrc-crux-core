@@ -1,5 +1,6 @@
 using System;
 using Crux.Core.Runtime.Upgrades;
+using UnityEngine;
 
 namespace Crux.Core.Samples.UpgradableData.Runtime
 {
