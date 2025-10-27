@@ -7,6 +7,6 @@ namespace Crux.Core.Runtime.Attributes
     [AttributeUsage(AttributeTargets.Field, AllowMultiple = true)]
     public class EndRevealAreaAttribute : Attribute
     {
-        
+        public string Key { get; set; }
     }
 }

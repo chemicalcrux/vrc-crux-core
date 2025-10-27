@@ -6,8 +6,8 @@ namespace Crux.Core.Runtime.Attributes
     /// Causes this field to respect attributes such as <see cref="BeginRevealAreaAttribute"/>
     /// 
     /// </summary>
-    public class DrawGadgetsAttribute : PropertyAttribute
-    {
-        
-    }
+    // public class DrawGadgetsAttribute : PropertyAttribute
+    // {
+    //     
+    // }
 }

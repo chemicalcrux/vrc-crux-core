@@ -20,13 +20,14 @@ namespace Crux.Core.Editor.Controls
         {
         }
 
-        public EnumRevealArea(string bindingPath, Type enumType, int enumValue, BeginEnumRevealAreaAttribute.EnumFlagKind mode)
+        public EnumRevealArea(string bindingPath, Type enumType, BeginEnumRevealAreaAttribute.EnumFlagKind mode,
+            object[] enumValues)
         {
             Binding = bindingPath;
             EnumType = enumType;
-            EnumNames = string.Join(",", Enum.GetNames(enumType)
-                .Where(enumName => ((int)Enum.Parse(enumType, enumName) & enumValue) != 0));
-            
+            EnumNames = string.Join(",", enumValues.Select(value => Enum.GetName(enumType, value)));
+
+            Debug.Log(EnumNames);
             FlagsMode = mode switch
             {
                 BeginEnumRevealAreaAttribute.EnumFlagKind.Off => EnumRevealFlagsMode.Off,
@@ -78,64 +79,14 @@ namespace Crux.Core.Editor.Controls
 
             if (EnumType != null)
             {
-                List<int> acceptedValues = null;
-
                 try
                 {
-                    acceptedValues = EnumNames.Split(",")
-                        .Select(enumName => (int)Enum.Parse(EnumType, enumName))
-                        .ToList();
+                    acceptedValues.AddRange(EnumNames.Split(",")
+                        .Select(enumName => (int)Enum.Parse(EnumType, enumName)));
                 }
                 catch
                 {
                     // ignored
-                }
-
-                acceptedValues ??= new List<int>();
-
-                void UpdateDelegate(int newValue)
-                {
-                    bool flag = FlagsMode != EnumRevealFlagsMode.Off;
-                    bool accept = FlagsMode switch
-                    {
-                        EnumRevealFlagsMode.Off => false,
-                        EnumRevealFlagsMode.Any => false,
-                        EnumRevealFlagsMode.All => true,
-                        EnumRevealFlagsMode.None => true,
-                        EnumRevealFlagsMode.NotAll => false
-                    };
-
-                    if (flag)
-                    {
-                        foreach (var val in acceptedValues)
-                        {
-                            bool match = (newValue & val) != 0;
-
-                            accept = FlagsMode switch
-                            {
-                                EnumRevealFlagsMode.Off => accept,
-                                EnumRevealFlagsMode.Any => accept || match,
-                                EnumRevealFlagsMode.All => accept && match,
-                                EnumRevealFlagsMode.None => accept && !match,
-                                EnumRevealFlagsMode.NotAll => accept || !match
-                            };
-                        }
-                    }
-                    else
-                    {
-                        accept = acceptedValues.Contains(newValue);
-                    }
-
-                    if (accept)
-                    {
-                        AddToClassList("revealed");
-                        RemoveFromClassList("unrevealed");
-                    }
-                    else
-                    {
-                        RemoveFromClassList("revealed");
-                        AddToClassList("unrevealed");
-                    }
                 }
 
                 propertyField.RegisterValueChangeCallback(evt =>
@@ -150,20 +101,71 @@ namespace Crux.Core.Editor.Controls
                 {
                     FieldInfo fieldInfo = propertyField.GetType().GetField("m_SerializedProperty",
                         BindingFlags.NonPublic | BindingFlags.Instance);
-
+                
                     if (fieldInfo == null)
                     {
                         Debug.LogWarning("This shouldn't happen...");
                         return;
                     }
-
+                
                     var serializedProperty = (SerializedProperty)fieldInfo.GetValue(propertyField);
-
+                
                     if (serializedProperty != null)
                         UpdateDelegate(serializedProperty.intValue);
                 });
             }
         }
+
+        public void UpdateDelegate(int newValue)
+        {
+            bool flag = FlagsMode != EnumRevealFlagsMode.Off;
+            bool accept = FlagsMode switch
+            {
+                EnumRevealFlagsMode.Off => false,
+                EnumRevealFlagsMode.Any => false,
+                EnumRevealFlagsMode.All => true,
+                EnumRevealFlagsMode.None => true,
+                EnumRevealFlagsMode.NotAll => false
+            };
+
+            if (flag)
+            {
+                foreach (var val in acceptedValues)
+                {
+                    bool match = (newValue & val) != 0;
+
+                    accept = FlagsMode switch
+                    {
+                        EnumRevealFlagsMode.Off => accept,
+                        EnumRevealFlagsMode.Any => accept || match,
+                        EnumRevealFlagsMode.All => accept && match,
+                        EnumRevealFlagsMode.None => accept && !match,
+                        EnumRevealFlagsMode.NotAll => accept || !match
+                    };
+                }
+            }
+            else
+            {
+                accept = acceptedValues.Contains(newValue);
+            }
+
+            Debug.Log("Property: " + Binding);
+            Debug.Log("Value: " + newValue);
+            Debug.Log("New state: " + accept);
+            Debug.Log("Type: " + EnumType);
+            Debug.Log(string.Join(",", acceptedValues));
+            if (accept)
+            {
+                AddToClassList("revealed");
+                RemoveFromClassList("unrevealed");
+            }
+            else
+            {
+                RemoveFromClassList("revealed");
+                AddToClassList("unrevealed");
+            }
+        }
+
 
         public new class UxmlTraits : VisualElement.UxmlTraits
         {
@@ -195,5 +197,7 @@ namespace Crux.Core.Editor.Controls
         public Type EnumType { get; private set; }
         public string EnumNames { get; private set; }
         public EnumRevealFlagsMode FlagsMode { get; private set; }
+
+        private List<int> acceptedValues = new();
     }
 }

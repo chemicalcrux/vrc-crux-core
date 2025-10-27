@@ -55,42 +55,34 @@ namespace Crux.Core.Editor.ExtensionMethods
             // we need to dig *through* the property tree until we get to the right place
             foreach (var pathSegment in segments.SkipLast(1))
             {
-                var fieldInfo = targetObjectType.GetField(pathSegment, AllBindingFlags);
-
-                if (fieldInfo != null)
+                if (targetObjectType.TryFindInheritedField(pathSegment, AllBindingFlags, out var fieldInfo))
                 {
                     targetObject = fieldInfo.GetValue(targetObject);
                     targetObjectType = targetObject.GetType();
                     continue;
                 }
 
-                var propertyInfo = targetObjectType.GetProperty(pathSegment, AllBindingFlags);
-
-                if (propertyInfo != null)
+                if (targetObjectType.TryFindInheritedProperty(pathSegment, AllBindingFlags, out var propertyInfo))
                 {
                     targetObject = propertyInfo.GetValue(targetObject);
                     targetObjectType = targetObject.GetType();
                     continue;
                 }
-
-                CoreLog.LogError("Couldn't find a field or property for this path segment: " + pathSegment);
+                
+                CoreLog.LogError("Couldn't find a field or property on " + targetObject.GetType() + " for this path segment: " + pathSegment);
                 
                 memberInfo = default;
                 return false;
             }
 
             {
-                var fieldInfo = targetObjectType.GetField(segments[^1], AllBindingFlags);
-
-                if (fieldInfo != null)
+                if (targetObjectType.TryFindInheritedField(segments[^1], AllBindingFlags, out var fieldInfo))
                 {
                     memberInfo = fieldInfo;
                     return true;
                 }
 
-                var propertyInfo = targetObjectType.GetProperty(segments[^1], AllBindingFlags);
-
-                if (propertyInfo != null)
+                if (targetObjectType.TryFindInheritedProperty(segments[^1], AllBindingFlags, out var propertyInfo))
                 {
                     memberInfo = propertyInfo;
                     return true;

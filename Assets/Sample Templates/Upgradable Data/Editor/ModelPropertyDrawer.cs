@@ -18,4 +18,10 @@ namespace Crux.Core.Samples.UpgradableData.Editor
             return true;
         }
     }
+
+    [CustomPropertyDrawer(typeof(ModelV3.Thing))]
+    public class ModelGadgetDrawer : GadgetPropertyDrawer
+    {
+        
+    }
 }

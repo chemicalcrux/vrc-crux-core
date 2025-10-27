@@ -7,12 +7,12 @@ using Crux.Core.Runtime.Diagnostics;
 using JetBrains.Annotations;
 using UnityEditor;
 using UnityEditor.UIElements;
+using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Crux.Core.Editor.PropertyDrawers
 {
     [PublicAPI]
-    [CustomPropertyDrawer(typeof(DrawGadgetsAttribute))]
     public class GadgetPropertyDrawer : PropertyDrawer
     {
         public override VisualElement CreatePropertyGUI(SerializedProperty property)
@@ -35,56 +35,83 @@ namespace Crux.Core.Editor.PropertyDrawers
         /// </summary>
         /// <param name="property"></param>
         /// <param name="target"></param>
-        public static void CreatePropertyFields(SerializedProperty property, VisualElement target)
+        public static void CreatePropertyFields(SerializedProperty property, VisualElement target, bool children = true)
         {
+            SerializedProperty end = null;
             var iterateOver = property.Copy();
-            var end = iterateOver.GetEndProperty(true);
 
-            iterateOver.Next(true);
+            if (children)
+            {
+                end = iterateOver.GetEndProperty(true);
+                var foldout = new Foldout()
+                {
+                    text = property.displayName
+                };
+                
+                target.Add(foldout);
+                target = foldout;
+                iterateOver.NextVisible(true);
+            }
+            else
+            {
+                iterateOver.NextVisible(true);
+            }
 
             Stack<VisualElement> targetStack = new();
             targetStack.Push(target);
 
             while (!SerializedProperty.EqualContents(iterateOver, end))
             {
-                var skipTo = iterateOver.GetEndProperty(false);
-
-                foreach (var attribute in iterateOver.GetAttributes<BeginRevealAreaAttribute>())
-                {
-                    string sourcePath = string.Join(".", iterateOver.propertyPath.Split(".").SkipLast(1));
-                    sourcePath += "." + attribute.Property;
-                    RevealArea area = new RevealArea(sourcePath);
-                    targetStack.Peek().Add(area);
-                    targetStack.Push(area);
-                }
-
-                foreach (var attribute in iterateOver.GetAttributes<BeginEnumRevealAreaAttribute>())
-                {
-                    string sourcePath = string.Join(".", iterateOver.propertyPath.Split(".").SkipLast(1));
-                    sourcePath += "." + attribute.Property;
-                    EnumRevealArea area = new EnumRevealArea(sourcePath, attribute.EnumType, attribute.EnumValue,
-                        attribute.FlagsUsage);
-                    targetStack.Peek().Add(area);
-                    targetStack.Push(area);
-                }
+                Debug.Log(iterateOver.propertyPath);
 
                 foreach (var _ in iterateOver.GetAttributes<EndRevealAreaAttribute>())
                 {
+                    Debug.Log("End reveal");
                     if (targetStack.Count > 1)
                         targetStack.Pop();
                     else
                         CoreLog.LogError("Tried to close a RevealArea that did not exist.");
                 }
 
+                foreach (var attribute in iterateOver.GetAttributes<BeginRevealAreaAttribute>())
+                {
+                    Debug.Log("Begin reveal");
+                    string sourcePath = string.Join(".", iterateOver.propertyPath.Split(".").SkipLast(1).Append(attribute.Property));
+                    Debug.Log("Reveal: " + sourcePath);
+                    RevealArea area = new RevealArea(sourcePath, attribute.Condition);
+                    
+                    var sourceProperty = iterateOver.serializedObject.FindProperty(sourcePath);
+
+                    area.UpdateDelegate(sourceProperty.boolValue);
+                    targetStack.Peek().Add(area);
+                    targetStack.Push(area);
+                }
+
+                foreach (var attribute in iterateOver.GetAttributes<BeginEnumRevealAreaAttribute>())
+                {
+                    Debug.Log("Begin enum reveal");
+                    string sourcePath = string.Join(".", iterateOver.propertyPath.Split(".").SkipLast(1).Append(attribute.Property));
+                    EnumRevealArea area = new EnumRevealArea(sourcePath, attribute.EnumType, attribute.FlagsUsage, attribute.EnumValues);
+
+                    var sourceProperty = iterateOver.serializedObject.FindProperty(sourcePath);
+                    
+                    area.UpdateDelegate(sourceProperty.intValue);
+                    
+                    targetStack.Peek().Add(area);
+                    targetStack.Push(area);
+                }
+
                 var field = new PropertyField(iterateOver);
+
+                field.SetEnabled(iterateOver.propertyPath != "m_Script");
 
                 targetStack.Peek().Add(field);
                 targetStack.Peek().Bind(iterateOver.serializedObject);
 
-                while (iterateOver.NextVisible(true) &&
-                       !SerializedProperty.EqualContents(iterateOver, skipTo))
-                {
-                }
+                bool hitEnd = !iterateOver.NextVisible(false);
+
+                if (hitEnd)
+                    break;
             }
         }
     }

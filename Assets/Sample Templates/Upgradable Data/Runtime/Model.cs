@@ -3,6 +3,7 @@ using Crux.Core.Runtime;
 using Crux.Core.Runtime.Attributes;
 using Crux.Core.Runtime.Upgrades;
 using JetBrains.Annotations;
+using UnityEngine;
 
 namespace Crux.Core.Samples.UpgradableData.Runtime
 {
@@ -93,12 +94,11 @@ namespace Crux.Core.Samples.UpgradableData.Runtime
 
         public MyMode theMode;
 
-        [BeginEnumRevealArea(nameof(theMode), typeof(MyMode), MyMode.Yes,
-            BeginEnumRevealAreaAttribute.EnumFlagKind.Off)]
+        [BeginEnumRevealArea(nameof(theMode), typeof(MyMode),
+            BeginEnumRevealAreaAttribute.EnumFlagKind.Off, MyMode.Yes)]
         public DecoratedList<int> numbers;
         public string onlyIfYes;
 
-        [DrawGadgets]
         public Thing thing;
         [EndRevealArea]
         [EndRevealArea] public float whatever;

@@ -7,6 +7,26 @@ A changelog wasn't kept until version 0.7.0, so the changelog is currently being
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+
+### Added
+
+
+### Fixed
+
+- BeginEnumRevealArea couldn't accept multiple enum values for non-Flags enums
+- Reveal areas added via script no longer flicker for one frame
+  - Areas placed in UI documents still flicker
+- Corrected many cases where gadgets would not get drawn correctly
+  - For example, they didn't work for inherited fields or properties
+- GadgetPropertyDrawer now correctly draws a foldout
+
+### Removed
+
+- The DrawGadgets attribute
+  - Classes that need gadgets should just create a custom property drawer
+  - Having to include the attribute everywhere didn't make sense
+
 ## [0.8.2] - 2025-10-23
 
 ### Added

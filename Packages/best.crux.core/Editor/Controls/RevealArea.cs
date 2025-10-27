@@ -18,14 +18,16 @@ namespace Crux.Core.Editor.Controls
         {
             
         }
-
+        
         /// <summary>
         /// Constructs a RevealArea with a binding.
         /// </summary>
         /// <param name="bindingPath"></param>
-        public RevealArea(string bindingPath)
+        /// <param name="boolValue"></param>
+        public RevealArea(string bindingPath, bool boolValue = true)
         {
             Binding = bindingPath;
+            BoolValue = boolValue;
             Setup();
         }
         
@@ -61,25 +63,11 @@ namespace Crux.Core.Editor.Controls
 
             Add(propertyField);
 
-            void UpdateSelf(bool newValue)
-            {
-                if (newValue)
-                {
-                    AddToClassList("revealed");
-                    RemoveFromClassList("unrevealed");
-                }
-                else
-                {
-                    RemoveFromClassList("revealed");
-                    AddToClassList("unrevealed");
-                }
-            }
-
             propertyField.RegisterValueChangeCallback(evt =>
             {
                 bool newValue = evt.changedProperty.boolValue;
 
-                UpdateSelf(newValue);
+                UpdateDelegate(newValue);
             });
 
             schedule.Execute(() =>
@@ -96,8 +84,22 @@ namespace Crux.Core.Editor.Controls
                 var serializedProperty = (SerializedProperty)fieldInfo.GetValue(propertyField);
 
                 if (serializedProperty != null)
-                    UpdateSelf(serializedProperty.boolValue);
+                    UpdateDelegate(serializedProperty.boolValue);
             });
+        }
+        
+        public void UpdateDelegate(bool newValue)
+        {
+            if (newValue == BoolValue)
+            {
+                AddToClassList("revealed");
+                RemoveFromClassList("unrevealed");
+            }
+            else
+            {
+                RemoveFromClassList("revealed");
+                AddToClassList("unrevealed");
+            }
         }
 
         public new class UxmlTraits : VisualElement.UxmlTraits
@@ -105,15 +107,20 @@ namespace Crux.Core.Editor.Controls
             private readonly UxmlStringAttributeDescription binding = new()
                 { name = "binding", defaultValue = "" };
 
+            private readonly UxmlBoolAttributeDescription boolValue = new()
+                { name = "bool-value", defaultValue = true };
+
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
             {
                 base.Init(ve, bag, cc);
                 var ate = ve as RevealArea;
 
                 ate!.Binding = binding.GetValueFromBag(bag, cc);
+                ate.BoolValue = boolValue.GetValueFromBag(bag, cc);
             }
         }
 
         public string Binding { get; private set; }
+        public bool BoolValue { get; private set; }
     }
 }

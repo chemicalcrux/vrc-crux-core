@@ -15,5 +15,6 @@ namespace Crux.Core.Runtime.Attributes
 
         public string Property { get; }
         public bool Condition { get; }
+        public string Key { get; set; }
     }
 }

@@ -16,17 +16,18 @@ namespace Crux.Core.Runtime.Attributes
             NotAll = 4
         }
         
-        public BeginEnumRevealAreaAttribute(string property, Type enumType, object enumValue, EnumFlagKind flagsUsage)
+        public BeginEnumRevealAreaAttribute(string property, Type enumType, EnumFlagKind flagsUsage, params object[] enumValues)
         {
             Property = property;
             EnumType = enumType;
-            EnumValue = (int) enumValue;
+            EnumValues = enumValues;
             FlagsUsage = flagsUsage;
         }
 
         public string Property { get; }
         public Type EnumType { get; }
-        public int EnumValue { get; }
+        public object[] EnumValues { get; }
         public EnumFlagKind FlagsUsage { get; }
+        public string Key { get; set;  }
     }
 }
