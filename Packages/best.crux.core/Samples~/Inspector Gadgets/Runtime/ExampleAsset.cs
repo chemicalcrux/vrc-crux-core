@@ -9,12 +9,14 @@ namespace Crux.Core.Samples.InspectorGadgets.Runtime
     [CreateAssetMenu]
     public class ExampleAsset : ScriptableObject
     {
+        [TooltipInline("This is an inline tooltip.")]
         public int foo;
         public bool bar;
         
         [BeginRevealArea(nameof(bar), true)]
         [DocRefInert(manualRef: "237fb495d65834b049da64d12c70ebed,11400000")]
         [TooltipRefInert(assetRef: "8a72288a46f054f73bdb29eef0e2f825,9197481963319205126")]
+        [TooltipInlineInert("Here is some more tooltip text!")]
         public DecoratedList<float> baz;
 
         [EndRevealArea] [BeginRevealArea(nameof(bar), false)]
