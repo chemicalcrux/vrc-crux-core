@@ -9,6 +9,7 @@ namespace Crux.Core.Samples.InspectorGadgets.Runtime
     [CreateAssetMenu]
     public class ExampleAsset : ScriptableObject
     {
+        [TooltipInline("This is an inline tooltip.")]
         public int foo;
         public bool bar;
         

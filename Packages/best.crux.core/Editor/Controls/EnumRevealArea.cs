@@ -27,7 +27,6 @@ namespace Crux.Core.Editor.Controls
             EnumType = enumType;
             EnumNames = string.Join(",", enumValues.Select(value => Enum.GetName(enumType, value)));
 
-            Debug.Log(EnumNames);
             FlagsMode = mode switch
             {
                 BeginEnumRevealAreaAttribute.EnumFlagKind.Off => EnumRevealFlagsMode.Off,
@@ -149,11 +148,6 @@ namespace Crux.Core.Editor.Controls
                 accept = acceptedValues.Contains(newValue);
             }
 
-            Debug.Log("Property: " + Binding);
-            Debug.Log("Value: " + newValue);
-            Debug.Log("New state: " + accept);
-            Debug.Log("Type: " + EnumType);
-            Debug.Log(string.Join(",", acceptedValues));
             if (accept)
             {
                 AddToClassList("revealed");

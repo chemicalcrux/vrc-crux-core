@@ -37,7 +37,7 @@ namespace Crux.Core.Editor.Controls
         {
             this.DocPageRef = assetRef;
         }
-
+        
         public new class UxmlFactory : UxmlFactory<AnnotatedPropertyField, UxmlTraits>
         {
             public override VisualElement Create(IUxmlAttributes bag, CreationContext cc)
@@ -65,6 +65,9 @@ namespace Crux.Core.Editor.Controls
 
             if (!string.IsNullOrEmpty(field.DocManualRef) || !string.IsNullOrEmpty(field.DocPageRef))
                 InsertDocButton(field, sibling);
+            
+            if (!string.IsNullOrEmpty(field.TooltipInlineText))
+                InsertInlineTooltipButton(field, sibling);
 
             field.UnregisterCallback<GeometryChangedEvent, AnnotatedPropertyField>(InsertButton);
 
@@ -100,6 +103,19 @@ namespace Crux.Core.Editor.Controls
             ++field.buttons;
         }
 
+        private static void InsertInlineTooltipButton(AnnotatedPropertyField field, VisualElement sibling)
+        {
+            var uxml = AssetReference.ParseAndLoad<VisualTreeAsset>(
+                "b6b775e84bd2f4644a50e7ffd2caf7c1,9197481963319205126");
+
+            var tree = uxml.Instantiate();
+            var button = tree.Q<TooltipInlineButton>();
+            button.TooltipText = field.TooltipInlineText;
+
+            sibling.parent.hierarchy.Insert(sibling.parent.IndexOf(sibling), button);
+            ++field.buttons;
+        }
+
         public new class UxmlTraits : PropertyField.UxmlTraits
         {
             private readonly UxmlStringAttributeDescription tooltipRef = new()
@@ -111,6 +127,9 @@ namespace Crux.Core.Editor.Controls
             private readonly UxmlStringAttributeDescription docPageRef = new()
                 { name = "doc-page-ref", defaultValue = "" };
 
+            private readonly UxmlStringAttributeDescription tooltipInlineText = new()
+                { name = "tooltip-inline-text", defaultValue = "" };
+
             public override void Init(VisualElement ve, IUxmlAttributes bag, CreationContext cc)
             {
                 base.Init(ve, bag, cc);
@@ -119,11 +138,15 @@ namespace Crux.Core.Editor.Controls
                 ate!.TooltipRef = tooltipRef.GetValueFromBag(bag, cc);
                 ate!.DocManualRef = docManualRef.GetValueFromBag(bag, cc);
                 ate!.DocPageRef = docPageRef.GetValueFromBag(bag, cc);
+
+                ate!.TooltipInlineText = tooltipInlineText.GetValueFromBag(bag, cc);
             }
         }
 
         private string TooltipRef { get; set; }
         private string DocManualRef { get; set; }
         private string DocPageRef { get; set; }
+
+        public string TooltipInlineText { get; set; }
     }
 }
