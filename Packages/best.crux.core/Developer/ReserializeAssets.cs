@@ -5,19 +5,22 @@ using UnityEngine;
 
 public static class ReserializeAssets
 {
+    public static void ReserializeDirectory(string path)
+    {
+        if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Selection.activeObject, out var guid, out long fileID))
+        {
+            var targets = AssetDatabase.FindAssets("", new[] { path })
+                .Select(static guid => AssetDatabase.GUIDToAssetPath(guid));
+            
+            AssetDatabase.ForceReserializeAssets(targets);
+        }
+    }
+    
     [MenuItem("Assets/Reserialize", false, CoreConsts.ContextAssetOrder)]
     static void Reserialize()
     {
         var path = AssetDatabase.GetAssetPath(Selection.activeObject);
-
-        Debug.Log(path);
-        if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Selection.activeObject, out var guid, out long fileID))
-        {
-            var targets = AssetDatabase.FindAssets("", new[] { path })
-                         .Select(static guid => AssetDatabase.GUIDToAssetPath(guid));
-            
-            AssetDatabase.ForceReserializeAssets(targets);
-        }
+        ReserializeDirectory(path);
     }
 
     [MenuItem("Assets/Reserialize", true, CoreConsts.ContextAssetOrder)]

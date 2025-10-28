@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
+- A dev-mode-only context-menu option to "prepare" a package
+  - Right-click a PackageManifest asset and select "Prepare"
+  - This will perform the following steps:
+    - Reserialize the sample templates directory
+    - Reserialize the package
+    - Delete Samples~
+    - Copy the Sample Templates directory to Samples~
+  - This gets the package ready for a release.
 
 ### Fixed
 
