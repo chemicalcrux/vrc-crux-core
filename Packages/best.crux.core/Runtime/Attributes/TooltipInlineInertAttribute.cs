@@ -5,13 +5,13 @@ using UnityEngine;
 namespace Crux.Core.Runtime.Attributes
 {
     /// <summary>
-    /// Places a tooltip button that displays the given text 
+    /// Like <see cref="TooltipInlineAttribute"/>, but not used by property drawers.
     /// </summary>
     [PublicAPI]
     [AttributeUsage(AttributeTargets.Field | AttributeTargets.Class | AttributeTargets.Struct)]
-    public class TooltipInlineAttribute : PropertyAttribute
+    public class TooltipInlineInertAttribute : Attribute
     {
-        public TooltipInlineAttribute(string text)
+        public TooltipInlineInertAttribute(string text)
         {
             Text = text;
         }

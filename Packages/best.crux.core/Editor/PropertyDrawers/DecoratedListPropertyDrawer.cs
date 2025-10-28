@@ -26,6 +26,11 @@ namespace Crux.Core.Editor.PropertyDrawers
                 field.SetTooltipRef(tooltipRefAttribute.AssetRef);
             }
 
+            if (fieldInfo.TryGetAttribute(out TooltipInlineInertAttribute tooltipInlineAttribute))
+            {
+                field.TooltipInlineText = tooltipInlineAttribute.Text;
+            }
+
             field.label = property.displayName;
 
             return field;
