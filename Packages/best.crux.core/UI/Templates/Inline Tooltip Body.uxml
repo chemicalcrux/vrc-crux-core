@@ -1,4 +1,4 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
     <Style src="project://database/Packages/best.crux.core/UI/Stylesheets/Tooltips.uss?fileID=7433441132597879392&amp;guid=234309fa2d27e49bab370f17e03cc597&amp;type=3#Tooltips" />
-    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Inline-Text" style="-unity-text-align: upper-center;" />
+    <ui:Label tabindex="-1" text="Label" parse-escape-sequences="true" display-tooltip-when-elided="true" name="Inline-Text" style="-unity-text-align: upper-center; white-space: normal;" />
 </ui:UXML>
