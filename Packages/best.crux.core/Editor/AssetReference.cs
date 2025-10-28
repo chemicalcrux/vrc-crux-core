@@ -124,7 +124,7 @@ namespace Crux.Core.Editor
     /// Saves a bit of typing for known-good assets.
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class SafeAssetReference<T> : AssetReference where T : UnityEngine.Object
+    public class SafeAssetReference<T> : AssetReference where T : Object
     {
         public SafeAssetReference(string guid, long fileID) : base(guid, fileID)
         {

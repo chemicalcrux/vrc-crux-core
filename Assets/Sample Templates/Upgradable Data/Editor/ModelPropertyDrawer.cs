@@ -10,8 +10,6 @@ namespace Crux.Core.Samples.UpgradableData.Editor
     {
         protected override bool CreateMainInterface(SerializedProperty property, VisualElement area)
         {
-            var managed = property.managedReferenceValue;
-
             area.Add(new Label("This is a test of 'advanced' property drawers. You can run code!\n\nThis should only appear for ModelV1.\n\nAnyway, here's the normal interface:"));
             GadgetPropertyDrawer.CreatePropertyFields(property, area);
 

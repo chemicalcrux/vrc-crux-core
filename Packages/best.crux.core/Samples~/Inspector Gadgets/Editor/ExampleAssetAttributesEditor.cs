@@ -1,7 +1,6 @@
 using Crux.Core.Editor.PropertyDrawers;
 using Crux.Core.Samples.InspectorGadgets.Runtime;
 using UnityEditor;
-using UnityEngine;
 using UnityEngine.UIElements;
 
 namespace Crux.Core.Samples.InspectorGadgets.Editor

@@ -4,6 +4,6 @@ namespace Crux.Core.Samples.UpgradableData.Runtime
 {
     public class UpgradeUIExample : MonoBehaviour
     {
-        [SerializeField, SerializeReference] private ModelWithUI data = new ModelWithUIV1();
+        [SerializeField, SerializeReference] internal ModelWithUI data = new ModelWithUIV1();
     }
 }

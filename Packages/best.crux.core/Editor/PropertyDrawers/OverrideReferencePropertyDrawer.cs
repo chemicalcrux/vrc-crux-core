@@ -45,20 +45,16 @@ namespace Crux.Core.Editor.PropertyDrawers
 
             var instantiated = uxml.Instantiate();
             
-            if (result == Case.NonPrefab)
+            if (result is Case.NonPrefab or Case.NearPrefab)
             {
                 instantiated.Q<Label>("Message").style.display = DisplayStyle.None;
             }
-            else if (result == Case.NearPrefab)
-            {
-                instantiated.Q<Label>("Message").style.display = DisplayStyle.None;
-            }
-            else if (result == Case.FarPrefab)
+            else
             {
                 instantiated.Q<Label>("Message").text = "This is NOT the outermost layer of a prefab. You can't add an override here.";
                 instantiated.Q<PropertyField>("Reference").style.display = DisplayStyle.None;
             }
-            
+
             return instantiated;
         }
     }

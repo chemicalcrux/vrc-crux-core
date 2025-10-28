@@ -16,7 +16,7 @@ namespace Crux.Core.Samples.UpgradableData.Runtime
     {
         public override ModelWithUI Upgrade()
         {
-            throw new NotImplementedException();
+            return this;
         }
     }
 }

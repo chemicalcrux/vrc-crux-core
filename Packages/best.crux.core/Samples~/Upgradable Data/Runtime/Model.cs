@@ -3,7 +3,6 @@ using Crux.Core.Runtime;
 using Crux.Core.Runtime.Attributes;
 using Crux.Core.Runtime.Upgrades;
 using JetBrains.Annotations;
-using UnityEngine;
 
 namespace Crux.Core.Samples.UpgradableData.Runtime
 {

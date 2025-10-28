@@ -24,9 +24,9 @@ namespace Crux.Core.Editor.PropertyDrawers
 
         /// <summary>
         /// Draws all top-level children of the given SerializedProperty.
-        ///
+        /// 
         /// This handles the following attributes:
-        ///
+        /// 
         /// <ul>
         /// <li><see cref="BeginRevealAreaAttribute"/></li>
         /// <li><see cref="BeginEnumRevealAreaAttribute"/></li>
@@ -35,6 +35,7 @@ namespace Crux.Core.Editor.PropertyDrawers
         /// </summary>
         /// <param name="property"></param>
         /// <param name="target"></param>
+        /// <param name="children"></param>
         public static void CreatePropertyFields(SerializedProperty property, VisualElement target, bool children = true)
         {
             SerializedProperty end = null;

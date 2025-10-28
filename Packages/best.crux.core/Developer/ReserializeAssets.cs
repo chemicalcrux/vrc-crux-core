@@ -1,32 +1,34 @@
 using System.Linq;
 using Crux.Core.Runtime;
 using UnityEditor;
-using UnityEngine;
 
-public static class ReserializeAssets
+namespace Crux.Core.Developer
 {
-    public static void ReserializeDirectory(string path)
+    public static class ReserializeAssets
     {
-        if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Selection.activeObject, out var guid, out long fileID))
+        public static void ReserializeDirectory(string path)
         {
-            var targets = AssetDatabase.FindAssets("", new[] { path })
-                .Select(static guid => AssetDatabase.GUIDToAssetPath(guid));
+            if (AssetDatabase.TryGetGUIDAndLocalFileIdentifier(Selection.activeObject, out string _, out long _))
+            {
+                var targets = AssetDatabase.FindAssets("", new[] { path })
+                    .Select(static guid => AssetDatabase.GUIDToAssetPath(guid));
             
-            AssetDatabase.ForceReserializeAssets(targets);
+                AssetDatabase.ForceReserializeAssets(targets);
+            }
         }
-    }
     
-    [MenuItem("Assets/Reserialize", false, CoreConsts.ContextAssetOrder)]
-    static void Reserialize()
-    {
-        var path = AssetDatabase.GetAssetPath(Selection.activeObject);
-        ReserializeDirectory(path);
-    }
+        [MenuItem("Assets/Reserialize", false, CoreConsts.ContextAssetOrder)]
+        static void Reserialize()
+        {
+            var path = AssetDatabase.GetAssetPath(Selection.activeObject);
+            ReserializeDirectory(path);
+        }
 
-    [MenuItem("Assets/Reserialize", true, CoreConsts.ContextAssetOrder)]
-    static bool ReserializeValidation()
-    {
-        return Selection.activeObject && AssetDatabase.Contains(Selection.activeObject) &&
-               Selection.activeObject is DefaultAsset;
+        [MenuItem("Assets/Reserialize", true, CoreConsts.ContextAssetOrder)]
+        static bool ReserializeValidation()
+        {
+            return Selection.activeObject && AssetDatabase.Contains(Selection.activeObject) &&
+                   Selection.activeObject is DefaultAsset;
+        }
     }
 }
