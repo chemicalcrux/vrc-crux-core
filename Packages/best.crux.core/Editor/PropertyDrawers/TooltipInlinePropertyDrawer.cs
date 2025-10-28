@@ -16,7 +16,6 @@ namespace Crux.Core.Editor.PropertyDrawers
 
             var attributes = fieldInfo.GetCustomAttributes(typeof(TooltipInlineAttribute), false);
 
-            Debug.Log(attributes.Length);
             if (attributes.Length > 0)
             {
                 var attr = attributes[0] as TooltipInlineAttribute;
