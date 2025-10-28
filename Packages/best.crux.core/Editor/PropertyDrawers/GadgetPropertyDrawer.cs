@@ -63,11 +63,8 @@ namespace Crux.Core.Editor.PropertyDrawers
 
             while (!SerializedProperty.EqualContents(iterateOver, end))
             {
-                Debug.Log(iterateOver.propertyPath);
-
                 foreach (var _ in iterateOver.GetAttributes<EndRevealAreaAttribute>())
                 {
-                    Debug.Log("End reveal");
                     if (targetStack.Count > 1)
                         targetStack.Pop();
                     else
@@ -76,9 +73,7 @@ namespace Crux.Core.Editor.PropertyDrawers
 
                 foreach (var attribute in iterateOver.GetAttributes<BeginRevealAreaAttribute>())
                 {
-                    Debug.Log("Begin reveal");
                     string sourcePath = string.Join(".", iterateOver.propertyPath.Split(".").SkipLast(1).Append(attribute.Property));
-                    Debug.Log("Reveal: " + sourcePath);
                     RevealArea area = new RevealArea(sourcePath, attribute.Condition);
                     
                     var sourceProperty = iterateOver.serializedObject.FindProperty(sourcePath);
@@ -90,7 +85,6 @@ namespace Crux.Core.Editor.PropertyDrawers
 
                 foreach (var attribute in iterateOver.GetAttributes<BeginEnumRevealAreaAttribute>())
                 {
-                    Debug.Log("Begin enum reveal");
                     string sourcePath = string.Join(".", iterateOver.propertyPath.Split(".").SkipLast(1).Append(attribute.Property));
                     EnumRevealArea area = new EnumRevealArea(sourcePath, attribute.EnumType, attribute.FlagsUsage, attribute.EnumValues);
 
