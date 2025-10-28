@@ -19,6 +19,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - Delete Samples~
     - Copy the Sample Templates directory to Samples~
   - This gets the package ready for a release.
+- Inline tooltips, for when you just need to display a bit of text
+  - This way, you don't have to create an entire UI document for every single tooltip
 
 ### Fixed
 
