@@ -7,7 +7,14 @@ A changelog wasn't kept until version 0.7.0, so the changelog is currently being
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [0.9.1] - 2025-11-01
+
+### Fixed
+
+- DecoratedList did not initialize its own list when constructed, which could cause errors
+    - Unity's serializer would fix this, but not if an exception got thrown before that could happen.
+
+## [0.9.0] - 2025-10-28
 
 ### Added
 
@@ -30,8 +37,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Corrected many cases where gadgets would not get drawn correctly
   - For example, they didn't work for inherited fields or properties
 - GadgetPropertyDrawer now correctly draws a foldout
-- DecoratedList did not initialize its own list when constructed, which could cause errors
-  - Unity's serializer would fix this, but not if an exception got thrown before that could happen.
 
 ### Removed
 
