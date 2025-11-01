@@ -30,6 +30,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Corrected many cases where gadgets would not get drawn correctly
   - For example, they didn't work for inherited fields or properties
 - GadgetPropertyDrawer now correctly draws a foldout
+- DecoratedList did not initialize its own list when constructed, which could cause errors
+  - Unity's serializer would fix this, but not if an exception got thrown before that could happen.
 
 ### Removed
 

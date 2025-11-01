@@ -16,7 +16,7 @@ namespace Crux.Core.Runtime
     [Serializable]
     public class DecoratedList<T> : IEnumerable<T>
     {
-        public List<T> list;
+        public List<T> list = new();
 
         public static implicit operator List<T>(DecoratedList<T> decoratedList)
         {
