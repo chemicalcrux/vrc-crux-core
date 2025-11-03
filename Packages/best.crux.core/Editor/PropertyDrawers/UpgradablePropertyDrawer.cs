@@ -113,7 +113,7 @@ namespace Crux.Core.Editor.PropertyDrawers
                     }
                     else
                     {
-                        GadgetPropertyDrawer.CreatePropertyFields(property, area);
+                        GadgetPropertyDrawer.CreatePropertyFields(property, area, true, true);
                     }
                 }
 

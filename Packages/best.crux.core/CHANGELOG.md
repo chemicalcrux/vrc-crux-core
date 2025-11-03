@@ -14,6 +14,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add some margin to the RevealArea class
   - This gives it more vertical space
 
+### Fixed
+
+- Upgradable data no longer has a top-level foldout
+
 ## [0.9.1] - 2025-11-01
 
 ### Fixed

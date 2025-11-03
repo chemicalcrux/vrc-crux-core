@@ -36,7 +36,7 @@ namespace Crux.Core.Editor.PropertyDrawers
         /// <param name="property"></param>
         /// <param name="target"></param>
         /// <param name="children"></param>
-        public static void CreatePropertyFields(SerializedProperty property, VisualElement target, bool children = true)
+        public static void CreatePropertyFields(SerializedProperty property, VisualElement target, bool children = true, bool skipFoldout = false)
         {
             SerializedProperty end = null;
             var iterateOver = property.Copy();
@@ -44,13 +44,17 @@ namespace Crux.Core.Editor.PropertyDrawers
             if (children)
             {
                 end = iterateOver.GetEndProperty(true);
-                var foldout = new Foldout()
+
+                if (!skipFoldout)
                 {
-                    text = property.displayName
-                };
+                    var foldout = new Foldout()
+                    {
+                        text = property.displayName
+                    };
                 
-                target.Add(foldout);
-                target = foldout;
+                    target.Add(foldout);
+                    target = foldout;
+                }
                 iterateOver.NextVisible(true);
             }
             else
