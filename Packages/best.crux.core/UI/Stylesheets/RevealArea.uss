@@ -6,10 +6,13 @@ RevealArea.unrevealed {
     display: none;
 }
 
-RevealArea {
+RevealArea, EnumRevealArea
+{
     background-color: rgba(255, 255, 255, 0.05);
-    padding: 4px;
-    padding-left: 8px;
+    padding: 4px 4px 4px 8px;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    border-radius: 4px;
 }
 
 RevealArea > .unity-base-field__input
